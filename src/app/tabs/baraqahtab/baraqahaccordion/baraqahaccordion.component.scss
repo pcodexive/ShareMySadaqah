@@ -1,0 +1,140 @@
+.baraqah-accordion {
+    padding-top: 30px;
+    p {
+        font-size: 14px;
+        line-height: 20px;
+        color: #000000;
+        font-weight: 500;
+    }
+    .sin-img {
+        margin-bottom: 25px;
+        margin-top: 25px;
+    }
+    .form-check {
+        position: relative;
+        padding-left: 0;
+        .form-check-input {
+            opacity: 0;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .form-check-input:checked+.form-check-label {
+            &::before {
+                font-family: Font Awesome\ 5 Free;
+                content: "\f00c";
+                font-weight: 900;
+                position: absolute;
+                left: 3px;
+                top: 1px;
+                font-size: 13px;
+            }
+        }
+        .form-check-label {
+            font-size: 14px;
+            line-height: 20px;
+            color: #000000;
+            font-weight: 500;
+            overflow: hidden;
+            position: relative;
+            padding-left: 28px;
+            cursor: pointer;
+            &::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 20px;
+                height: 20px;
+                border: 1px solid #000000;
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                border-radius: 5px;
+            }
+        }
+    }
+    .form-control {
+        border-radius: 30px;
+        border-color: #4D4D4D;
+        color: #999999;
+        padding: 0 15px;
+        font-size: 16px;
+        font-weight: 500;
+        height: 46px;
+    }
+    .address-section {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .prices-box {
+        padding-top: 10px;
+        padding-bottom: 20px;
+        .price {
+            border: 2px solid #F79D11;
+			border-radius: 10px;
+			color: #F79D11;
+			font-size: 16px;
+			font-weight: 800;
+			line-height: 23px;
+			padding: 20px 8px;
+			cursor: pointer;
+            &.active {
+                background-color: #F79D11;
+                color: #ffffff;
+            }
+            &:hover {
+                background-color: #F79D11;
+                color: #ffffff;
+            }
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .baraqah-accordion {
+        .section {
+            padding-bottom: 40px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 26px;
+        }
+        .form-check {
+            .form-check-label {
+                font-size: 18px;
+                line-height: 26px;
+                padding-left: 36px;
+                &::after {
+                    width: 24px;
+                    height: 24px;
+                }
+            }
+            .form-check-input:checked+.form-check-label {
+                &::before {
+                    left: 5px;
+                    top: 0px;
+                    font-size: 14px;
+                }
+            }
+        }
+        .form-group {
+            margin-bottom: 40px;
+        }
+        .form-control {
+            border-radius: 50px;
+            padding: 0 30px;
+            font-size: 20px;
+            height: 70px;
+        }
+        .prices-box {
+            padding-top: 20px;
+            padding-bottom: 40px;
+            .price {
+                border-radius: 15px;
+                font-size: 24px;
+                line-height: 28px;
+                padding: 15px 30px;
+            }
+        }
+    }
+}

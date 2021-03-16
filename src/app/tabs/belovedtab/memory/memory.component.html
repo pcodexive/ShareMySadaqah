@@ -1,0 +1,17 @@
+<div class="memory-content">
+    <div class="d-block px-1 memory-boxs">
+        <div class="d-flex flex-wrap">
+            <div *ngFor="let content of content; let i = index" class="col-md-4 col-6 px-2" [class.active]="selectedItem == i" (click)="selectedItem=i">
+                <div class="card flex-wrap align-items-center justify-content-center p-2 p-md-4 text-center" [ngStyle]="{'background-color': content.bgcolor}">
+                    <i class="fa fa-check-circle check-icon"></i>
+                    <div class="d-block w-100 name">
+                        {{content.name}}
+                    </div>
+                    <div class="d-block w-100 pt-2 image">
+                        <img src="{{content.image}}" alt={{content.name}} title={{content.name}} />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

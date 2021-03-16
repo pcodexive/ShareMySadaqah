@@ -1,0 +1,59 @@
+.alive-content {
+    padding-top: 30px;
+    padding-bottom: 90px;
+    .alive-boxs {
+        .card {
+            border: none;
+            height: 160px;
+            max-height: 160px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            border-radius: 15px 15px 15px 15px;
+            -moz-border-radius: 15px 15px 15px 15px;
+            -webkit-border-radius: 15px 15px 15px 15px;
+            -webkit-box-shadow: 4px 4px 7px 0px rgba(0, 0, 0, 0.3);
+            -moz-box-shadow: 4px 4px 7px 0px rgba(0, 0, 0, 0.3);
+            box-shadow: 4px 4px 7px 0px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            .check-icon {
+                font-size: 20px;
+                position: absolute;
+                right: 8px;
+                top: 8px;
+                display: none;
+                color: #ffffff;
+                line-height: 24px;
+            }
+            .name {
+                font-size: 18px;
+                line-height: 24px;
+                font-weight: 600;
+                color: #ffffff;
+            }
+        }
+        .active {
+            .card {
+                .check-icon {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .alive-content {
+        padding-top: 70px;
+        padding-bottom: 40px;
+        .alive-boxs {
+            .card {
+                height: 220px;
+                max-height: 220px;
+                .name {
+                    font-size: 32px;
+                    line-height: 36px;
+                }
+            }
+        }
+    }
+}

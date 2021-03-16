@@ -1,0 +1,68 @@
+<div class="signup-container" role="Signup">
+    <div class="d-block text-center heading">
+        <a class="btn" routerLink="/">
+            <i class="fa fa-times"></i>
+        </a> Sign up
+    </div>
+    <div class="content" style="background-image: url('../assets/images/header-background-img.png');">
+        <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="container">
+            <div class="ml-auto mr-auto signup-content">
+                <div class="signup-form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="First Name" formControlName="first_name"/>
+                        <div class="text-danger text-center" *ngIf="form.controls.first_name.invalid && (form.controls.first_name.dirty || form.controls.first_name.touched)">
+                            Please enter your first name!
+                         </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Surname" formControlName="last_name"/>
+                        <div class="text-danger text-center" *ngIf="form.controls.last_name.invalid && (form.controls.last_name.dirty || form.controls.last_name.touched)">
+                            Please enter your surname!
+                         </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Email" formControlName="email"/>
+                        <div class="text-danger text-center" *ngIf="form.controls.email.invalid && (form.controls.email.dirty || form.controls.email.touched)">
+                            Please enter your email!
+                         </div>
+                    </div>
+                    <div class="form-group">
+                        <input [type]="hidepassword ? 'text' : 'password'" class="form-control" id="formGroupExampleInput2" placeholder="Password" formControlName="password">
+                        <span (click)="hidepassword = !hidepassword"><i [class]="hidepassword ? 'far fa-eye': 'far fa-eye-slash'" ></i></span>
+                       <div class="text-danger text-center" *ngIf="form.controls.password.invalid && (form.controls.password.dirty || form.controls.password.touched)">Please enter your Password!</div>
+               
+                    </div>
+                    <div class="form-group">
+
+                        <input [type]="hideCpassword ? 'text' : 'password'" class="form-control" id="formGroupExampleInput2" placeholder="Confirm Password" formControlName="cpassword">
+                        <span (click)="hideCpassword = !hideCpassword"><i [class]="hideCpassword ? 'far fa-eye': 'far fa-eye-slash'" ></i></span>
+                        
+                        <div class="text-danger text-center"  *ngIf="!form.controls.cpassword.hasError('notEquivalent') && form.controls.cpassword.invalid && (form.controls.cpassword.dirty || form.controls.cpassword.touched)">Please enter your confirm password!</div>
+                        <div class="text-danger text-center"  *ngIf="form.controls.cpassword.hasError('notEquivalent')">Password & Confirm password does not match!</div>
+                    </div>
+                </div>
+                <div class="d-block text-center border-line"></div>
+                <div class="social-icon-button">
+                    <button type="button" class="btn btn-primary btn-lg btn-block">
+                        <span><i class="fa fa-facebook"></i></span>
+                        Sign up with Facebook
+                    </button>
+                    <button type="button" class="btn btn-primary google-btn btn-lg btn-block">
+                        <span><i class="fa fa-google"></i></span>
+                        Sign up with Google+
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="signup-bottom-section">
+            <div class="container">
+                <div class="ml-auto mr-auto signup-btn text-center">
+                    <button type="type" class="btn btn-secondary btn-lg btn-block"> Sign up</button>
+                    <a href="#">Existing user? <strong>Long in</strong></a>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>

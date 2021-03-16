@@ -1,0 +1,113 @@
+.home-accordion {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 20px;
+    .card {
+        border: none;
+        border-radius: 0px;
+        .card-header {
+            padding: 0px;
+            border-bottom: none;
+            background-color: transparent;
+            .btn {
+                padding: 0 0 20px 0;
+                display: block;
+                color: #333333;
+                font-size: 24px;
+                line-height: 32px;
+                font-weight: 700;
+                width: 100%;
+                position: relative;
+                &:focus {
+                    text-decoration: none;
+                    box-shadow: none;
+                }
+                &:hover {
+                    text-decoration: none;
+                }
+                &::before {
+                    position: absolute;
+                    right: 0;
+                    top: 5px;
+                    background-color: #0EA08F;
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50px;
+                    text-align: center;
+                    font-size: 16px;
+                    font-weight: 700;
+                    color: #fff;
+                    line-height: 20px;
+                    content: "-";
+                }
+                &.collapsed {
+                    &::before {
+                        position: absolute;
+                        right: 0;
+                        top: 5px;
+                        background-color: #58595B;
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50px;
+                        text-align: center;
+                        font-size: 16px;
+                        font-weight: 700;
+                        color: #fff;
+                        line-height: 20px;
+                        content: "+";
+                    }
+                }
+            }
+        }
+        .card-body {
+            padding: 0;
+            strong {
+                display: block;
+                font-size: 20px;
+                line-height: 24px;
+                font-weight: 700;
+                color: #0EA08F;
+                padding-bottom: 5px;
+            }
+            p {
+                display: block;
+                font-size: 16px;
+                line-height: 24px;
+                font-weight: 500;
+                color: #000000;
+                &.phone-email {
+                    strong {
+                        color: #58595B;
+                        span {
+                            display: inline-block;
+                            padding-right: 5px;
+                            font-size: 14px;
+                        }
+                        a {
+                            color: #58595B;
+                        }
+                    }
+                }
+            }
+            .form-group {
+                position: relative;
+                margin-bottom: 20px;
+                .form-control {
+                    padding-left: 20px;
+                    padding-right: 20px;
+                    border-radius: 30px;
+                    border-color: #4D4D4D;
+                    color: #999999;
+                    font-size: 18px;
+                    height: 50px;
+                    &:focus {
+                        box-shadow: none;
+                    }
+                    &.textarea {
+                        height: 100px;
+                    }
+                }
+            }
+        }
+    }
+}

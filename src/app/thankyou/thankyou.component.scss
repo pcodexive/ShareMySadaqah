@@ -1,0 +1,171 @@
+.thankyou-content {
+    .thankyou-section-top {
+        background-color: #2D90CE;
+        text-align: center;
+        .thankyou-inner {
+            padding-bottom: 25px;
+            h2 {
+                font-size: 64px;
+                line-height: 68px;
+                color: #FFFF00;
+                text-shadow: 1px 1px 1px #000000;
+                margin-bottom: 20px;
+            }
+            span {
+                font-size: 26px;
+                line-height: 36px;
+                font-weight: 600;
+                color: #fff;
+            }
+        }
+        .thankyou-gift {
+            padding-bottom: 30px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .thankyou-content {
+            padding-bottom: 30px;
+            p {
+                margin: 0;
+                font-size: 18px;
+                color: #fff;
+            }
+            h4 {
+                color: #fff;
+            }
+        }
+    }
+    .thankyou-section-middle {
+        background-color: #E6557F;
+        padding: 30px 0;
+        .gift-box {
+            background-color: #2D90CE;
+            -webkit-border-radius: 30px;
+            -moz-border-radius: 30px;
+            border-radius: 30px;
+            -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.4);
+            -moz-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.4);
+            box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.4);
+            margin: 0 30px;
+            padding-top: 20px;
+            padding-bottom: 30px;
+            position: relative;
+            .flower {
+                position: absolute;
+                left: 0;
+                top: -5px;
+                width: 40%;
+            }
+            .water {
+                width: 40%;
+                margin-left: auto;
+                margin-right: auto;
+                padding-top: 20px;
+                padding-bottom: 10px;
+            }
+            .gift-heading {
+                padding-bottom: 15px;
+                font-size: 24px;
+                line-height: 28px;
+                font-weight: 700;
+                color: #fff;
+            }
+            .gift-price {
+                padding-bottom: 0px;
+                .icon {
+                    display: inline-block;
+                    margin-right: 10px;
+                    width: 16%;
+                }
+                .price-box {
+                    display: inline-block;
+                    font-size: 16px;
+                    color: #fff;
+                    border: 1px solid #fff;
+                    padding: 10px 30px;
+                    border-radius: 30px;
+                }
+            }
+        }
+    }
+    .thankyou-section-bottom {
+        background-color: #F79D11;
+        padding: 20px 0px 30px;
+        p {
+            font-size: 18px;
+            line-height: 26px;
+            font-weight: 500;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+        a {
+            color: #ffffff;
+            font-size: 48px;
+            line-height: 50px;
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .thankyou-content {
+        .thankyou-section-top {
+            .thankyou-inner {
+                padding-bottom: 30px;
+                h2 {
+                    font-size: 80px;
+                    font-weight: 600;
+                    line-height: 85px;
+                    margin-bottom: 25px;
+                    letter-spacing: 1px;
+                }
+                span {
+                    font-size: 30px;
+                    line-height: 35px;
+                }
+            }
+            .thankyou-gift {
+                width: 100%;
+            }
+            .thankyou-content {
+                p {
+                    font-size: 22px;
+                }
+                h4 {
+                    font-size: 26px;
+                    line-height: 45px;
+                }
+            }
+        }
+        .thankyou-section-middle {
+            .gift-box {
+                width: 60%;
+                margin: 0 auto;
+                .gift-heading {
+                    padding-top: 25px;
+                    padding-bottom: 30px;
+                    font-size: 40px;
+                }
+                .gift-price {
+                    .icon {
+                        margin-right: 20px;
+                    }
+                    .price-box {
+                        font-size: 30px;
+                        padding: 0 50px;
+                        border-radius: 50px;
+                        line-height: 80px;
+                        height: 80px;
+                        vertical-align: middle;
+                    }
+                }
+            }
+        }
+        .thankyou-section-bottom {
+            padding: 30px 0px 30px;
+            p {
+                font-size: 24px;
+                font-weight: 500;
+            }
+        }
+    }
+}

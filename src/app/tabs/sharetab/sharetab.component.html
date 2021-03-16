@@ -1,0 +1,135 @@
+<div class="share-tab-content">
+    <div class="heading">Share it with mum</div>
+    <div class="d-block pb-2">
+        <div class="container">
+            <div class="d-block mx-md-auto w-md-50">
+                <div class="form-group name-box">
+                    <input type="text" class="form-control" placeholder="Name" />
+                </div>
+                <div class="form-group email-box">
+                    <input type="text" class="form-control" placeholder="Email" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="share-gift-box">
+        <div class="container">
+            <div class="d-block px-2">
+                <div class="box">
+                    <div class="flower"><img src="assets/images/flower-img.png" alt="" /></div>
+                    <div class="water text-center d-block"><img src="assets/images/water-img.png" alt="" /></div>
+                    <div class="heading text-center d-block">Water</div>
+                    <div class="price-box text-center d-block">
+                        <div class="icon d-inline-block"><img src="assets/images/human-img.png" alt="" /></div>
+                        <div class="price d-inline-block">£15.00</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="occasion-box">
+        <div class="container">
+            <div class="d-block mx-md-auto w-md-50">
+                <div class="occasion-heading">
+                    What is the occasion?
+                </div>
+                <div class="occasion-buttons">
+                    <div class="row">
+                        <div class="col-6 pr-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Radios" id="Birthday" value="option1" checked>
+                                <label class="form-check-label" for="Birthday">
+                                    Birthday
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-6 pl-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Radios" id="NewBorn" value="option2">
+                                <label class="form-check-label" for="NewBorn">
+                                    New Born
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-6 pr-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Radios" id="ANewJob" value="option3">
+                                <label class="form-check-label" for="ANewJob">
+                                    A New Job
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-6 pl-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="Radios" id="GoodHealth" value="option4">
+                                <label class="form-check-label" for="GoodHealth">
+                                    Good Health
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button">
+                        <button type="button" class="btn btn-primary w-100 btn-other">Other <span class="float-right"><i class="fa fa-chevron-circle-down"></i></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="personal-box">
+        <div class="container">
+            <div class="d-block mx-md-auto w-md-50">
+                <div class="box">
+                    <div class="form-group">
+                        <label>Add a personal message or du’a</label>
+                        <textarea class="form-control" placeholder="Happy Birthday! Hope you have a lovely day. May Allah give you good health and prosperity. See you soon insha’Allah."></textarea>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="anonymous">
+        <div class="container">
+            <div class="d-block mx-md-auto w-md-50">
+                <div class="form-check pl-0">
+                    <input class="form-check-input" type="checkbox" id="StayAnonymous">
+                    <label class="form-check-label" for="StayAnonymous">Stay anonymous. Shussssh… give in secret!</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="personalised-text">
+        <div class="container">
+            <div class="d-block mx-md-auto w-md-50">
+                <strong>When do you want your personalised gift <br />e-card delivered?</strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="choose-container">
+        <div class="container">
+            <div class="d-block mx-md-auto w-md-50">
+                <div class="choose-text">Today</div>
+                <form class="form-inline">
+                    <div class="form-group w-100">
+                        <div class="input-group w-100">
+                            <input class="form-control" placeholder="Choose a date" name="dp" ngbDatepicker #d="ngbDatepicker">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"><i class="fas fa-calendar-week"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer" role="Footer">
+    <div class="container">
+        <div class="d-flex justify-content-center align-items-center footer-buttons">
+            <button class="btn btn-primary btn-help"><span><i class="fa fa-question-circle"></i></span> Help</button>
+            <button class="btn btn-primary btn-back"><span><i class="fa fa-chevron-circle-left"></i></span> Back</button>
+            <button class="btn btn-primary btn-good">Go <span><i class="fa fa-chevron-circle-right"></i></span></button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+<div class="baraqah-tab-content">
+    <div class="container">
+        <div class="d-block mx-md-5 heading">
+            Last step to baraqah
+        </div>
+        <div class="d-block mx-md-5 payment-form">
+            <div class="form-group">
+                <label>Your email</label>
+                <input type="text" class="form-control" placeholder="johnsmith@hotmail.com" />
+                <div class="invalid-feedback">
+                    Please enter your email
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Cardholders name <span>(as it appears on the card)</span></label>
+                <input type="text" class="form-control" placeholder="John Smith" />
+            </div>
+            <div class="form-group">
+                <label>Card number</label>
+                <input type="text" class="form-control" placeholder="1234 1234 1234 1234" />
+            </div>
+            <div class="form-group form-row align-items-end">
+                <div class="col-4">
+                    <label>Expiry date</label>
+                    <select class="custom-select form-control mr-sm-2" id="inlineFormCustomSelect">
+                        <option selected>01</option>
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                </div>
+                <div class="col-4">
+                    <label></label>
+                    <select class="custom-select form-control mr-sm-2" id="inlineFormCustomSelect">
+                        <option selected>2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                    </select>
+                </div>
+                <div class="col-4">
+                    <label>Security code</label>
+                    <input type="text" class="form-control" placeholder="123" />
+                    <i class="fa fa-credit-card-alt credit-icon"></i>
+                </div>
+            </div>
+        </div>
+        <div class="d-block mx-md-5">
+            <app-baraqahaccordion></app-baraqahaccordion>
+        </div>
+    </div>
+</div>
+<div class="footer text-center">
+    <div class="container">
+        <a class="btn btn-primary" routerLink="/thankyou">
+            <span class="d-inline-block align-top pr-3">Donate £10.50</span>
+            <p class="d-inline-block align-middle">+ 2.50 <br /> Gift Aid</p>
+        </a>
+    </div>
+</div>

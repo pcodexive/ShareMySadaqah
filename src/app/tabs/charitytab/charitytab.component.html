@@ -1,0 +1,40 @@
+<div class="charity-tab-content">
+    <div class="container">
+        <div class="d-block heading">
+            Select a charity
+        </div>
+        <div class="d-block mx-3 mx-md-5 search-box">
+            <div class="input-group">
+                <div class="input-group-append">
+                    <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+                </div>
+                <input type="text" class="form-control" placeholder="Search charities..." />
+            </div>
+        </div>
+        <div class="d-block px-1 px-md-5 charity-boxs">
+            <div class="d-flex flex-wrap">
+                <div *ngFor="let content of content; let i = index" class="col-md-4 col-6 px-2" (click)="selectedItem=i" [ngClass]="{active : selectedItem === i}">
+                    <div class="card flex-wrap align-items-center justify-content-center p-2 p-md-3" [ngStyle]="{'background-color': content.bgcolor}">
+                        <i class="fa fa-check-circle check-icon"></i>
+                        <div class="content flex-wrap align-items-center justify-content-start">
+                            <strong>{{content.name}}</strong>
+                            <p>{{content.text}}</p>
+                        </div>
+                        <div class="image">
+                            <img src="{{content.image}}" alt={{content.name}} title={{content.name}} />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer" role="Footer">
+    <div class="container">
+        <div class="d-flex justify-content-center align-items-center footer-buttons">
+            <button class="btn btn-primary mx-md-2 btn-help"><span><i class="fa fa-question-circle"></i></span> Help</button>
+            <button class="btn btn-primary mx-md-2 btn-back"><span><i class="fa fa-chevron-circle-left"></i></span> Back</button>
+            <button class="btn btn-primary mx-md-2 btn-good">Good to go <span><i class="fa fa-chevron-circle-right"></i></span></button>
+        </div>
+    </div>
+</div>

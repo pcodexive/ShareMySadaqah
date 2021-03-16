@@ -1,0 +1,205 @@
+.signin-container {
+    .heading {
+        background-color: #2D90CE;
+        padding: 15px 0;
+        font-size: 32px;
+        font-weight: 700;
+        color: #FFFFFF;
+        margin: 0;
+        text-align: center;
+        display: inline-block;
+        vertical-align: middle;
+        .btn {
+            position: absolute;
+            z-index: 1;
+            left: 8px;
+            top: 10px;
+            width: 32px;
+            cursor: pointer;
+            color: #FFFFFF;
+            padding: 0;
+            height: 32px;
+            border: none;
+            line-height: 32px;
+            font-size: 24px;
+        }
+    }
+    .content {
+        background-position: center top;
+        background-repeat: no-repeat;
+        background-size: contain;
+        .signin-content {
+            padding: 0 15px;
+            .border-line {
+                padding-top: 10px;
+                margin-bottom: 10px;
+                &::after {
+                    content: "";
+                    width: 200px;
+                    height: 1px;
+                    background-color: #808080;
+                    display: inline-block;
+                    vertical-align: top;
+                }
+            }
+            .social-icon-button {
+                padding: 35px 0px 35px 0px;
+                .btn-primary {
+                    border-radius: 40px;
+                    background-color: #3B5998;
+                    font-size: 18px;
+                    font-weight: 700;
+                    padding: 10px 0;
+                    border: none!important;
+                    margin-bottom: 20px;
+                    text-align: center;
+                    line-height: 32px;
+                    box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+                    span {
+                        display: inline-block;
+                        padding-right: 10px;
+                        font-size: 22px;
+                        font-weight: 500;
+                        vertical-align: middle;
+                    }
+                }
+                .google-btn {
+                    background-color: #DB4A39;
+                    margin-bottom: 0;
+                }
+            }
+            .signin-form {
+                padding: 10px 0px 30px 0px;
+                .form-group {
+                    margin-bottom: 20px;
+                    position: relative;
+                    .form-control {
+                        padding: 0px 20px;
+                        border-radius: 30px;
+                        border-color: #4D4D4D;
+                        color: #999999;
+                        height: 50px;
+                        font-size: 18px;
+                        box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+                    }
+                    span {
+                        position: absolute;
+                        top: 10px;
+                        right: 20px;
+                        color: #999999;
+                        font-size: 20px;
+                        font-weight: 500;
+                        cursor: pointer;
+                    }
+                }
+                .signin-check-box {
+                    position: relative;
+                    .form-check-input {
+                        opacity: 0;
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                    }
+                    .form-check-input:checked+.form-check-label {
+                        &::before {
+                            font-family: Font Awesome\ 5 Free;
+                            content: "\f00c";
+                            font-weight: 900;
+                            position: absolute;
+                            left: 4px;
+                            top: 2px;
+                            font-size: 13px;
+                        }
+                    }
+                    .form-check-label {
+                        font-size: 14px;
+                        line-height: 20px;
+                        color: #4D4D4D;
+                        font-weight: 500;
+                        overflow: hidden;
+                        position: relative;
+                        padding-left: 28px;
+                        cursor: pointer;
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            width: 20px;
+                            height: 20px;
+                            border: 1px solid #333333;
+                            -webkit-border-radius: 5px;
+                            -moz-border-radius: 5px;
+                            border-radius: 5px;
+                        }
+                    }
+                    a {
+                        font-size: 14px;
+                        color: #4D4D4D;
+                        text-decoration: none;
+                        float: right;
+                    }
+                }
+            }
+        }
+        .signin-bottom-section {
+            background-color: #F2F2F2;
+            padding-top: 20px;
+            padding-bottom: 15px;
+            .signin-btn {
+                padding: 0 15px;
+                .btn-success {
+                    border-radius: 40px;
+                    background-color: #E6557F;
+                    font-size: 18px;
+                    font-weight: 700;
+                    padding: 10px 0;
+                    line-height: 32px;
+                    border: none !important;
+                    text-align: center;
+                    margin-bottom: 16px;
+                    box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+                }
+                a {
+                    font-size: 16px;
+                    color: #333333;
+                    strong {
+                        color: #333333;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .signin-container {
+        .content {
+            background-size: 100% 50%;
+            background-position: center -15%;
+            .signin-content {
+                width: 50%;
+                .social-icon-button {
+                    padding-top: 50px;
+                }
+                .signin-form {
+                    .signin-check-box {
+                        .form-check-label {
+                            font-size: 16px;
+                        }
+                        a {
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
+            .signin-btn {
+                width: 50%;
+            }
+            .signin-bottom-section {
+                padding-top: 40px;
+                padding-bottom: 30px;
+            }
+        }
+    }
+}

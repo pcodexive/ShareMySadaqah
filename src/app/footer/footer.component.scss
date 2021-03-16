@@ -1,0 +1,43 @@
+.footer {
+    background-color: #f2f2f2;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    .footer-buttons {
+        .btn-primary {
+            font-size: 16px;
+            font-weight: 700;
+            color: #ffffff;
+            padding-top: 0;
+            padding-bottom: 0;
+            padding-left: 10px;
+            padding-right: 15px;
+            line-height: 42px;
+            height: 42px;
+            -webkit-border-radius: 30px;
+            -moz-border-radius: 30px;
+            border-radius: 30px;
+            border: none;
+            -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.4);
+            -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.4);
+            box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.4);
+            &.btn-help {
+                background-color: #E6557F;
+            }
+            &.btn-back {
+                background-color: #AB57A2;
+            }
+            &.btn-good {
+                background-color: #2D90CE;
+                padding-left: 15px;
+                padding-right: 10px;
+            }
+            span {
+                display: inline-block;
+                vertical-align: top;
+                margin-top: -3px;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+    }
+}
