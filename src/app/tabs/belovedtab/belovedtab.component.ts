@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-belovedtab',
@@ -8,8 +8,15 @@ import { Component, OnInit } from '@angular/core';
 export class BelovedtabComponent implements OnInit {
 
   constructor() { }
-
+  @Output() onTabClick: EventEmitter<any> = new EventEmitter();
   ngOnInit(): void {
   }
+  goToNextStep(){
+    this.onTabClick.emit("Gift");
+  }
+  goToBackStep(){
+    this.onTabClick.emit("Charity");
+  }
+
 
 }

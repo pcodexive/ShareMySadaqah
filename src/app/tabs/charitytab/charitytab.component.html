@@ -25,16 +25,23 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> 
+            <div style="margin:20px 0px 20px 0px">
+                <div class="d-flex justify-content-center align-items-center footer-buttons">
+                    <button class="show-more btn mx-md-2" (click)="charityList(100)"> Load more charities</button>
+                 </div>
+            </div>              
         </div>
+     
     </div>
 </div>
 <div class="footer" role="Footer">
+
     <div class="container">
         <div class="d-flex justify-content-center align-items-center footer-buttons">
             <button class="btn btn-primary mx-md-2 btn-help"><span><i class="fa fa-question-circle"></i></span> Help</button>
-            <button class="btn btn-primary mx-md-2 btn-back"><span><i class="fa fa-chevron-circle-left"></i></span> Back</button>
-            <button class="btn btn-primary mx-md-2 btn-good">Good to go <span><i class="fa fa-chevron-circle-right"></i></span></button>
+            <button class="btn btn-primary mx-md-2 btn-back" routerLink="/" routerLinkActive="router-link-active" ><span><i class="fa fa-chevron-circle-left"></i></span> Back</button>
+            <button class="btn btn-primary mx-md-2 btn-good" (click)="goToNextStep()"> Good to go <span><i class="fa fa-chevron-circle-right"></i></span></button>
         </div>
     </div>
 </div>

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ApiService } from 'src/app/shared/api.service';
+import { CHARETYLIST } from 'src/app/shared/url';
 
 @Component({
   selector: 'app-charitytab',
@@ -8,7 +10,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CharityTabComponent implements OnInit {
 
-  constructor() { }
+  @Output() onTabClick: EventEmitter<any> = new EventEmitter();
+  constructor(private api:ApiService) { }
   selectedItem=-1;
   content = [
     {
@@ -49,8 +52,24 @@ export class CharityTabComponent implements OnInit {
     }
   ]
 
-  ngOnInit(): void {
+  ngOnInit(): void {  
+    this.charityList(6);
   }
-
-
+  charityList(limit:any){
+    this.api.get(CHARETYLIST+`?limit=${limit}`).subscribe(res=>{
+       this.content = res.docs.map((item:any)=>{
+        return {
+          "name":item.name,
+          "image":item.logo.white,
+          "text":item.text,
+          "bgcolor":item.theme.primary
+        }            
+      })
+    },err =>{
+      console.log("err");
+    })
+  }
+  goToNextStep(){
+    this.onTabClick.emit("Beloved");
+  }
 }

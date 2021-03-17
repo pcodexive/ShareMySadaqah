@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-gifttab',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./gifttab.component.scss']
 })
 export class GifttabComponent implements OnInit {
-
+  @Output() onTabClick: EventEmitter<any> = new EventEmitter();
   constructor() { }
   selectedItem=-1;
   content = [
@@ -55,6 +55,12 @@ export class GifttabComponent implements OnInit {
   ]
 
   ngOnInit(): void {
+  }
+  goToNextStep(){
+    this.onTabClick.emit("Share");
+  }
+  goToBackStep(){
+    this.onTabClick.emit("Beloved");
   }
 
 }

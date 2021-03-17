@@ -10,19 +10,19 @@
             <li [class]="activeTab == 'Baraqah' ? 'tabs__tab active': 'tabs__tab '" (click)="setActiveTab('Baraqah')"> Baraqah </li>
         </ul>
         <div tabTitle="Charity" *ngIf="activeTab == 'Charity'">
-            <app-charitytab></app-charitytab>
+            <app-charitytab (onTabClick)="setActiveTab($event)"></app-charitytab>
         </div>
         <div tabTitle="Beloved" *ngIf="activeTab == 'Beloved'">
-            <app-belovedtab></app-belovedtab>
+            <app-belovedtab (onTabClick)="setActiveTab($event)"></app-belovedtab>
         </div>
         <div tabTitle="Gift" *ngIf="activeTab == 'Gift'">
-            <app-gifttab></app-gifttab>
+            <app-gifttab (onTabClick)="setActiveTab($event)"></app-gifttab>
         </div>
         <div tabTitle="Share" *ngIf="activeTab == 'Share'">
-            <app-sharetab></app-sharetab>
+            <app-sharetab (onTabClick)="setActiveTab($event)"></app-sharetab>
         </div>
         <div tabTitle="Baraqah" *ngIf="activeTab == 'Baraqah'">
-            <app-baraqahtab></app-baraqahtab>
+            <app-baraqahtab (onTabClick)="setActiveTab($event)"></app-baraqahtab>
         </div>
     </div>
 </div>
