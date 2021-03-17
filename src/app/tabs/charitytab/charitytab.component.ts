@@ -10,14 +10,13 @@ import { startWith } from 'rxjs/operators';
 
 })
 export class CharityTabComponent implements OnInit {
-  charityinput  = new FormControl();
+  filtercontent:any;
+  LoadMoreCharities:boolean=false;
   @Output() onTabClick: EventEmitter<any> = new EventEmitter();
-  constructor(private api:ApiService) { 
-    this.charityinput.valueChanges.pipe(startWith("")).subscribe(search => {
-      console.log("search",search);
-      
-      this.content = search ? this._filterCharities(search) : this.content;
-    });
+  constructor(private api:ApiService) { }
+  charitieFilter(e:any){
+    console.log(e.value);
+    this.filtercontent = this._filterCharities(e.value)
   }
   selectedItem=-1;
   content = [
@@ -60,13 +59,20 @@ export class CharityTabComponent implements OnInit {
   ]
   private _filterCharities(value: string) {
     const filterValue = value.toLowerCase();
-    return this.content.filter(charity => charity.name.toLowerCase().indexOf(filterValue) === 0);
+    if(filterValue){
+      return this.content.filter(charity => charity.name.toLowerCase().indexOf(filterValue) === 0);
+    }else{
+      return this.content;
+    }
   }
 
   ngOnInit(): void {  
     this.charityList(6);
   }
   charityList(limit:any){
+    if(limit==100){
+      this.LoadMoreCharities=true;
+    }
     this.api.get(CHARETYLIST+`?limit=${limit}`).subscribe(res=>{
        this.content = res.docs.map((item:any)=>{
         return {
@@ -76,6 +82,7 @@ export class CharityTabComponent implements OnInit {
           "bgcolor":item.theme.primary
         }            
       })
+      this.filtercontent=this.content;
     },err =>{
       console.log("err");
     })
