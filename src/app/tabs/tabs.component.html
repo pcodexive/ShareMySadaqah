@@ -1,21 +1,28 @@
 <!-- Header -->
 <app-header></app-header>
 <div class="content top-padding tabs-content" role="main">
-    <tabs class="tabs">
-        <tab tabTitle="Charity">
+    <div class="tabs">
+        <ul class="tabs__tab-bar">
+            <li [class]="activeTab == 'Charity' ? 'tabs__tab active': 'tabs__tab '" (click)="setActiveTab('Charity')"> Charity </li>
+            <li [class]="activeTab == 'Beloved' ? 'tabs__tab active': 'tabs__tab '"  (click)="setActiveTab('Beloved')"> Beloved </li>
+            <li [class]="activeTab == 'Gift' ? 'tabs__tab active': 'tabs__tab '"  (click)="setActiveTab('Gift')"> Gift </li>
+            <li [class]="activeTab == 'Share' ? 'tabs__tab active': 'tabs__tab '"  (click)="setActiveTab('Share')"> Share </li>
+            <li [class]="activeTab == 'Baraqah' ? 'tabs__tab active': 'tabs__tab '" (click)="setActiveTab('Baraqah')"> Baraqah </li>
+        </ul>
+        <div tabTitle="Charity" *ngIf="activeTab == 'Charity'">
             <app-charitytab></app-charitytab>
-        </tab>
-        <tab tabTitle="Beloved">
+        </div>
+        <div tabTitle="Beloved" *ngIf="activeTab == 'Beloved'">
             <app-belovedtab></app-belovedtab>
-        </tab>
-        <tab tabTitle="Gift">
+        </div>
+        <div tabTitle="Gift" *ngIf="activeTab == 'Gift'">
             <app-gifttab></app-gifttab>
-        </tab>
-        <tab tabTitle="Share">
+        </div>
+        <div tabTitle="Share" *ngIf="activeTab == 'Share'">
             <app-sharetab></app-sharetab>
-        </tab>
-        <tab tabTitle="Baraqah">
+        </div>
+        <div tabTitle="Baraqah" *ngIf="activeTab == 'Baraqah'">
             <app-baraqahtab></app-baraqahtab>
-        </tab>
-    </tabs>
+        </div>
+    </div>
 </div>

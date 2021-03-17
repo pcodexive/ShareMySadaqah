@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TabsComponent implements OnInit {
 
+  activeTab="Charity";
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  setActiveTab(tab:any) {
+    this.activeTab = tab;
   }
 
 }
