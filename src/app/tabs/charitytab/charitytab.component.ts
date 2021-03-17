@@ -1,7 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ApiService } from 'src/app/shared/api.service';
 import { CHARETYLIST } from 'src/app/shared/url';
-
+import { startWith } from 'rxjs/operators';
 @Component({
   selector: 'app-charitytab',
   templateUrl: './charitytab.component.html',
@@ -9,9 +10,15 @@ import { CHARETYLIST } from 'src/app/shared/url';
 
 })
 export class CharityTabComponent implements OnInit {
-
+  charityinput  = new FormControl();
   @Output() onTabClick: EventEmitter<any> = new EventEmitter();
-  constructor(private api:ApiService) { }
+  constructor(private api:ApiService) { 
+    this.charityinput.valueChanges.pipe(startWith("")).subscribe(search => {
+      console.log("search",search);
+      
+      this.content = search ? this._filterCharities(search) : this.content;
+    });
+  }
   selectedItem=-1;
   content = [
     {
@@ -51,6 +58,10 @@ export class CharityTabComponent implements OnInit {
       bgcolor: "#DF3144"
     }
   ]
+  private _filterCharities(value: string) {
+    const filterValue = value.toLowerCase();
+    return this.content.filter(charity => charity.name.toLowerCase().indexOf(filterValue) === 0);
+  }
 
   ngOnInit(): void {  
     this.charityList(6);
