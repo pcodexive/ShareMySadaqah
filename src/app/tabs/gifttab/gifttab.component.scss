@@ -12,6 +12,7 @@
     .human-img {
         span {
             display: inline-block;
+            width: 100px;
             border-radius: 50%;
             -moz-border-radius: 50%;
             -webkit-border-radius: 50%;
@@ -25,10 +26,10 @@
         padding-bottom: 90px;
         .card {
             border: none;
-            height: 170px;
-            max-height: 1760px;
+            height: 155px;
+            max-height: 155px;
             overflow: hidden;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             border-radius: 15px;
             -moz-border-radius: 15px;
             -webkit-border-radius: 15px;
@@ -44,9 +45,8 @@
                 width: 50px;
             }
             .image {
-                height: 75px;
                 img {
-                    max-height: 75px;
+                    max-height: 70px;
                 }
             }
             .name {
@@ -142,16 +142,25 @@
             font-size: 36px;
             line-height: 40px;
         }
+        .human-img {
+            span {
+                display: inline-block;
+                width: 200px;
+            }
+        }
         .gift-boxs {
             padding-top: 70px;
             padding-bottom: 40px;
             .card {
-                height: 250px;
-                max-height: 250px;
+                height: 320px;
+                max-height: 320px;
+                margin-bottom: 15px;
+                border-radius: 30px;
+                -moz-border-radius: 30px;
+                -webkit-border-radius: 30px;
                 .image {
-                    height: 120px;
                     img {
-                        max-height: 120px;
+                        max-height: 150px;
                     }
                 }
                 .flowar {

@@ -6,57 +6,63 @@
     </div>
     <div class="content" style="background-image: url('../assets/images/header-background-img.png');">
         <form [formGroup]="form" (ngSubmit)="submit()">
-        <div class="container">
-            <div class="ml-auto mr-auto signin-content">
-                <div class="social-icon-button">
-                    <button type="button" class="btn btn-primary btn-lg btn-block">
-                        <span>
-                            <i class="fa fa-facebook"></i>
-                        </span>
-                        Sign up with Facebook
-                    </button>
-                    <button type="button" class="btn btn-primary google-btn btn-lg btn-block">
-                        <span>
-                            <i class="fa fa-google"></i>
-                        </span>
-                        Sign up with Google+
-                    </button>
-                </div>
-                <div class="d-block text-center border-line"></div>
-                <div class="signin-form">
-                
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Email" formControlName="email"/>
-                        <div class="text-danger text-center" *ngIf="form.controls.email.invalid && (form.controls.email.dirty || form.controls.email.touched)">
-                            Please enter your email!
-                         </div>
-                    </div>
-                    <div class="form-group">
-                        
-                        <input [type]="hidepassword ? 'text' : 'password'" class="form-control" id="formGroupExampleInput2" placeholder="Password" formControlName="password">
-                        <span (click)="hidepassword = !hidepassword"><i [class]="hidepassword ? 'far fa-eye': 'far fa-eye-slash'" ></i></span>
-
-                        <div class="text-danger text-center" *ngIf="form.controls.password.invalid && (form.controls.password.dirty || form.controls.password.touched)">Please enter your Password!</div>
-                    </div>
-                    <div class="signin-check-box">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="RememberMe">
-                            <label class="form-check-label" for="RememberMe">Remember me</label>
-                        </div>
-                        <a href="#">Forgot Password?</a>
-                    </div>
-             
-                </div>
-            </div>
-        </div>
-        <div class="signin-bottom-section">
             <div class="container">
-                <div class="ml-auto mr-auto signin-btn text-center">
-                    <button type="submit" class="btn btn-success btn-lg btn-block" value="Login"> Sign in</button>
-                    <a routerLink="/signup">Don’t have an account? <strong>Register here</strong></a>
+                <div class="ml-auto mr-auto signin-content">
+                    <div class="social-icon-button">
+                        <button type="button" class="btn btn-primary btn-lg btn-block">
+                            <span>
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                            Sign up with Facebook
+                        </button>
+                        <button type="button" class="btn btn-primary google-btn btn-lg btn-block">
+                            <span>
+                                <i class="fa fa-google"></i>
+                            </span>
+                            Sign up with Google+
+                        </button>
+                        <button type="button" class="btn btn-primary apple-btn btn-lg btn-block">
+                            <span>
+                                <i class="fa fa-apple"></i>
+                            </span>
+                            Sign up with Apple
+                        </button>
+                    </div>
+                    <div class="d-block text-center border-line"></div>
+                    <div class="signin-form">
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Email" formControlName="email"/>
+                            <div class="text-danger text-center" *ngIf="form.controls.email.invalid && (form.controls.email.dirty || form.controls.email.touched)">
+                                Please enter your email!
+                             </div>
+                        </div>
+                        <div class="form-group">
+                            
+                            <input [type]="hidepassword ? 'text' : 'password'" class="form-control" id="formGroupExampleInput2" placeholder="Password" formControlName="password">
+                            <span (click)="hidepassword = !hidepassword"><i [class]="hidepassword ? 'far fa-eye': 'far fa-eye-slash'" ></i></span>
+    
+                            <div class="text-danger text-center" *ngIf="form.controls.password.invalid && (form.controls.password.dirty || form.controls.password.touched)">Please enter your Password!</div>
+                        </div>
+                        <div class="signin-check-box">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="RememberMe">
+                                <label class="form-check-label" for="RememberMe">Remember me</label>
+                            </div>
+                            <a href="#">Forgot Password?</a>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </div>
+            <div class="signin-bottom-section">
+                <div class="container">
+                    <div class="ml-auto mr-auto signin-btn text-center">
+                        <button type="submit" class="btn btn-success btn-lg btn-block" value="Login"> Sign in</button>
+                        <a routerLink="/signup">Don’t have an account? <strong>Register here</strong></a>
+                    </div>
+                </div>
+            </div>
     </form>
     </div>
 </div>

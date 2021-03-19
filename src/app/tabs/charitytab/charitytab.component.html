@@ -3,15 +3,17 @@
         <div class="d-block heading">
             Select a charity
         </div>
-        <div class="d-block mx-3 mx-md-5 search-box">
-            <div class="input-group">
-                <div class="input-group-append">
-                    <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+        <div class="d-block mx-md-5 px-md-5">
+            <div class="d-block mx-3 mx-md-5 search-box">
+                <div class="input-group">
+                    <div class="input-group-append">
+                        <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Search charities..." (input)="charitieFilter($event.target)" />
                 </div>
-                <input type="text" class="form-control" placeholder="Search charities..." (input)="charitieFilter($event.target)" />
             </div>
         </div>
-        <div class="d-block px-1 px-md-5 charity-boxs">
+        <div class="d-block px-1 px-md-5 mx-md-5 charity-boxs">
             <div class="d-flex flex-wrap">
                 <div *ngFor="let content of filtercontent; let i = index" class="col-md-4 col-6 px-2" (click)="selectedItem=i" [ngClass]="{active : selectedItem === i}">
                     <div class="card flex-wrap align-items-center justify-content-center p-2 p-md-3" [ngStyle]="{'background-color': content.bgcolor}">
@@ -25,8 +27,7 @@
                         </div>
                     </div>
                 </div>
-            </div> 
-         
+            </div>
             <div style="margin-top: -49px;" *ngIf="!filtercontent.length">
                 <ngb-alert type="danger" > We couldn't match that charity</ngb-alert>
               </div>
@@ -34,13 +35,11 @@
                 <div class="d-flex justify-content-center align-items-center footer-buttons">
                     <button class="show-more btn mx-md-2" (click)="charityList(100)"> Load more charities</button>
                  </div>
-            </div>              
+            </div>    
         </div>
-     
     </div>
 </div>
 <div class="footer" role="Footer">
-
     <div class="container">
         <div class="d-flex justify-content-center align-items-center footer-buttons">
             <button class="btn btn-primary mx-md-2 btn-help"><span><i class="fa fa-question-circle"></i></span> Help</button>

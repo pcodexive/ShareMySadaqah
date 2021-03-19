@@ -68,8 +68,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="button">
-                        <button type="button" class="btn btn-primary w-100 btn-other">Other <span class="float-right"><i class="fa fa-chevron-circle-down"></i></span></button>
+                    <div class="select-button">
+                        <select class="browser-default select-other">
+                            <option selected>Other</option>
+                            <option value="Sample Option 1">Sample Option 1</option>
+                            <option value="Sample Option 2">Sample Option 2</option>
+                            <option value="Sample Option 3">Sample Option 3</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -98,18 +103,36 @@
             </div>
         </div>
     </div>
-    <div class="personalised-text">
+    <div class="choose-gif-container">
         <div class="container">
-            <div class="d-block mx-md-auto w-md-50">
-                <strong>When do you want your personalised gift <br />e-card delivered?</strong>
+            <div class="d-block mx-md-auto w-md-75">
+                <div class="heading">
+                    Choose a gift
+                </div>
+                <div class="d-block gift-boxs">
+                    <div class="d-flex flex-wrap">
+                        <div *ngFor="let content of content; let i = index" class="col-md-4 col-6 px-1 px-md-2" [class.active]="selectedItem == i" (click)="selectedItem=i">
+                            <div class="card flex-column align-items-center justify-content-center text-center p-2" [ngStyle]="{'background-color': content.bgcolor}">
+                                <div class="flowar"><img src="assets/images/flowar.png" alt="" /></div>
+                                <div class="d-block w-100 image">
+                                    <img src="{{content.image}}" alt={{content.name}} title={{content.name}} />
+                                </div>
+                                <div class="d-block w-100 name">{{content.name}}</div>
+                                <div class="d-inline-block givenow">{{content.price}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-    <div class="choose-container">
+    <div class="choose-container" [class.active]="selectedItem == 0">
         <div class="container">
+            <div class="d-block mx-md-auto w-md-50 text-md-center">
+                <strong>When do you want your personalised gift <br />e-card delivered?</strong>
+            </div>
             <div class="d-block mx-md-auto w-md-50">
-                <div class="choose-text">Today</div>
+                <div class="choose-text" [class.active]="selectedToday == 0" (click)="selectedToday=0">Today</div>
                 <form class="form-inline">
                     <div class="form-group w-100">
                         <div class="input-group w-100">
@@ -123,6 +146,38 @@
             </div>
         </div>
     </div>
+    <div class="dvelivery-option-container" [class.active]="selectedItem == 1">
+        <div class="container">
+            <div class="d-block mx-md-auto w-md-75">
+                <div class="heading">
+                    Delivery option
+                </div>
+            </div>
+            <div class="d-block mx-md-auto w-md-75">
+                <div class="d-block dvelivery-option-boxs">
+                    <div class="row">
+                        <div *ngFor="let dveliveryContent of dveliveryContent; let i = index" class="col-12" (click)="dveliverySelectedItem=i" [ngClass]="{active : dveliverySelectedItem === i}">
+                            <div class="card p-3">
+                                <div class="row align-items-center">
+                                    <div class="col-9">
+                                        <strong>{{dveliveryContent.name}}</strong>
+                                        <p>{{dveliveryContent.text}}</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="price">
+                                            £{{dveliveryContent.price}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 <div class="footer" role="Footer">
     <div class="container">
