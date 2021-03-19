@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-alive',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./alive.component.scss']
 })
 export class AliveComponent implements OnInit {
-
+  @Output() passAlive: EventEmitter<any> = new EventEmitter();
   constructor() { }
   selectedItem=-1;
   content = [
@@ -59,8 +59,11 @@ export class AliveComponent implements OnInit {
       bgcolor: "#8bc53f"
     }
   ]
-
   ngOnInit(): void {
+  }
+  onSelectedAlive(alive:any){
+    this.selectedItem=alive;
+    this.passAlive.emit(alive);
   }
 
 }

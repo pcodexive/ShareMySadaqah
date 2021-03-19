@@ -6,7 +6,7 @@
         <div class="d-block mx-md-5">
             <tabs class="choose-tabs">
                 <tab tabTitle="Alive">
-                    <app-alive></app-alive>
+                    <app-alive (passAlive)="getAlive($event)"></app-alive>
                 </tab>
                 <tab tabTitle="In memory of">
                     <app-memory></app-memory>

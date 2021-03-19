@@ -4,16 +4,16 @@
     <div class="tabs">
         <ul class="tabs__tab-bar">
             <li [class]="activeTab == 'Charity' ? 'tabs__tab active': 'tabs__tab '" (click)="setActiveTab('Charity')"> Charity </li>
-            <li [class]="activeTab == 'Beloved' ? 'tabs__tab active': 'tabs__tab '"  (click)="setActiveTab('Beloved')"> Beloved </li>
+            <li [class]="activeTab == 'Beloved' ? 'tabs__tab active': 'tabs__tab '" (click)="setActiveTab('Beloved')"> Beloved </li>
             <li [class]="activeTab == 'Gift' ? 'tabs__tab active': 'tabs__tab '"  (click)="setActiveTab('Gift')"> Gift </li>
             <li [class]="activeTab == 'Share' ? 'tabs__tab active': 'tabs__tab '"  (click)="setActiveTab('Share')"> Share </li>
             <li [class]="activeTab == 'Baraqah' ? 'tabs__tab active': 'tabs__tab '" (click)="setActiveTab('Baraqah')"> Baraqah </li>
         </ul>
         <div tabTitle="Charity" *ngIf="activeTab == 'Charity'">
-            <app-charitytab (onTabClick)="setActiveTab($event)"></app-charitytab>
+            <app-charitytab (onTabClick)="setActiveTab($event)" (setCharity)="getCharity($event)" [selectedItem]=charity ></app-charitytab>
         </div>
         <div tabTitle="Beloved" *ngIf="activeTab == 'Beloved'">
-            <app-belovedtab (onTabClick)="setActiveTab($event)"></app-belovedtab>
+            <app-belovedtab [charity]=charity  (passAlive)="getAliveOnTag($event)" (onTabClick)="setActiveTab($event)" (OnCharityPass)="setCharity(charity)"></app-belovedtab>
         </div>
         <div tabTitle="Gift" *ngIf="activeTab == 'Gift'">
             <app-gifttab (onTabClick)="setActiveTab($event)"></app-gifttab>

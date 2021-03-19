@@ -1,3 +1,7 @@
+<div *ngIf="spinner" class="center-aligned sq-relative-backdrop">
+    <ng-spinner size="5" type="border" color="warning"></ng-spinner>
+</div>
+
 <div class="charity-tab-content">
     <div class="container">
         <div class="d-block heading">
@@ -13,7 +17,7 @@
         </div>
         <div class="d-block px-1 px-md-5 charity-boxs">
             <div class="d-flex flex-wrap">
-                <div *ngFor="let content of filtercontent; let i = index" class="col-md-4 col-6 px-2" (click)="selectedItem=i" [ngClass]="{active : selectedItem === i}">
+                <div *ngFor="let content of filtercontent; let i = index" class="col-md-4 col-6 px-2" (click)="onCharitieSelecte(i)" [ngClass]="{active : selectedItem === i}">
                     <div class="card flex-wrap align-items-center justify-content-center p-2 p-md-3" [ngStyle]="{'background-color': content.bgcolor}">
                         <i class="fa fa-check-circle check-icon"></i>
                         <div class="content flex-wrap align-items-center justify-content-start">
@@ -27,12 +31,12 @@
                 </div>
             </div> 
          
-            <div style="margin-top: -49px;" *ngIf="!filtercontent.length">
+            <div style="margin-top: -49px;" *ngIf="!filtercontent?.length">
                 <ngb-alert type="danger" > We couldn't match that charity</ngb-alert>
               </div>
             <div style="margin:20px 0px 20px 0px" *ngIf="!LoadMoreCharities">
                 <div class="d-flex justify-content-center align-items-center footer-buttons">
-                    <button class="show-more btn mx-md-2" (click)="charityList(100)"> Load more charities</button>
+                    <button class="show-more btn mx-md-2" (click)="charityList()"> Load more charities</button>
                  </div>
             </div>              
         </div>

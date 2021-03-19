@@ -33,6 +33,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastService } from './shared/toasts-container/toast-service';
 import { ToastsContainer } from './shared/toasts-container/toasts-container.component';
+import { NgSpinnerModule } from 'ng-bootstrap-spinner';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -61,7 +62,7 @@ const routes: Routes = [
     MemoryComponent,
     ThankyouComponent,
     BaraqahaccordionComponent,
-    ToastsContainer
+    ToastsContainer,
   ],
   imports: [
     BrowserModule,
@@ -76,7 +77,8 @@ const routes: Routes = [
     FontAwesomeModule,
     ReactiveFormsModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    NgSpinnerModule
   ],
   providers: [ApiService, AuthService,ToastService],
   bootstrap: [AppComponent]

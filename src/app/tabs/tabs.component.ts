@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tabs.component.scss']
 })
 export class TabsComponent implements OnInit {
-
+  charity:any;
+  data:any={};
   activeTab="Charity";
   constructor() { }
 
@@ -15,6 +16,21 @@ export class TabsComponent implements OnInit {
 
   setActiveTab(tab:any) {
     this.activeTab = tab;
+  }
+  getCharity(i:any){
+    this.data.charity=i;
+    this.charity=i;
+    console.log("getCharity",i);    
+  }
+  setCharity(charity:any){
+
+    this.charity=charity
+    console.log("getCharity",charity);    
+  }
+  getAliveOnTag(alive:any){
+    this.data.aliv=alive;
+    console.log("avlit data",this.data);
+    
   }
 
 }
