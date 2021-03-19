@@ -1,9 +1,9 @@
 <div class="alive-content">
     <div class="d-block px-1 alive-boxs">
         <div class="d-flex flex-wrap">
-            <div *ngFor="let content of content; let i = index" class="col-md-4 col-6 px-2" [class.active]="selectedItem == i" (click)="onSelectedAlive(i)">
-                <div class="card flex-wrap align-items-center justify-content-center p-2 text-center" [ngStyle]="{'background-color': content.bgcolor}">
-                    <i class="fa fa-check-circle check-icon"></i>
+            <div *ngFor="let content of content; let i = index" class="col-md-4 col-6 px-1 px-md-2" [class.active]="selectedItem == i" (click)="onSelectedAlive(i)">
+                <div class="card flex-wrap align-items-center justify-content-center p-2 p-md-3 text-center" [ngStyle]="{'background-color': content.bgcolor}">
+                    <i class="check-icon"></i>
                     <div class="d-block w-100 name">
                         {{content.name}}
                     </div>

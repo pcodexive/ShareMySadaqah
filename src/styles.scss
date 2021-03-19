@@ -191,7 +191,6 @@ img {
             justify-content: center;
             li {
                 padding: 5px 10px 5px 0px;
-                cursor: pointer;
                 background-color: #fff;
                 font-size: 13px;
                 line-height: 20px;
@@ -393,6 +392,7 @@ img {
                 margin-bottom: 0;
             }
             .onoffswitch-inner {
+                margin-right: 3px;
                 z-index: 10;
                 height: 24px;
                 width: 48px;
@@ -414,7 +414,7 @@ img {
                     border-radius: 50%;
                     position: absolute;
                     left: auto;
-                    right: 2px;
+                    right: 26px;
                     top: 2px;
                     transition: .3s;
                     -o-transition: .3s;
@@ -425,7 +425,7 @@ img {
                 &.active {
                     background-color: #F79D11;
                     &::after {
-                        right: 26px;
+                        right: 2px;
                     }
                 }
             }
@@ -500,7 +500,7 @@ img {
         }
         .choose-tabs {
             .tabs__tab-bar {
-                padding: 0px;
+                padding: 0px 12px;
                 li {
                     width: 50%;
                     font-size: 26px;
@@ -528,14 +528,15 @@ img {
                 .onoffswitch-inner {
                     height: 36px;
                     width: 72px;
+                    margin-right: 10px;
                     &::after {
                         width: 32px;
                         height: 32px;
-                        right: 36px;
+                        right: 4px;
                     }
                     &.active {
                         &::after {
-                            right: 4px;
+                            right: 36px;
                         }
                     }
                 }
