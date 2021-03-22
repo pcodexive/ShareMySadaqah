@@ -6,10 +6,10 @@
         <div class="d-block mx-md-5">
             <tabs class="choose-tabs">
                 <tab tabTitle="Alive">
-                    <app-alive (passAlive)="getAlive($event)"></app-alive>
+                    <app-alive (passAlive)="getAlive($event)" [passAliveTo]="passAlive"></app-alive>
                 </tab>
                 <tab tabTitle="In memory of">
-                    <app-memory></app-memory>
+                    <app-memory (passMemory)="getMemory($event)" [passmemoryTo]="passMemory" ></app-memory>
                 </tab>
             </tabs>
         </div>

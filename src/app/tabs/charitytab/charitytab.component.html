@@ -21,7 +21,7 @@
             <div class="d-flex flex-wrap">
                 <div *ngFor="let content of filtercontent; let i = index" class="col-md-4 col-6 px-2" (click)="onCharitieSelecte(i)" [ngClass]="{active : selectedItem === i}">
                     <div class="card flex-wrap align-items-center justify-content-center p-2 p-md-3" [ngStyle]="{'background-color': content.bgcolor}">
-                        <i class="fa fa-check-circle check-icon"></i>
+                        <i class="check-icon"></i>
                         <div class="content flex-wrap align-items-center justify-content-start">
                             <strong>{{content.name}}</strong>
                             <p>{{content.text}}</p>
@@ -32,7 +32,7 @@
                     </div>
                 </div>
             </div>
-            <div style="margin-top: -49px;" *ngIf="!filtercontent.length">
+            <div style="margin-top: -49px;" *ngIf="!filtercontent?.length">
                 <ngb-alert type="danger" > We couldn't match that charity</ngb-alert>
               </div>
             <div style="margin:20px 0px 20px 0px" *ngIf="!LoadMoreCharities">

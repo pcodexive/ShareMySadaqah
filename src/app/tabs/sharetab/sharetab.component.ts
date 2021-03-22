@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-sharetab',
@@ -7,7 +7,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class SharetabComponent implements OnInit {
   @Output() onTabClick: EventEmitter<any> = new EventEmitter();
-
+  @Input() gift:any;
   constructor() { }
   selectedItem=-1;
   content = [
@@ -74,7 +74,9 @@ export class SharetabComponent implements OnInit {
   selectedToday=-1;
 
   ngOnInit(): void {
+  
   }
+  
 
   goToNextStep(){
     this.onTabClick.emit("Baraqah");

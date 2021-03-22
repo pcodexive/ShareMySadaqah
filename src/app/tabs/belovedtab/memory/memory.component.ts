@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-memory',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./memory.component.scss']
 })
 export class MemoryComponent implements OnInit {
+  @Input() passmemoryTo=-1;
+  @Output() passMemory: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
   selectedItem=-1;
@@ -13,7 +15,7 @@ export class MemoryComponent implements OnInit {
   content = [
     {
       name: "Prophet Muhammad",
-      image: "./assets/images/memoryimg.png",
+      image: "./assets/images/memoryimg1.png",
       bgcolor: "#AB6CAC"
     },
     {
@@ -74,6 +76,10 @@ export class MemoryComponent implements OnInit {
   ]
 
   ngOnInit(): void {
+    this.selectedItem=this.passmemoryTo;
   }
-
+  onSelectedMemory(alive:any){
+    this.selectedItem=alive;
+    this.passMemory.emit(alive);
+  }
 }

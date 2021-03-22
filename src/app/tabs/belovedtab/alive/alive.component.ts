@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-alive',
@@ -7,7 +7,9 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class AliveComponent implements OnInit {
   @Output() passAlive: EventEmitter<any> = new EventEmitter();
+  @Input() passAliveTo=-1;
   constructor() { }
+
   selectedItem=-1;
   content = [
     {
@@ -60,6 +62,7 @@ export class AliveComponent implements OnInit {
     }
   ]
   ngOnInit(): void {
+    this.selectedItem=this.passAliveTo;
   }
   onSelectedAlive(alive:any){
     this.selectedItem=alive;

@@ -1,21 +1,51 @@
 <div class="gift-tab-content">
+
+<div>
+    <ng-template #giftmodal let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Gift {{giftName}}</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="form">
+                <div class="form-group">
+                  <label for="amount">Amount</label>
+                  <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <input class="form-control price-input" placeholder="Enter amount" type="text" name="amount" formControlName="amount">
+                </div>
+                <div class="text-danger text-center" *ngIf="form.controls.amount.invalid && (form.controls.amount.dirty || form.controls.amount.touched)">
+                    Please enter amount!
+                 </div>
+                </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark btn-good" [disabled]='!form.valid' (click)="modal.close('Save click')">Save</button>
+        </div>
+      </ng-template>
+      
+</div>
     <div class="container">
         <div class="heading">
-            Select a gift
+            Select a cause
         </div>
         <div class="human-img text-center">
             <span><img src="assets/images/human-img.png" alt="" /></span>
         </div>
         <div class="d-block px-1 px-md-5 gift-boxs">
             <div class="d-flex flex-wrap">
-                <div *ngFor="let content of content; let i = index" class="col-md-4 col-6 px-1 px-md-2" [class.active]="selectedItem == i" (click)="selectedItem=i">
+                <div *ngFor="let content of content; let i = index" class="col-md-4 col-6 px-1 px-md-2" [class.active]="selectedItem == i" (click)="onGiftTab(i,content)">
                     <div class="card flex-column align-items-center justify-content-center text-center p-1 p-md-2" [ngStyle]="{'background-color': content.bgcolor}">
                         <div class="flowar"><img src="assets/images/flowar.png" alt="" /></div>
                         <div class="d-block w-100 image">
                             <img src="{{content.image}}" alt={{content.name}} title={{content.name}} />
                         </div>
                         <div class="d-block w-100 name">{{content.name}}</div>
-                        <div class="d-inline-block givenow">Give Now £{{content.givenow}}</div>
+                        <div class="d-inline-block givenow" (click)="open(giftmodal)">Give Now</div>
+                        <!-- <div class="d-inline-block givenow" (click)="open(giftmodal)">Give Now £{{content.givenow}}</div> -->
                     </div>
                 </div>
             </div>
@@ -31,3 +61,4 @@
         </div>
     </div>
 </div>
+
