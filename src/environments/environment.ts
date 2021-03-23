@@ -5,6 +5,9 @@
 export const environment = {
   production: false,
   apiUrl: "https://nestdev.herokuapp.com/v1",
+  stripe: {
+    pk: "pk_test_Ij5gXIIt3n7DTi5GKwkyIDE4"
+  },
 };
 
 /*

@@ -1,14 +1,26 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject, Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { PaymentIntent } from '@stripe/stripe-js';
+import { AuthService } from './auth.service';
 @Injectable()
 export class ApiService {
 
     constructor(
-        private http: HttpClient
+        private authService: AuthService, private http: HttpClient
     ) { }
+
+    get token() {
+        return this.authService.getToken();
+      }
+
+      headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.token}`
+      })
+
     post(path: string, body: Object = {}): Observable<any> {
         return this.http.post(
             `${environment.apiUrl}${path}`,body
@@ -24,7 +36,18 @@ export class ApiService {
         return throwError(error.error);
     }
 
-    
+    createPaymentIntent(amount: number): Observable<any> {
+        return this.http.post<PaymentIntent>(
+          `${environment.apiUrl}/user/intents/setup/capture?app=2`,
+          { amount }, {headers: this.headers}
+        );
+    }
+    createSetupIntent(): Observable<any> {
+        return this.http.post<PaymentIntent>(
+          `${environment.apiUrl}/user/intents/setup/create?app=2`,
+          {"usage":"on_session","object":"subscription"}, {headers: this.headers}
+        ).pipe(catchError(this.formatErrors));
+      }
   
 
 }

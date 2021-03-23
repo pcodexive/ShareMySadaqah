@@ -31,6 +31,9 @@ export class AuthService {
         var token = localStorage.getItem(AppSettings.localStorage_keys.token);
         return token;
     }
+    setToken(key: any, value: any){
+        localStorage.setItem(key,value);
+    }
     logout() {
         // localStorage.removeItem(AppSettings.localStorage_keys.token);
         localStorage.clear();

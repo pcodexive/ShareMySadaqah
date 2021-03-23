@@ -35,6 +35,8 @@ import { ToastService } from './shared/toasts-container/toast-service';
 import { ToastsContainer } from './shared/toasts-container/toasts-container.component';
 import { NgSpinnerModule } from 'ng-bootstrap-spinner';
 
+import { STRIPE_PUBLISHABLE_KEY, NgxStripeModule } from "ngx-stripe";
+import { environment } from 'src/environments/environment';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'tabs', component: TabsComponent },
@@ -78,7 +80,9 @@ const routes: Routes = [
     ReactiveFormsModule,
     CommonModule,
     HttpClientModule,
-    NgSpinnerModule
+    NgSpinnerModule,
+    NgxStripeModule.forRoot(environment.stripe.pk),
+
   ],
   providers: [ApiService, AuthService,ToastService],
   bootstrap: [AppComponent]

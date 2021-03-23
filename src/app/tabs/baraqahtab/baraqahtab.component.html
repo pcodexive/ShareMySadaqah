@@ -3,42 +3,53 @@
         <div class="d-block mx-md-5 heading">
             Last step to baraqah
         </div>
-        <div class="d-block mx-md-5 payment-form">
+        <!-- <div class="d-block mx-md-5 payment-form">
+            <div class="form-group"
+            ngxStripeCardGroup
+            [formGroup]="stripeTest"
+            [elementsOptions]="elementsOptions"
+          >
+            <input formControlName="name"  class="form-control"/>
+            <input formControlName="amount"  class="form-control"/>
+            <div class="form-control">
+                <ngx-stripe-card-number [options]="cardOptions"></ngx-stripe-card-number>
+            </div>
+            
+            <ngx-stripe-card-expiry [options]="cardOptions"></ngx-stripe-card-expiry>
+            <ngx-stripe-card-cvc [options]="cardOptions"></ngx-stripe-card-cvc>
+            <button type="submit" (click)="pay()">
+              PAY
+            </button>
+          </div>
+        </div> -->
+        <ngx-stripe-card-group class="d-block mx-md-5 payment-form"
+        [formGroup]="stripeTest"
+        [elementsOptions]="elementsOptions">
             <div class="form-group">
                 <label>Your email</label>
-                <input type="text" class="form-control" placeholder="johnsmith@hotmail.com" />
+                <input type="text" class="form-control" placeholder="johnsmith@hotmail.com" formControlName="email"/>
                 <div class="invalid-feedback">
                     Please enter your email
                 </div>
             </div>
             <div class="form-group">
                 <label>Cardholders name <span>(as it appears on the card)</span></label>
-                <input type="text" class="form-control" placeholder="John Smith" />
+                <input type="text" class="form-control" placeholder="John Smith" formControlName="name"/>
             </div>
             <div class="form-group">
                 <label>Card number</label>
-                <input type="text" class="form-control" placeholder="1234 1234 1234 1234" />
+                <div class="form-control">
+                    <ngx-stripe-card-number [options]="cardOptions"></ngx-stripe-card-number>
+                </div>
             </div>
             <div class="form-group form-row align-items-end">
                 <div class="col-4">
                     <label>Expiry date</label>
-                    <select class="custom-select form-control mr-sm-2" id="inlineFormCustomSelect">
-                        <option selected>01</option>
-                        <option value="01">01</option>
-                        <option value="02">02</option>
-                        <option value="03">03</option>
-                        <option value="04">04</option>
-                        <option value="05">05</option>
-                        <option value="06">06</option>
-                        <option value="07">07</option>
-                        <option value="08">08</option>
-                        <option value="09">09</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                    </select>
+                    <div class="form-control">
+                        <ngx-stripe-card-expiry [options]="cardOptions"></ngx-stripe-card-expiry>
+                    </div>
                 </div>
-                <div class="col-4">
+                <!-- <div class="col-4">
                     <label></label>
                     <select class="custom-select form-control mr-sm-2" id="inlineFormCustomSelect">
                         <option selected>2021</option>
@@ -48,14 +59,15 @@
                         <option value="2025">2025</option>
                         <option value="2026">2026</option>
                     </select>
-                </div>
+                </div> -->
                 <div class="col-4">
                     <label>Security code</label>
-                    <input type="text" class="form-control" placeholder="123" />
-                    <i class="fa fa-credit-card-alt credit-icon"></i>
+                    <div class="form-control">
+                        <ngx-stripe-card-cvc [options]="cardOptions"></ngx-stripe-card-cvc>
+                    </div>
                 </div>
             </div>
-        </div>
+        </ngx-stripe-card-group>
         <div class="d-block mx-md-5">
             <app-baraqahaccordion></app-baraqahaccordion>
         </div>
@@ -64,7 +76,7 @@
 <div class="footer text-center">
     <div class="container">
         <a class="btn btn-primary" routerLink="/thankyou">
-            <span class="d-inline-block align-top pr-3">Donate £10.50</span>
+            <span class="d-inline-block align-top pr-3" (click)="pay()">Donate £10.50</span>
             <p class="d-inline-block align-middle">+ 2.50 <br /> Gift Aid</p>
         </a>
     </div>

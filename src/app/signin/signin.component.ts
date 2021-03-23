@@ -42,7 +42,7 @@ export class SigninComponent implements OnInit {
   doLogin(){
     // this.spiner=true;
     this.api.post(LOGIN,this.form.value).subscribe(res=>{
-      this.authService.setLocalStorage('token', res.token);
+      this.authService.setToken('token', res.token);
       this.authService.setLocalStorage('userData', res.user);
       this.router.navigate(['/']);      
     },err =>{
