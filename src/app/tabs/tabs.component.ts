@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-tabs',
@@ -7,12 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TabsComponent implements OnInit {
   charity:any;
-  data:any={};
+  @Output() data:any={};
+  
   activeTab="Charity";
   constructor() { }
 
   ngOnInit(): void {
-    console.log("data",this.data);
+    // console.log("data",this.data);
     
   }
 
@@ -24,29 +25,27 @@ export class TabsComponent implements OnInit {
   getCharity(i:any){
     this.data.charity=i;
     this.charity=i;
-    console.log("getCharity",i);    
+    // console.log("getCharity",i);    
   }
   setCharity(charity:any){
     this.charity=charity
-    console.log("getCharity",charity);    
+    // console.log("getCharity",charity);    
   }
   getAliveOnTag(alive:any){
-    this.data.alive=alive;   
-    console.log("alive",this.data);
-    
+    this.data.alive=alive;       
   }
   getMemoryOnTab(memory:any){
     this.data.memory=memory;   
-    console.log("memory",this.data);
+    // console.log("memory",this.data);
   }
   getGiftTab(gift:any){
     this.data.gift=gift;
-    console.log("gift");
+    // console.log("gift");
     
   }
   getGiftAmount(amount:any){
     this.data.amount=amount;
-    console.log("data",this.data);
+    // console.log("data",this.data);
     
   }
 }

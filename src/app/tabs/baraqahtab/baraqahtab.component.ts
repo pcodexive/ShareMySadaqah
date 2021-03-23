@@ -75,10 +75,10 @@ export class BaraqahtabComponent implements OnInit {
       .subscribe((result) => {
         if (result.token) {
           // Use the token
-          console.log(result.token.id);
+          // console.log(result.token.id);
         } else if (result.error) {
           // Error creating the token
-          console.log(result.error.message);
+          // console.log(result.error.message);
         }
       });
   }
@@ -102,7 +102,7 @@ export class BaraqahtabComponent implements OnInit {
         .subscribe((result) => {
           if (result.error) {
             // Show error to your customer (e.g., insufficient funds)
-            console.log(result.error.message);
+            // console.log(result.error.message);
           } else {
             // The payment has been processed!
             if (result.paymentIntent!.status === 'succeeded') {
@@ -111,7 +111,7 @@ export class BaraqahtabComponent implements OnInit {
           }
         });
     } else {
-      console.log(this.stripeTest);
+      // console.log(this.stripeTest);
     }
   }
 

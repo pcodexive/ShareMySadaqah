@@ -1,17 +1,96 @@
 <div class="share-tab-content">
-    <div class="heading">Share it with mum</div>
+    <div class="heading">Share it with {{shareLove ? shareLove :''}}</div>
     <div class="d-block pb-2">
+        <form [formGroup]="form">
+
         <div class="container">
             <div class="d-block mx-md-auto w-md-50">
+              <div>
+                  <label>
+                      <h4>
+                        Recipients
+                      </h4>
+                  </label>
+              </div>
                 <div class="form-group name-box">
-                    <input type="text" class="form-control" placeholder="Name" />
+                    <input class="form-control" placeholder="Enter recipients email" type="text" name="recipients_email" required formControlName="recipients_email"/>
+                    <span *ngIf="!form.get('recipients_email')?.valid && (form.get('recipients_email')?.touched || form.get('recipients_email')?.dirty) "
+                    class="help-block">
+                        <span  class="text-danger" *ngIf="form.get('recipients_email')!.errors!.required">
+                        Please enter recipients email!
+                        </span> 
+                        <span  class="text-danger" *ngIf="form.get('recipients_email')!.errors!.email">
+                            Please enter valid recipients email!
+                        </span>     
+                  </span> 
                 </div>
-                <div class="form-group email-box">
-                    <input type="text" class="form-control" placeholder="Email" />
+                <div class="form-group name-box">
+                    <input class="form-control" placeholder="Enter your full name" type="text" name="fname" required formControlName="fname"/>
+                    <span *ngIf="!form.get('fname')?.valid && (form.get('fname')?.touched || form.get('fname')?.dirty) "
+                    class="help-block">
+                        <span  class="text-danger" *ngIf="form.get('fname')!.errors!.required">
+                        Please enter your full name!
+                        </span>   
+                  </span> 
+                    
+                </div>
+                <div>
+                    <label>
+                        <h4>
+                            Senders
+                        </h4>
+                    </label>
+                </div>
+                <div class="form-group name-box">
+                    <input class="form-control" placeholder="Enter your senders email" type="text" name="senders_email" required formControlName="senders_email"/>
+                    <span *ngIf="!form.get('senders_email')?.valid && (form.get('senders_email')?.touched || form.get('senders_email')?.dirty) "
+                    class="help-block">
+                        <span  class="text-danger" *ngIf="form.get('senders_email')!.errors!.required">
+                        Please enter senders email!
+                        </span>  
+                        <span  class="text-danger" *ngIf="form.get('senders_email')!.errors!.email">
+                            Please enter valid senders email!
+                        </span>     
+                  </span>   
+                </div>
+               
+                <div class="form-group name-box">
+                    <input class="form-control" placeholder="Enter your senders full name" type="text" name="senders_fname" required formControlName="senders_fname"/>
+                    <span *ngIf="!form.get('senders_fname')?.valid && (form.get('senders_fname')?.touched || form.get('senders_fname')?.dirty) "
+                    class="help-block">
+                        <span  class="text-danger" *ngIf="form.get('senders_fname')!.errors!.required">
+                        Please enter your senders full name!
+                        </span>   
+                  </span> 
+                </div>
+                <div class="form-group name-box">
+                    <input class="form-control" placeholder="Enter your confirm email" type="text" name="confirm_email" required formControlName="confirm_email"/>
+                    <span *ngIf="!form.get('confirm_email')?.valid && (form.get('confirm_email')?.touched || form.get('confirm_email')?.dirty) "
+                    class="help-block">
+                        <span  class="text-danger" *ngIf="form.get('confirm_email')!.errors!.required">
+                        Please enter confirm email!
+                        </span>  
+                        <span  class="text-danger" *ngIf="form.get('confirm_email')!.errors!.email">
+                            Please enter valid confirm email!
+                        </span>     
+                  </span>   
+                </div>
+                <div class="form-group name-box">
+                    <input class="form-control" placeholder="Enter your password" type="text" name="password" required formControlName="password"/>
+                </div>
+                <div class="form-group name-box">
+                    <input class="form-control" placeholder="Enter your confirm password" type="text" name="confirm_password" required formControlName="confirm_password"/>
+                </div>
+                <div class="text-center name-box">
+                    <button class="btn btn-save">Save</button>
                 </div>
             </div>
         </div>
+        </form>
+        
     </div>
+
+
     <div class="share-gift-box">
         <div class="container">
             <div class="d-block px-2">
@@ -21,7 +100,7 @@
                     <div class="heading text-center d-block">Water</div>
                     <div class="price-box text-center d-block">
                         <div class="icon d-inline-block"><img src="assets/images/human-img.png" alt="" /></div>
-                        <div class="price d-inline-block">£15.00</div>
+                        <!-- <div class="price d-inline-block">£15.00</div> -->
                     </div>
                 </div>
             </div>

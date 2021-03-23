@@ -502,7 +502,20 @@
         }
     }
 }
+.btn-save{
+    background-color: #2D90CE;
+    width: 20%;
+    border: none;
+    text-align: center;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    height: 50px;
+    color: #fff;
+    font-size: 18px;
 
+
+
+}
 @media (min-width: 992px) {
     .share-tab-content {
         padding-top: 70px;

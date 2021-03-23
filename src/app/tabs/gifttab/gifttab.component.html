@@ -13,13 +13,21 @@
                 <div class="form-group">
                   <label for="amount">Amount</label>
                   <div class="input-group">
-                    <span class="input-group-addon">$</span>
-                    <input class="form-control price-input" placeholder="Enter amount" type="text" name="amount" formControlName="amount">
+                    <span class="input-group-addon">£</span>
+                    <input class="form-control price-input" placeholder="Enter amount" type="number" name="amount" required formControlName="amount">
                 </div>
-                <div class="text-danger text-center" *ngIf="form.controls.amount.invalid && (form.controls.amount.dirty || form.controls.amount.touched)">
-                    Please enter amount!
-                 </div>
-                </div>
+                <span *ngIf="!form.get('amount')?.valid && (form.get('amount')?.touched || form.get('amount')?.dirty) "
+              class="help-block">
+              <span  class="text-danger" *ngIf="form.get('amount')!.errors!.required">
+                Please enter amount!
+              </span>
+
+              <span  class="text-danger" *ngIf="form.get('amount')!.errors!.pattern">
+                Amount must be greater than 10
+              </span>
+
+            </span>              
+          </div>
               </form>
         </div>
         <div class="modal-footer">

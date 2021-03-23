@@ -7,11 +7,56 @@
                     <div class="d-block w-100 name">
                         {{content.name}}
                     </div>
-                    <div class="d-block w-100 pt-2 image">
+                    <div class="d-block w-100 pt-2 image" *ngIf="content.image">
                         <img src="{{content.image}}" alt={{content.name}} title={{content.name}} />
                     </div>
                 </div>
             </div>
         </div>
+        <div style="margin:20px 0px 20px 0px" *ngIf="allLove">
+            <div class="d-flex justify-content-center align-items-center footer-buttons">
+                <button class="show-more btn mx-md-2" (click)="loadMoreMemory()"> Load more loved</button>
+             </div>
+        </div>  
+        <div style="margin:20px 0px 20px 0px" *ngIf="!addOtherflag">
+            <div class="d-flex justify-content-center align-items-center footer-buttons">
+                <button class="show-more btn mx-md-2" (click)="addOther()">Add Other</button>
+             </div>
+        </div>  
+         <div *ngIf="!addOtherform">
+
+             <form [formGroup]="form">
+             <div class="row" style="margin: 0px 13%;">
+                 <div class="col-9">
+                     <div class="row d-flex align-items-center justify-content-center">
+                         <div class="d-block search-box">
+                             <div class="input-group">
+                                 <input class="form-control price-input" placeholder="Enter your love" type="text" name="love" required formControlName="love">
+                             </div>                             
+                         </div>
+                         <div>
+                             <span *ngIf="!form.get('love')?.valid && (form.get('love')?.touched || form.get('love')?.dirty) "
+                             class="help-block">
+                                 <span  class="text-danger" *ngIf="form.get('love')!.errors!.required">
+                                 Please enter love!
+                                 </span>     
+                           </span>  
+                         </div>
+                     </div>
+                     
+                 </div>
+                 <div class="col-3">
+                    <div class="d-flex flex-wrap align-items-end justify-content-end">                     
+                    <div class="add-love" (click)="onAddOther()">Add</div>
+                     </div>
+                 </div>
+             </div>
+             </form>
+        
+         </div>
+
+            
+        
+             
+        </div>
     </div>
-</div>

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-sharetab',
@@ -8,6 +9,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class SharetabComponent implements OnInit {
   @Output() onTabClick: EventEmitter<any> = new EventEmitter();
   @Input() gift:any;
+  @Input() dataObj:any;
+  shareLove='';
   constructor() { }
   selectedItem=-1;
   content = [
@@ -72,12 +75,26 @@ export class SharetabComponent implements OnInit {
     }
   ];
   selectedToday=-1;
+  form!:FormGroup;
 
   ngOnInit(): void {
-  
-  }
-  
+    if(this.dataObj && this.dataObj.alive && this.dataObj.alive.name)
+    this.shareLove=this.dataObj.alive.name;
+    
+    this.form = new FormGroup({
+      recipients_email : new FormControl(null, [Validators.required,Validators.email]),
+      fname : new FormControl(null, [Validators.required]),
+      senders_email  : new FormControl(null, [Validators.required,Validators.email]),
+      senders_fname : new FormControl(null, [Validators.required]),
+      confirm_email  : new FormControl(null, [Validators.required,Validators.email]),
+      password  : new FormControl(null, [Validators.required, Validators.minLength(4)]),
+      confirm_password  : new FormControl(null, [Validators.required]), 
+      
+    })
+   
 
+  }
+ 
   goToNextStep(){
     this.onTabClick.emit("Baraqah");
   }

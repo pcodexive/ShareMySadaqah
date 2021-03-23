@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ModalDismissReasons, NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-gifttab',
   templateUrl: './gifttab.component.html',
@@ -11,7 +11,7 @@ export class GifttabComponent implements OnInit {
   @Output() onTabClick: EventEmitter<any> = new EventEmitter();
   @Output() giftAmount: EventEmitter<any> = new EventEmitter();
   @Output() passGift: EventEmitter<any> = new EventEmitter();
-  constructor(private modalService:NgbModal,private fb:FormBuilder) { }
+  constructor(private modalService:NgbModal) { }
   form!: FormGroup;
   closeResult = '';
   giftName:any;
@@ -63,11 +63,17 @@ export class GifttabComponent implements OnInit {
   ]
   
  ngOnInit(): void {
+
+  this.form = new FormGroup({
+   
+    amount: new FormControl(10, [
+        Validators.required,
+        Validators.pattern(/^([1-9][0-9][0-9]*)$/)
+      ]),
+  
+  });
+
     this.selectedItem=this.gift;
-    this.form = this.fb.group({
-      amount:[10,[Validators.required]],
-    })
-    
   }
   goToNextStep(){
     if(this.selectedItem >= 0)
@@ -77,17 +83,15 @@ export class GifttabComponent implements OnInit {
     this.onTabClick.emit("Beloved");
   }
   onGiftTab(gift:any,content:any){
-    console.log("data",content);    
+    // console.log("data",content);    
     this.giftName=content.name;
     this.selectedItem=gift;
     this.passGift.emit(this.selectedItem);
   }
 
   open(giftmodal:any) {
-    this.modalService.open(giftmodal, {ariaLabelledBy: 'modal-basic-title'}).result.then((result:any) => {  
-      console.log("this.form.get('amount')",this.form.get('amount')?.value);
-       
-      this.giftAmount.emit(this.form.get('amount')?.value);     
+      this.modalService.open(giftmodal, {ariaLabelledBy: 'modal-basic-title'}).result.then((result:any) => {  
+      this.giftAmount.emit(this.form.get('amount')?.value);   
       this.closeResult = `Closed with: ${result}`;
     }, (reason:any) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -102,11 +106,7 @@ export class GifttabComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
-  submitAmount(reason:any){
-    // this.activeModal.close();
-    
-  }
- 
+
 
 
 }

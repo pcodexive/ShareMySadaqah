@@ -22,7 +22,7 @@ export class CharityTabComponent implements OnInit {
   @Output() setCharity: EventEmitter<any> = new EventEmitter();
   constructor(private api:ApiService) { }
   charitieFilter(e:any){
-    console.log(e.value);
+    // console.log(e.value);
     this.filtercontent = this._filterCharities(e.value)
   }
 
@@ -68,7 +68,7 @@ export class CharityTabComponent implements OnInit {
       this.filtercontent=this.content;
       this.spinner=false;
     },err =>{
-      console.log("err");
+      // console.log("err");
     })
   }
   goToNextStep(){

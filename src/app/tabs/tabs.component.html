@@ -13,13 +13,13 @@
             <app-charitytab (onTabClick)="setActiveTab($event)" (setCharity)="getCharity($event)" [selectedItem]="charity" ></app-charitytab>
         </div>
         <div tabTitle="Beloved" *ngIf="activeTab == 'Beloved'">
-            <app-belovedtab [charity]="charity" [passAlive]="data.alive" [passMemory]="data.memory" (passAliveOnTab)="getAliveOnTag($event)"  (passMemoryOnTab)="getMemoryOnTab($event)" (onTabClick)="setActiveTab($event)" (OnCharityPass)="setCharity(charity)"></app-belovedtab>
+            <app-belovedtab [charity]="charity" [passAlive]="data" [passMemory]="data.memory" (passAliveOnTab)="getAliveOnTag($event)"  (passMemoryOnTab)="getMemoryOnTab($event)" (onTabClick)="setActiveTab($event)" (OnCharityPass)="setCharity(charity)"></app-belovedtab>
         </div>
         <div tabTitle="Gift" *ngIf="activeTab == 'Gift'">
             <app-gifttab (giftAmount)="getGiftAmount($event)" (onTabClick)="setActiveTab($event)" [gift]="data.gift" (passGift)="getGiftTab($event)"></app-gifttab>
         </div>
         <div tabTitle="Share" *ngIf="activeTab == 'Share'">
-            <app-sharetab (onTabClick)="setActiveTab($event)" ></app-sharetab>
+            <app-sharetab [dataObj]="data" (onTabClick)="setActiveTab($event)" ></app-sharetab>
         </div>
         <div tabTitle="Baraqah" *ngIf="activeTab == 'Baraqah'">
             <app-baraqahtab (onTabClick)="setActiveTab($event)"></app-baraqahtab>

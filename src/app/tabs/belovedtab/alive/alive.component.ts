@@ -7,9 +7,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class AliveComponent implements OnInit {
   @Output() passAlive: EventEmitter<any> = new EventEmitter();
-  @Input() passAliveTo=-1;
+  @Input() passAliveTo:any;
+  alive=-1;
   constructor() { }
-
   selectedItem=-1;
   content = [
     {
@@ -62,10 +62,16 @@ export class AliveComponent implements OnInit {
     }
   ]
   ngOnInit(): void {
-    this.selectedItem=this.passAliveTo;
+    if(this.passAliveTo && this.passAliveTo.alive && this.passAliveTo.alive.index){
+      let item = this.passAliveTo.alive.index;
+      this.alive=item;
+    }
+    this.selectedItem=this.alive;
+      
   }
-  onSelectedAlive(alive:any){
-    this.selectedItem=alive;
+  onSelectedAlive(index:any,alive:any){
+    this.selectedItem=index;
+    alive.index=index;
     this.passAlive.emit(alive);
   }
 
