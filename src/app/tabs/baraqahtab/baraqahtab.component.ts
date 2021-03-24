@@ -85,17 +85,19 @@ export class BaraqahtabComponent implements OnInit {
 
   pay(): void {
     if (this.stripeTest.valid) {
+      const payment_method = {
+        card: this.cardNumber.element,
+        billing_details: {
+          name: this.stripeTest.get('name')!.value,
+          email: this.stripeTest.get('email')!.value,
+        },
+      }
+      console.log("payment_method", payment_method)
       this.apiService.createPaymentIntent(this.stripeTest.get('amount')!.value)
         .pipe(
           switchMap((pi) =>
             this.stripeService.confirmCardPayment(pi.data.client_secret!, {
-              payment_method: {
-                card: this.cardNumber.element,
-                billing_details: {
-                  name: this.stripeTest.get('name')!.value,
-                  email: this.stripeTest.get('email')!.value,
-                },
-              },
+              payment_method: payment_method
             })
           )
         )
