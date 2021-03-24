@@ -14,24 +14,24 @@
               </div>
                 <div class="form-group name-box">
                     <input class="form-control" placeholder="Enter recipients email" type="text" name="recipients_email" required formControlName="recipients_email"/>
-                    <span *ngIf="!form.get('recipients_email')?.valid && (form.get('recipients_email')?.touched || form.get('recipients_email')?.dirty) "
+                    <div *ngIf="!form.get('recipients_email')?.valid && (form.get('recipients_email')?.touched || form.get('recipients_email')?.dirty) "
                     class="help-block">
-                        <span  class="text-danger" *ngIf="form.get('recipients_email')!.errors!.required">
+                        <div  class="text-danger text-center" *ngIf="form.get('recipients_email')!.errors!.required">
                         Please enter recipients email!
-                        </span> 
-                        <span  class="text-danger" *ngIf="form.get('recipients_email')!.errors!.email">
+                        </div> 
+                        <div  class="text-danger text-center" *ngIf="form.get('recipients_email')!.errors!.email">
                             Please enter valid recipients email!
-                        </span>     
-                  </span> 
+                        </div>     
+                  </div> 
                 </div>
                 <div class="form-group name-box">
                     <input class="form-control" placeholder="Enter your full name" type="text" name="fname" required formControlName="fname"/>
-                    <span *ngIf="!form.get('fname')?.valid && (form.get('fname')?.touched || form.get('fname')?.dirty) "
+                    <div *ngIf="!form.get('fname')?.valid && (form.get('fname')?.touched || form.get('fname')?.dirty) "
                     class="help-block">
-                        <span  class="text-danger" *ngIf="form.get('fname')!.errors!.required">
+                        <div  class="text-danger text-center" *ngIf="form.get('fname')!.errors!.required">
                         Please enter your full name!
-                        </span>   
-                  </span> 
+                        </div>   
+                  </div> 
                     
                 </div>
                 <div>
@@ -43,46 +43,51 @@
                 </div>
                 <div class="form-group name-box">
                     <input class="form-control" placeholder="Enter your senders email" type="text" name="senders_email" required formControlName="senders_email"/>
-                    <span *ngIf="!form.get('senders_email')?.valid && (form.get('senders_email')?.touched || form.get('senders_email')?.dirty) "
+                    <div *ngIf="!form.get('senders_email')?.valid && (form.get('senders_email')?.touched || form.get('senders_email')?.dirty) "
                     class="help-block">
-                        <span  class="text-danger" *ngIf="form.get('senders_email')!.errors!.required">
+                        <div  class="text-danger text-center" *ngIf="form.get('senders_email')!.errors!.required">
                         Please enter senders email!
-                        </span>  
-                        <span  class="text-danger" *ngIf="form.get('senders_email')!.errors!.email">
+                        </div>  
+                        <div  class="text-danger text-center" *ngIf="form.get('senders_email')!.errors!.email">
                             Please enter valid senders email!
-                        </span>     
-                  </span>   
+                        </div>     
+                  </div>   
                 </div>
                
                 <div class="form-group name-box">
                     <input class="form-control" placeholder="Enter your senders full name" type="text" name="senders_fname" required formControlName="senders_fname"/>
-                    <span *ngIf="!form.get('senders_fname')?.valid && (form.get('senders_fname')?.touched || form.get('senders_fname')?.dirty) "
+                    <div *ngIf="!form.get('senders_fname')?.valid && (form.get('senders_fname')?.touched || form.get('senders_fname')?.dirty) "
                     class="help-block">
-                        <span  class="text-danger" *ngIf="form.get('senders_fname')!.errors!.required">
+                        <div  class="text-danger text-center" *ngIf="form.get('senders_fname')!.errors!.required">
                         Please enter your senders full name!
-                        </span>   
-                  </span> 
+                        </div>   
+                  </div> 
                 </div>
                 <div class="form-group name-box">
                     <input class="form-control" placeholder="Enter your confirm email" type="text" name="confirm_email" required formControlName="confirm_email"/>
-                    <span *ngIf="!form.get('confirm_email')?.valid && (form.get('confirm_email')?.touched || form.get('confirm_email')?.dirty) "
+                    <div *ngIf="!form.get('confirm_email')?.valid && (form.get('confirm_email')?.touched || form.get('confirm_email')?.dirty) "
                     class="help-block">
-                        <span  class="text-danger" *ngIf="form.get('confirm_email')!.errors!.required">
+                        <div  class="text-danger text-center" *ngIf="form.get('confirm_email')!.errors!.required">
                         Please enter confirm email!
-                        </span>  
-                        <span  class="text-danger" *ngIf="form.get('confirm_email')!.errors!.email">
+                        </div>  
+                        <div  class="text-danger text-center" *ngIf="form.get('confirm_email')!.errors!.email">
                             Please enter valid confirm email!
-                        </span>     
-                  </span>   
+                        </div>     
+                  </div>   
                 </div>
                 <div class="form-group name-box">
                     <input class="form-control" placeholder="Enter your password" type="text" name="password" required formControlName="password"/>
+                    <div class="text-danger text-center" *ngIf="form.controls.password.invalid && (form.controls.password.dirty || form.controls.password.touched)">Please enter your Password!</div>
+
                 </div>
                 <div class="form-group name-box">
                     <input class="form-control" placeholder="Enter your confirm password" type="text" name="confirm_password" required formControlName="confirm_password"/>
+                    <div class="text-danger text-center"  *ngIf="!form.controls.confirm_password.hasError('notEquivalent') && form.controls.confirm_password.invalid && (form.controls.confirm_password.dirty || form.controls.confirm_password.touched)">Please enter your confirm password!</div>
+                    <div class="text-danger text-center"  *ngIf="form.controls.confirm_password.hasError('notEquivalent')">Password & Confirm password does not match!</div>
+               
                 </div>
                 <div class="text-center name-box">
-                    <button class="btn btn-save">Save</button>
+                    <button class="btn btn-block btn-save">Save</button>
                 </div>
             </div>
         </div>
@@ -94,10 +99,10 @@
     <div class="share-gift-box">
         <div class="container">
             <div class="d-block px-2">
-                <div class="box">
+                <div class="box" [ngStyle]="{'background-color': giftData?.bgcolor}">
                     <div class="flower"><img src="assets/images/flower-img.png" alt="" /></div>
-                    <div class="water text-center d-block"><img src="assets/images/water-img.png" alt="" /></div>
-                    <div class="heading text-center d-block">Water</div>
+                    <div class="water text-center d-block"><img src={{giftData?.image}} alt="" /></div>
+                    <div class="heading text-center d-block">{{giftData?.name}}</div>
                     <div class="price-box text-center d-block">
                         <div class="icon d-inline-block"><img src="assets/images/human-img.png" alt="" /></div>
                         <!-- <div class="price d-inline-block">£15.00</div> -->
@@ -113,10 +118,12 @@
                     What is the occasion?
                 </div>
                 <div class="occasion-buttons">
+             <form [formGroup]="occasion">
+
                     <div class="row">
                         <div class="col-6 pr-2">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="Radios" id="Birthday" value="option1" checked>
+                                <input class="form-check-input" type="radio" name="occasion" id="Birthday" formControlName="occasion"  value="option1">
                                 <label class="form-check-label" for="Birthday">
                                     Birthday
                                 </label>
@@ -124,15 +131,15 @@
                         </div>
                         <div class="col-6 pl-2">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="Radios" id="NewBorn" value="option2">
-                                <label class="form-check-label" for="NewBorn">
+                                <input class="form-check-input" type="radio" name="occasion" id="NewBorn" formControlName="occasion" value="option2">
+                                <label class="form-check-label" for="NewBorn"> 
                                     New Born
                                 </label>
                             </div>
                         </div>
                         <div class="col-6 pr-2">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="Radios" id="ANewJob" value="option3">
+                                <input class="form-check-input" type="radio" name="occasion" id="ANewJob" formControlName="occasion" value="option3">
                                 <label class="form-check-label" for="ANewJob">
                                     A New Job
                                 </label>
@@ -140,21 +147,43 @@
                         </div>
                         <div class="col-6 pl-2">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="Radios" id="GoodHealth" value="option4">
+                                <input class="form-check-input" type="radio" name="occasion" id="GoodHealth" formControlName="occasion" value="option4">
                                 <label class="form-check-label" for="GoodHealth">
                                     Good Health
                                 </label>
+                                <h1></h1>
                             </div>
                         </div>
                     </div>
-                    <div class="select-button">
-                        <select class="browser-default select-other">
-                            <option selected>Other</option>
-                            <option value="Sample Option 1">Sample Option 1</option>
-                            <option value="Sample Option 2">Sample Option 2</option>
-                            <option value="Sample Option 3">Sample Option 3</option>
-                        </select>
+                    <div class="select-button" *ngIf="otherButton">
+                        <div class="browser-default select-other" (click)="addOtherShare()">
+                           Other
+                        </div>
                     </div>
+                    <div *ngIf="!otherButton">
+                        <div class="row">
+                            <div class="col-9">                             
+                                <div class="d-block search-box">
+                                    <div class="input-group">
+                                        <input class="form-control price-input" placeholder="Enter your occasion" type="text" name="occasion" required formControlName="occasion">                                                     
+                                    </div> 
+                                </div>
+                                    <div>
+                                        <span *ngIf="!occasion.get('occasion')?.valid && (occasion.get('occasion')?.touched || occasion.get('occasion')?.dirty) "
+                                        class="help-block">
+                                            <span  class="text-danger" *ngIf="occasion.get('occasion')!.errors!.required">
+                                            Please enter occasion!
+                                            </span>     
+                                        </span>  
+                                    </div>
+                                
+                            </div>
+                            <div class="col-3">
+                                <div class="add-love" (click)="onAddOtherShare()">Add</div>
+                            </div>
+                        </div>                  
+                    </div> 
+            </form>
                 </div>
             </div>
         </div>

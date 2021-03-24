@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-gifttab',
   templateUrl: './gifttab.component.html',
@@ -10,6 +11,7 @@ export class GifttabComponent implements OnInit {
   // @ViewChild('giftModal') ;
   @Output() onTabClick: EventEmitter<any> = new EventEmitter();
   @Output() giftAmount: EventEmitter<any> = new EventEmitter();
+  popupColor:any;
   @Output() passGift: EventEmitter<any> = new EventEmitter();
   constructor(private modalService:NgbModal) { }
   form!: FormGroup;
@@ -17,6 +19,7 @@ export class GifttabComponent implements OnInit {
   giftName:any;
   @Input() gift:any;
   selectedItem=-1;
+  selectedGiftContent:any;
   content = [
     {
       id: "most-needy",
@@ -82,15 +85,19 @@ export class GifttabComponent implements OnInit {
   goToBackStep(){
     this.onTabClick.emit("Beloved");
   }
+
   onGiftTab(gift:any,content:any){
-    // console.log("data",content);    
+    this.selectedGiftContent=content;
+    this.selectedGiftContent.index=gift;
     this.giftName=content.name;
+    this.popupColor=content.bgcolor;
+    console.log(this.popupColor);    
     this.selectedItem=gift;
-    this.passGift.emit(this.selectedItem);
+    this.passGift.emit(this.selectedGiftContent);
   }
 
   open(giftmodal:any) {
-      this.modalService.open(giftmodal, {ariaLabelledBy: 'modal-basic-title'}).result.then((result:any) => {  
+      this.modalService.open(giftmodal, {ariaLabelledBy: 'modal-basic-title',windowClass: 'gift-tab-content',centered: true}).result.then((result:any) => {  
       this.giftAmount.emit(this.form.get('amount')?.value);   
       this.closeResult = `Closed with: ${result}`;
     }, (reason:any) => {
@@ -105,6 +112,9 @@ export class GifttabComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+  setAmount(amount:number){
+    this.form.patchValue({amount:amount})
   }
 
 

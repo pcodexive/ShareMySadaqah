@@ -1,4 +1,4 @@
-.gift-tab-content {
+::ng-deep .gift-tab-content {
     padding-top: 20px;
     .heading {
         font-size: 28px;
@@ -80,6 +80,42 @@
                 color: #AB6CAD;
             }
         }
+    }
+    .modal-content{
+        border-radius: 30px;
+        border: 1px;
+    }
+    .btn-amount{
+        border: 1px solid;
+        border-radius: 30px;
+        width: 115px;
+        height: 45px;
+    }
+    .m-10{
+        margin: 10px;
+    }
+    .amount-input{
+    border-radius: 30px;
+    width: 80%;
+    margin: 0px 10%;
+    border: 1px solid;
+    text-align: center;
+    height: 45px;
+    }
+    .amount-input:focus{
+        outline: none !important;
+    }
+    .btn-amount-done{
+        width: 100%; border-radius: 30px; height: 45px;
+    }
+    .amount-popup-footer{
+        background-color: #f2f2f2 !important;
+        border-bottom-right-radius: 30px;
+        border-bottom-left-radius: 30px;
+    }
+    .amount-popup-header{
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
     }
 }
 
@@ -208,14 +244,11 @@
 }
 .input-group-addon
 {
-    margin: 7px 10px;
+    margin: 10px 10px;
     position: absolute;
+    margin-left: 40%;
 }
-.price-input{
-    padding-left: 30px;
-    background-color: transparent;
-}
+
   .text-danger{
       color: red;
   }
-  

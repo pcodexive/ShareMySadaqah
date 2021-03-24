@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./belovedtab.component.scss']
 })
 export class BelovedtabComponent implements OnInit {
-  @Input() passAlive=-1;
+  @Input() passAlive:any
   @Input() passMemory=-1;
 
   // alive=-1;
@@ -24,7 +24,10 @@ export class BelovedtabComponent implements OnInit {
     // console.log("alive2222=======",this.passAlive);
   }
   goToNextStep(){
-    if(this.passAlive >= 0 || this.passMemory >=0 )
+    console.log(this.passAlive ,this.passMemory);
+    
+
+    if(this.passAlive.alive.index >= 0 || this.passMemory >=0 )
     this.onTabClick.emit("Gift");
   }
   goToBackStep(){
@@ -32,7 +35,7 @@ export class BelovedtabComponent implements OnInit {
     this.onTabClick.emit("Charity");
   }
   getAlive(alive:any){
-    this.passAlive=alive;
+    this.passAlive=alive.index;
     this.passAliveOnTab.emit(alive);    
   }
   getMemory(memory:any){
