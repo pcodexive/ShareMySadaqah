@@ -38,7 +38,7 @@ export class ApiService {
 
     createPaymentIntent(amount: number): Observable<any> {
         return this.http.post<PaymentIntent>(
-          `https://ramadhan-giving-testing-2020.herokuapp.com/stripe/intents/payment/create`,
+          `https://share-my-sadaqah.herokuapp.com/stripe/intents/payment/create`,
           { usage: "on_session",
           // id: this.subscription.id,
           object: "subscription",
