@@ -75,8 +75,9 @@ export class GifttabComponent implements OnInit {
       ]),
   
   });
-
-    this.selectedItem=this.gift;
+if(this.gift && this.gift.index){
+  this.selectedItem=this.gift.index;
+}
   }
   goToNextStep(){
     if(this.selectedItem >= 0)

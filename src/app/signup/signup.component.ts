@@ -1,10 +1,13 @@
 import { Input, Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
 import { ApiService } from '../shared/api.service';
 import { AuthService } from '../shared/auth.service';
 import { ToastService } from '../shared/toasts-container/toast-service';
 import { REGISTER } from '../shared/url';
+import { SOCIALREGISTER } from 'src/app/shared/url';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -16,8 +19,44 @@ export class SignupComponent implements OnInit {
   error: string = "";
   hideCpassword = false;
   hidepassword = false;
-  constructor(private fb:FormBuilder,private api:ApiService,private router:Router, private authService: AuthService,private toastService:ToastService) { }
+  constructor(private fb:FormBuilder,
+    private api:ApiService,
+    private router:Router, 
+    private authService: AuthService,
+    private toastService:ToastService,
+    private authServices: SocialAuthService) { }
 
+    signInWithGoogle(): void {
+      this.authServices.signIn(GoogleLoginProvider.PROVIDER_ID).then(data=>{      
+        this.socialRegisterApi(data)
+      })
+    }
+  
+    signInWithFB(): void {
+      this.authServices.signIn(FacebookLoginProvider.PROVIDER_ID).then(data=>{
+        console.log("data",data);        
+      })
+    }
+    socialRegisterApi(data:any){
+     let obj={
+       "email":data.email,
+       "first_name": data.firstName,
+       "last_name": data.lastName,
+       "profile_image": data.photoUrl,
+       "provider": data.provider,
+       "provider_id": data.id
+     } 
+
+    this.api.post(SOCIALREGISTER,obj).subscribe(res=>{
+       console.log(res);
+       this.authService.setLocalStorage('token', res.token);
+       this.authService.setLocalStorage('userData', res.user);
+       this.router.navigate(['/']);    
+    },err =>{
+      console.log("err",err);
+    })     
+    }
+  
   ngOnInit(): void {
     this.form = this.fb.group({
       first_name:[null,[Validators.required]],

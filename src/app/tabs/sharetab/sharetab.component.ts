@@ -96,7 +96,8 @@ export class SharetabComponent implements OnInit {
     }
     
     this.form =this.fb.group({
-      recipients_email : new FormControl(null, [Validators.required,Validators.email]),
+     
+      recipients_email :  this.dataObj.memory ? new FormControl(null):new FormControl(null, [Validators.required,Validators.email]) ,
       fname : new FormControl(null, [Validators.required]),
       senders_email  : new FormControl(null, [Validators.required,Validators.email]),
       senders_fname : new FormControl(null, [Validators.required]),

@@ -8,8 +8,13 @@ export const environment = {
   stripe: {
     pk: "pk_test_Ij5gXIIt3n7DTi5GKwkyIDE4"
   },
-};
+  facebookAppId: "1478769985786104",
+  googleLoginProvider: "84140297884-9p5oq1ofjv0lllolv7u2nqfrjup3feo6.apps.googleusercontent.com",
 
+  // fileStackApiKey: "ATwlgNAAsQsyfsNEw94Cgz",
+  // environment: "localhost",
+  // googleTagManagerId: "GTM-NPBLPL4"
+};
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

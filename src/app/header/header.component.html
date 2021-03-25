@@ -12,11 +12,26 @@
             <div class="col-5">
                 <div class="d-flex flex-wrap align-items-end justify-content-end">
                     <div class="d-flex justify-content-end w-100 text-right">
-                        <a class="btn bis-btn" routerLink="/signin">Bismillah</a>
+                        <!-- <a class="btn bis-btn" routerLink="/signin">Bismillah</a> -->
+                        <div class="col text-right">
+                            <div ngbDropdown class="d-inline-block">
+                                <button class="btn bis-btn" id="dropdownBasic2" ngbDropdownToggle>Bismillah</button>
+                                <div ngbDropdownMenu aria-labelledby="dropdownBasic1" style="border-radius: 20px;">
+                                  <button ngbDropdownItem style="color: #AB57A2;"><i class="fa fa-user" style="margin-right: 10px;" aria-hidden="true"></i>Profile</button>
+                                  <button ngbDropdownItem style="color: #E6557F;"><i class="fab fa-first-order-alt" style="margin-right: 10px;"></i>My Orders</button>
+                                  <button ngbDropdownItem style="color: #33A592;"><i class="fa fa-paper-plane" style="margin-right: 10px;"></i>Send Another</button>
+                                  <button ngbDropdownItem style="color: #2F90CE;"><i class="fa fa-address-book-o" style="margin-right: 10px;"></i>About Us</button>
+                                  <button ngbDropdownItem style="color: #F89904"><i class="fa fa-user-plus" style="margin-right: 10px;"></i>Register your charity</button>
+                                  <button ngbDropdownItem style="color: #41C6DA;"><i class="fas fa-address-book" style="margin-right: 10px;"></i>Contact Us</button>
+                                  <a ngbDropdownItem style="color: #AB57A2;" routerLink="/signin" *ngIf="!loginFlag"><i class="fas fa-sign-out-alt" style="margin-right: 10px;"></i>Signin</a>
+                                  <button ngbDropdownItem style="color: #AB57A2;" (click)="onLogout()" *ngIf="loginFlag"><i class="fa fa-sign-out" style="margin-right: 10px;"></i>Logout</button>
+                                </div>
+                              </div>
+                          </div>
                     </div>
                     <a routerLink="/" class="d-block get-started-link">Get Started</a>
                 </div>
-            </div>
+             </div>
         </div>
     </div>
 </div>

@@ -34,9 +34,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastService } from './shared/toasts-container/toast-service';
 import { ToastsContainer } from './shared/toasts-container/toasts-container.component';
 import { NgSpinnerModule } from 'ng-bootstrap-spinner';
+import {  GoogleLoginProvider, FacebookLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from "angularx-social-login";
 
 import { STRIPE_PUBLISHABLE_KEY, NgxStripeModule } from "ngx-stripe";
+
 import { environment } from 'src/environments/environment';
+
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'tabs', component: TabsComponent },
@@ -82,9 +85,28 @@ const routes: Routes = [
     HttpClientModule,
     NgSpinnerModule,
     NgxStripeModule.forRoot(environment.stripe.pk),
+    SocialLoginModule
 
   ],
-  providers: [ApiService, AuthService,ToastService],
+  providers: [ApiService, AuthService,ToastService,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              environment.googleLoginProvider
+            )
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider(environment.facebookAppId)
+          }
+        ]
+      } as SocialAuthServiceConfig,
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
