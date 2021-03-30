@@ -24,10 +24,7 @@ export class BelovedtabComponent implements OnInit {
     // console.log("alive2222=======",this.passAlive);
   }
   goToNextStep(){
-    console.log(this.passAlive ,this.passMemory);
-    
-
-    if(this.passAlive.alive.index >= 0 || this.passMemory >=0 )
+  if(this.passAlive?.alive?.index >= 0 || this.passMemory >=0 )
     this.onTabClick.emit("Gift");
   }
   goToBackStep(){

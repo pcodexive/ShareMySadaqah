@@ -27,6 +27,10 @@ export class AuthService {
     setLocalStorage(key: string, value: object): void {
         localStorage.setItem(key, JSON.stringify(value));
     }
+    getLocalStorage(key: string) {
+        if(localStorage.getItem(key) && typeof localStorage.getItem(key) == 'string')
+        return JSON.parse(localStorage.getItem(key) || "");
+    }
     getToken(){
         var token = localStorage.getItem(AppSettings.localStorage_keys.token);
         return token;

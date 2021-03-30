@@ -35,7 +35,7 @@ import { ToastService } from './shared/toasts-container/toast-service';
 import { ToastsContainer } from './shared/toasts-container/toasts-container.component';
 import { NgSpinnerModule } from 'ng-bootstrap-spinner';
 import {  GoogleLoginProvider, FacebookLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from "angularx-social-login";
-
+import { AppleLoginProvider } from './shared/apple.provider';
 import { STRIPE_PUBLISHABLE_KEY, NgxStripeModule } from "ngx-stripe";
 
 import { environment } from 'src/environments/environment';
@@ -92,7 +92,7 @@ const routes: Routes = [
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
-        autoLogin: false,
+        autoLogin: true,
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
@@ -103,6 +103,12 @@ const routes: Routes = [
           {
             id: FacebookLoginProvider.PROVIDER_ID,
             provider: new FacebookLoginProvider(environment.facebookAppId)
+          },
+          {
+            id: AppleLoginProvider.PROVIDER_ID,
+            provider: new AppleLoginProvider(
+              '[CLIENT_ID]'
+            )
           }
         ]
       } as SocialAuthServiceConfig,

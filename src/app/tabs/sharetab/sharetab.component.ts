@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from 'src/app/shared/auth.service';
+import * as _ from "lodash";
 
 @Component({
   selector: 'app-sharetab',
@@ -12,7 +15,7 @@ export class SharetabComponent implements OnInit {
   @Input() dataObj:any;
   otherButton=true;
   shareLove='';
-  constructor(private fb:FormBuilder) { }
+  constructor(private fb:FormBuilder,private modalService:NgbModal,private authService: AuthService) { }
   selectedItem=-1;
   content = [
     {
@@ -80,9 +83,9 @@ export class SharetabComponent implements OnInit {
   form!:FormGroup;
   occasion!:FormGroup;
   giftData:any;
+  closeResult = '';
+  
   ngOnInit(): void {
-    console.log(this.dataObj);
-    
     if(this.dataObj && this.dataObj.alive && this.dataObj.alive.name){
       this.shareLove=this.dataObj.alive.name;
     }
@@ -94,9 +97,7 @@ export class SharetabComponent implements OnInit {
         'name':this.dataObj.gift.name
       }
     }
-    
-    this.form =this.fb.group({
-     
+    this.form =this.fb.group({     
       recipients_email :  this.dataObj.memory ? new FormControl(null):new FormControl(null, [Validators.required,Validators.email]) ,
       fname : new FormControl(null, [Validators.required]),
       senders_email  : new FormControl(null, [Validators.required,Validators.email]),
@@ -142,5 +143,49 @@ export class SharetabComponent implements OnInit {
     }        
   }
 
+  open(giftmodal:any) {
+    this.modalService.open(giftmodal, {ariaLabelledBy: 'modal-basic-title',windowClass: 'share-tab-content ',centered: true}).result.then((result:any) => {  
+    // this.giftAmount.emit(this.form.get('amount')?.value);   
+    this.closeResult = `Closed with: ${result}`;
+  }, (reason:any) => {
+    this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+  });
+}
+private getDismissReason(reason: any): string {
+  if (reason === ModalDismissReasons.ESC) {
+    return 'by pressing ESC';
+  } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+    return 'by clicking on a backdrop';
+  } else {
+    return `with: ${reason}`;
+  }
+}
+
+selectedGiftItem(index:any,content:any){
+
+  var giftCartData=[{
+    "bgcolor":content.bgcolor,
+    "image":content.image,
+    "name":content.name,
+    'price':content.price,
+    'index':index
+  }];
+  var item='';
+  if(this.authService.getLocalStorage('giftCartData')){
+    var localStoreData = this.authService.getLocalStorage('giftCartData');
+    item = _.find(localStoreData, function(o) {
+      console.log(o,"giftCartData",giftCartData[index]);      
+      return o ==  giftCartData[index]
+    });
+    let giftCartData1= _.concat(localStoreData,giftCartData);
+    this.authService.setLocalStorage('giftCartData',giftCartData1);
+  }
+  else{
+
+    let giftCartData1= _.merge(giftCartData);
+    this.authService.setLocalStorage('giftCartData',giftCartData1);  
+  }
+
+}
 
 }

@@ -1,4 +1,27 @@
 <div class="share-tab-content">
+    <div>
+        <ng-template #giftmodal let-modal>  
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-title">Select Gift</h4>
+                <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title" (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>would you like to add another item to your cart
+                    <!-- <span class="text-primary">"John Doe"</span> profile?</strong></p>
+                <p>All information associated to this user profile will be permanently deleted.
+                <span class="text-danger">This operation can not be undone.</span> -->
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
+                <button type="button" ngbAutofocus class="btn btn-choose-gift" (click)="modal.close('Save click')">Ok</button>
+              </div>
+          </ng-template>
+          
+    </div>
+
     <div class="heading">Share it with {{shareLove ? shareLove :''}}</div>
     <div class="d-block pb-2">
         <form [formGroup]="form">
@@ -219,9 +242,9 @@
                 </div>
                 <div class="d-block gift-boxs">
                     <div class="d-flex flex-wrap">
-                        <div *ngFor="let content of content; let i = index" class="col-md-4 col-6 px-1 px-md-2" [class.active]="selectedItem == i" (click)="selectedItem=i">
-                            <div class="card flex-column align-items-center justify-content-center text-center p-2" [ngStyle]="{'background-color': content.bgcolor}">
-                                <div class="flowar"><img src="assets/images/flowar.png" alt="" /></div>
+                        <div *ngFor="let content of content; let i = index" class="col-md-4 col-6 px-1 px-md-2" [class.active]="selectedItem == i" (click)="selectedGiftItem(i,content)">
+                            <div class="card flex-column align-items-center justify-content-center text-center p-2" (click)="open(giftmodal)" [ngStyle]="{'background-color': content.bgcolor}">
+                                <div class="flowar"><img src="assets/images/flowar.png" alt=""/></div>
                                 <div class="d-block w-100 image">
                                     <img src="{{content.image}}" alt={{content.name}} title={{content.name}} />
                                 </div>
