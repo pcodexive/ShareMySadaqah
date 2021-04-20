@@ -39,13 +39,15 @@ import { AppleLoginProvider } from './shared/apple.provider';
 import { STRIPE_PUBLISHABLE_KEY, NgxStripeModule } from "ngx-stripe";
 
 import { environment } from 'src/environments/environment';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'tabs', component: TabsComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'signin', component: SigninComponent },
-  { path: 'thankyou', component: ThankyouComponent }
+  { path: 'thankyou', component: ThankyouComponent },
+  { path: 'cart', component: CartComponent }
 ];
 
 @NgModule({
@@ -68,6 +70,7 @@ const routes: Routes = [
     ThankyouComponent,
     BaraqahaccordionComponent,
     ToastsContainer,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

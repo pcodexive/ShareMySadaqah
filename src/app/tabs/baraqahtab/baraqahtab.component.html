@@ -22,6 +22,61 @@
             </button>
           </div>
         </div> -->
+        <!-- <div>
+            <div *ngFor="let content of content; let i = index" class="col-md-4 col-6 px-1 px-md-2 row" style="height: 150px;
+            width: 150px;
+            border-radius: 15px;" [class.active]="selectedItem == i">
+                <div class="card flex-column align-items-center justify-content-center text-center p-1 p-md-2" [ngStyle]="{'background-color': content.bgcolor}">
+                    <div class="flowar"><img src="assets/images/flowar.png" alt="" /></div>
+                    <div class="d-block w-100 image">
+                        <img src="{{content.image}}" alt={{content.name}} title={{content.name}} />
+                    </div>
+                    <div class="d-inline-block givenow">Give Now</div>
+                </div>
+                <div>
+                    <div class="d-block w-100 name">{{content.name}}</div>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="cart-loop">
+            <div class="container">
+                <div class="d-flex align-items-center footer-buttons" *ngFor="let content of content; let i = index" style="height: 200px;
+                margin: 2em;">
+
+                    <div class="card flex-column align-items-center justify-content-center text-center p-1 p-md-2" 
+                     [ngStyle]="{'background-color': content.bgcolor}" style="border-radius: 15px;">
+                        <div class="flowar" style="    position: absolute;
+                        left: 0;
+                        top: 0;
+                        z-index: 1;"><img src="assets/images/flowar.png" alt="" /></div>
+                        <div class="d-block w-100 image" style="margin: 25px;">
+                            <img src="{{content.image}}" alt={{content.name}} title={{content.name}} />
+                        </div>
+                                    <!-- <div class="d-inline-block givenow" (click)="open(giftmodal)">Give Now £{{content.givenow}}</div> -->
+                    </div>
+                    <div style="margin: 30px;">
+                        <div class="d-block w-100 name">{{content.name}}</div>
+                    </div>
+                    <div>
+                        <div style="border-radius:20px;border: solid 1px; width: 100px;">
+
+                        <span style="margin: 10px;" (click)="onDelete(i)"><i class="fa fa-trash"></i></span>
+                        <span style="margin: 10px;">{{ content.count}}</span>
+                        <span style="margin: 10px;" (click)="onAdd(i)"><i class="fa fa-plus"></i></span>
+                        </div>
+    
+                       
+                    </div>
+
+
+                    <button class="btn btn-primary" >{{content.total == 1 ? content.price : '£ '+content.total}}<span></span></button>
+                </div>
+            </div>
+        </div>
+
+
+       
         <ngx-stripe-card-group class="d-block mx-md-5 payment-form"
         [formGroup]="stripeTest"
         [elementsOptions]="elementsOptions">

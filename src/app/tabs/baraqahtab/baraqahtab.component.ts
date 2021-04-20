@@ -20,6 +20,26 @@ import { ApiService } from 'src/app/shared/api.service';
   styleUrls: ['./baraqahtab.component.scss']
 })
 export class BaraqahtabComponent implements OnInit {
+  selectedItem:any;
+  content = [
+    {
+      name: "Personalised e-Card",
+      image: "./assets/images/personalised-e-card.png",
+      price: "Free",
+      bgcolor: "#ab6cad",
+      count: 1,
+      total:1
+    },
+    {
+      name: "Postcard",
+      image: "./assets/images/postcard.png",
+      price: "£1.99",
+      bgcolor: "#e6557f",
+      count: 1,
+      total:1
+
+    },
+   ];
   @ViewChild(StripeCardComponent) card!: StripeCardComponent;
   @ViewChild(StripeCardNumberComponent) cardNumber!: StripeCardNumberComponent;
 
@@ -66,8 +86,23 @@ export class BaraqahtabComponent implements OnInit {
     },err =>{
          
     })
+  } 
+  onDelete(index:any){
+    this.content.splice(index,1);    
   }
-
+  onAdd(index:any){
+    this.content.map((data ,i) =>{
+     if(i==index){
+       if(data.count < 5){
+         data.count=data.count+1;
+         if(data.price.indexOf('£') > -1){           
+           data.total= data.count * +(data.price.slice(1));
+        }
+       }
+       return;      
+     }      
+    })  
+  }
   createToken(): void {
     const name = this.stripeTest.get('name')!.value;
     this.stripeService

@@ -27,14 +27,14 @@
                     <span class="input-group-addon">£</span>
                     <input class="amount-input" placeholder="Enter amount" type="number" name="amount" required formControlName="amount">
                 </div>
-                <span *ngIf="!form.get('amount')?.valid && (form.get('amount')?.touched || form.get('amount')?.dirty)"  class="help-block">
+                <div *ngIf="!form.get('amount')?.valid && (form.get('amount')?.touched || form.get('amount')?.dirty)"  class="help-block text-center">
                   <span  class="text-danger" *ngIf="form.get('amount')!.errors!.required">
                     Please enter amount!
                   </span>
                   <span  class="text-danger" *ngIf="form.get('amount')!.errors!.pattern">
                     Amount must be greater than 10
                   </span>
-                </span>              
+                </div>              
           </div>
               </form>
         </div>
