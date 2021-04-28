@@ -40,6 +40,10 @@ import { STRIPE_PUBLISHABLE_KEY, NgxStripeModule } from "ngx-stripe";
 
 import { environment } from 'src/environments/environment';
 import { CartComponent } from './cart/cart.component';
+import { SingleGiftsComponent } from './tabs/gifttab/singlegifts/singlegifts.component';
+import { GiftBoxesComponent } from './tabs/gifttab/giftboxes/giftboxes.component';
+import { GiftHersComponent } from './tabs/gifttab/giftboxes/gifthers/gifthers.component';
+import { GiftHisComponent } from './tabs/gifttab/giftboxes/gifthis/gifthis.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -71,6 +75,10 @@ const routes: Routes = [
     BaraqahaccordionComponent,
     ToastsContainer,
     CartComponent,
+    SingleGiftsComponent,
+    GiftBoxesComponent,
+    GiftHersComponent,
+    GiftHisComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +97,6 @@ const routes: Routes = [
     NgSpinnerModule,
     NgxStripeModule.forRoot(environment.stripe.pk),
     SocialLoginModule
-
   ],
   providers: [ApiService, AuthService,ToastService,
     {

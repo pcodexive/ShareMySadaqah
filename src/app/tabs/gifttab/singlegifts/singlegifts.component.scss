@@ -1,0 +1,94 @@
+.gift-boxs {
+    padding-top: 30px;
+    padding-bottom: 90px;
+    .card {
+        border: none;
+        height: 155px;
+        max-height: 155px;
+        overflow: hidden;
+        margin-bottom: 10px;
+        border-radius: 15px;
+        -moz-border-radius: 15px;
+        -webkit-border-radius: 15px;
+        -webkit-box-shadow: 4px 4px 7px 0px rgba(0, 0, 0, 0.3);
+        -moz-box-shadow: 4px 4px 7px 0px rgba(0, 0, 0, 0.3);
+        box-shadow: 4px 4px 7px 0px rgba(0, 0, 0, 0.3);
+        .flowar {
+            opacity: 0;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 1;
+            width: 50px;
+        }
+        .image {
+            img {
+                max-height: 70px;
+            }
+        }
+        .name {
+            font-size: 14px;
+            line-height: 18px;
+            color: #ffffff;
+            font-weight: 600;
+        }
+        .givenow {
+            margin-top: 10px;
+            padding: 5px 15px;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 16px;
+            cursor: pointer;
+            border: 1px solid #ffffff;
+            border-radius: 30px;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.3);
+            -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.3);
+            box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.3);
+        }
+    }
+    .active {
+        .flowar {
+            opacity: 1;
+        }
+        .givenow {
+            background-color: #ffffff;
+            color: #AB6CAD;
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .gift-boxs {
+        padding-top: 70px;
+        padding-bottom: 40px;
+        .card {
+            height: 261px;
+            max-height: 261px;
+            margin-bottom: 20px;
+            border-radius: 30px;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 30px;
+            .image {
+                img {
+                    max-height: 100px;
+                }
+            }
+            .flowar {
+                width: 100px;
+            }
+            .name {
+                font-size: 24px;
+                line-height: 30px;
+            }
+            .givenow {
+                font-size: 16px;
+                line-height: 20px;
+                margin-top: 20px;
+                padding: 10px 15px;
+            }
+        }
+    }
+}

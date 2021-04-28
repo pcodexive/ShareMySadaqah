@@ -67,6 +67,8 @@ img {
     padding-top: 85px;
 }
 
+
+
 .home-accordion {
     padding-left: 15px;
     padding-right: 15px;
@@ -176,6 +178,7 @@ img {
 .tabs-content {
     .tabs {
         padding: 0;
+        min-height: inherit;
         .tabs__tab-bar {
             width: 100%;
             background-color: #F2F2F2;
@@ -319,6 +322,13 @@ img {
     }
     .choose-tabs {
         padding: 0;
+        min-height: inherit;
+        &.gifts-tabs{
+            .tabs__tab-bar {
+                padding-left: 30px;
+                padding-right: 30px;
+            } 
+        }
         .tabs__tab-bar {
             background-color: #ffffff;
             padding-top: 0;
@@ -476,6 +486,10 @@ img {
 }
 
 @media (min-width: 992px) {
+    .w-md-75{
+        width: 75%!important;
+    }
+
     .tabs-content {
         .tabs {
             .tabs__tab-bar {
@@ -618,4 +632,184 @@ img {
     background-color: rgba(0,0,0,0.5); 
     z-index: 999;
     cursor: pointer;
+}
+
+.modal-dialog{
+    margin-top: 8%;
+    .modal-content{
+        border-radius: 3rem;
+    }
+    .modal-header{
+        display:block;
+        border-top-left-radius: calc(3rem - 1px);
+        border-top-right-radius: calc(3rem - 1px);
+        .close {
+            position: absolute;
+            color: #fff;
+            font-size: 40px;
+            font-weight: 600;
+            border: none;
+            opacity: 1!important;
+            outline: none;
+            &:focus{
+                outline: none;
+            }
+            &:active{
+                &:focus{
+                    outline: none;
+                }
+            }
+        }
+        .image {
+            img{
+                max-width: 100%;
+                width: 48px;
+            }
+        }
+        .name {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 600;
+            padding-left: 5px;
+            line-height: 48px;
+        }
+    }
+    .modal-body{
+        padding: 1.5rem 2rem 0;
+        background-color: #F2F2F2;
+        .donation-amount{
+            color: #414042;
+            font-size: 22px;
+            font-weight: 500;
+        }
+        .donation-amount-content{
+            button {
+                border-radius: 30px;
+                border: 2px solid #4d4d4d;
+                color: #414042;
+                background-color: transparent;
+                font-size: 22px;
+                line-height: 32px;
+                padding: 10px 5px;
+                font-weight: 600;
+                margin-right: 2%;
+                margin-left: 2%;
+                width: 29.33%;
+                &.active{
+                    background-color: #4d4d4d; 
+                    color: #ffffff;
+                }
+            }
+            .form-control{
+                border-radius: 30px;
+                border: 1px solid #4d4d4d;
+                color: #414042;
+                background-color: transparent;
+                font-size: 18px;
+                line-height: 24px;
+                padding: 5px 5px;
+                font-weight: 600;
+                margin-top: 20px;
+                height: 34px;
+                text-align: center;
+                margin-right: 0;
+                margin-left: 0;
+                width: 140px;
+                &::-webkit-input-placeholder {
+                    color: #414042;
+                }
+                  
+                &:-ms-input-placeholder {
+                    color: #414042;
+                }
+                
+                &::placeholder {
+                    color: #414042;
+                }
+            }
+        }
+    }
+    .modal-footer{
+        background-color: #F2F2F2;
+        padding: 18px;
+        border-top:none;
+        justify-content: center;
+        border-bottom-right-radius: calc(3.3rem - 1px);
+        border-bottom-left-radius: calc(3.3rem - 1px);
+        .btn-modal {
+            width: auto;
+            border-radius: 30px;
+            border: none;
+            padding: 5px 45px;
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 30px;
+        }
+    }
+    .gifts-modal{
+        .modal-header{
+            .image {
+                margin-top: 10px;
+                vertical-align: top;
+                img{
+                    width: 45px;
+                }
+            }
+            .name {
+                font-size: 24px;
+            } 
+        }
+        .modal-body{
+            background-color: #F2F2F2;
+            padding-bottom: 0;
+            .donation-amount{
+                font-weight: 500;
+            }
+            ul{
+                padding: 0;
+                margin: 0;
+                list-style: none;
+                li{
+                    display: block;
+                    font-size: 18px;
+                    line-height: 24px;
+                    font-weight: 600;
+                    color: #000000;
+                    padding-bottom: 15px;
+                }
+            }
+        }
+        .modal-footer{
+            background-color: #F2F2F2;
+            justify-content: center;
+            padding-top: 10px;
+            .btn-modal {
+                width: auto;
+                padding: 5px 45px;
+                font-size: 18px;
+            }
+        }
+    }
+    
+}
+
+@media (max-width:767px) {
+    .modal-dialog{
+        margin-top: 32%;
+        .modal-header {
+            .image {
+                img{
+                    width: 45px;
+                }
+            }
+        }
+        .modal-body{
+            .donation-amount-content{
+                button{
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+     
 }

@@ -12,12 +12,12 @@ export class TabsComponent implements OnInit {
   activeTab="Charity";
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
   }
 
   setActiveTab(tab:any) {
     // console.log("tab", this.data,this.charity);
-   
+    console.log("data",this.data);
     if(tab=='Beloved' && this.charity >=0){
       this.activeTab = tab;
     }   
@@ -27,7 +27,8 @@ export class TabsComponent implements OnInit {
     if(tab=='Gift' && ((this.data && this.data.alive && this.data.alive.index) >= 0  || (this.data && this.data.memory )>= 0 )){
       this.activeTab = tab;
     }
-    if(tab=='Share'&& (this.data && this.data.amount >= 10 )){
+    // if(tab=='Share'&& (this.data && this.data.amount >= 10 )){
+    if(tab=='Share'){
       this.activeTab = tab;
     }
     if(tab == 'Baraqah'){
@@ -53,12 +54,12 @@ export class TabsComponent implements OnInit {
     this.data.memory=memory;   
     // console.log("memory",this.data);
   }
-  getGiftTab(gift:any){
-    console.log("gift",gift);
-    this.data.gift=gift;    
+  getSingleGiftTab(gift:any){
+    console.log("gift on tab",gift);
+    this.data.gift=gift;   
   }
-  getGiftAmount(amount:any){
-    this.data.amount=amount;
-    console.log("data",this.data);
-  }
+  // getGiftAmount(amount:any){
+  //   this.data.amount=amount;
+  //   console.log("data",this.data);
+  // }
 }

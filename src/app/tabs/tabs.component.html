@@ -16,7 +16,7 @@
             <app-belovedtab [charity]="charity" [passAlive]="data" [passMemory]="data.memory" (passAliveOnTab)="getAliveOnTag($event)"  (passMemoryOnTab)="getMemoryOnTab($event)" (onTabClick)="setActiveTab($event)" (OnCharityPass)="setCharity(charity)"></app-belovedtab>
         </div>
         <div tabTitle="Gift" *ngIf="activeTab == 'Gift'">
-            <app-gifttab (giftAmount)="getGiftAmount($event)" (onTabClick)="setActiveTab($event)" [gift]="data.gift" (passGift)="getGiftTab($event)"></app-gifttab>
+            <app-gifttab  (onTabClick)="setActiveTab($event)" [singleGift]="data.gift" (passSingleGiftToTab)="getSingleGiftTab($event)"></app-gifttab>
         </div>
         <div tabTitle="Share" *ngIf="activeTab == 'Share'">
             <app-sharetab [dataObj]="data" (onTabClick)="setActiveTab($event)" ></app-sharetab>

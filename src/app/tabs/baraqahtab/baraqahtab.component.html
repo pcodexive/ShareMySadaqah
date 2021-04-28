@@ -39,42 +39,96 @@
             </div>
         </div> -->
 
-        <div class="cart-loop">
-            <div class="container">
-                <div class="d-flex align-items-center footer-buttons" *ngFor="let content of content; let i = index" style="height: 200px;
-                margin: 2em;">
 
-                    <div class="card flex-column align-items-center justify-content-center text-center p-1 p-md-2" 
-                     [ngStyle]="{'background-color': content.bgcolor}" style="border-radius: 15px;">
-                        <div class="flowar" style="    position: absolute;
-                        left: 0;
-                        top: 0;
-                        z-index: 1;"><img src="assets/images/flowar.png" alt="" /></div>
-                        <div class="d-block w-100 image" style="margin: 25px;">
-                            <img src="{{content.image}}" alt={{content.name}} title={{content.name}} />
+        <div class="postcard-section mx-md-5 mb-md-5">
+            <div class="postcard-box border-bottom">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-7 col-md-9">
+                        <div class="postcard-content">
+                            <div class="row justify-content-center align-items-center">
+                                <div class="col-4 col-md-3 text-center">
+                                    <div class="postcard-image post">
+                                        <div class="flower-img"><img src="assets/images/flowar.png" alt="" /></div>
+                                        <img src="assets/images/postcard.svg" alt="" />
+                                    </div>
+                                </div>
+                                <div class="col-8 col-md-9">
+                                    <div class="postcard-text">Postcard</div>
+                                </div>
+                            </div>
                         </div>
-                                    <!-- <div class="d-inline-block givenow" (click)="open(giftmodal)">Give Now £{{content.givenow}}</div> -->
                     </div>
-                    <div style="margin: 30px;">
-                        <div class="d-block w-100 name">{{content.name}}</div>
-                    </div>
-                    <div>
-                        <div style="border-radius:20px;border: solid 1px; width: 100px;">
-
-                        <span style="margin: 10px;" (click)="onDelete(i)"><i class="fa fa-trash"></i></span>
-                        <span style="margin: 10px;">{{ content.count}}</span>
-                        <span style="margin: 10px;" (click)="onAdd(i)"><i class="fa fa-plus"></i></span>
+                    <div class="col-5 col-md-3">
+                        <div class="priceing-section">
+                            <input type="text" class="form-control priceing-form-control" placeholder="£1.99" />
+                            <div class="d-flex align-items-center justify-content-center count-box">
+                                <button class="left-btn"><i class="fas fa-trash-alt"></i></button>
+                                <input type="text" class="form-control count" placeholder="1" />
+                                <button class="right-btn"><i class="fas fa-plus"></i></button>
+                            </div>
                         </div>
-    
-                       
                     </div>
-
-
-                    <button class="btn btn-primary" >{{content.total == 1 ? content.price : '£ '+content.total}}<span></span></button>
+                </div>
+            </div>
+            <div class="postcard-box chocolates-box border-bottom">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-7 col-md-9">
+                        <div class="postcard-content">
+                            <div class="row justify-content-center align-items-center">
+                                <div class="col-4 col-md-3 text-center">
+                                    <div class="postcard-image post">
+                                        <div class="flower-img"><img src="assets/images/flowar.png" alt="" /></div>
+                                        <img src="assets/images/boxes-chocolates.svg" alt="" />
+                                    </div>
+                                </div>
+                                <div class="col-8 col-md-9">
+                                    <div class="postcard-text">Boxes of Chocolates</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-5 col-md-3">
+                        <div class="priceing-section">
+                            <input type="text" class="form-control priceing-form-control" placeholder="£1.99" />
+                            <div class="d-flex align-items-center justify-content-center count-box">
+                                <button class="left-btn"><i class="fas fa-trash-alt"></i></button>
+                                <input type="text" class="form-control count" placeholder="1" />
+                                <button class="right-btn"><i class="fas fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="postcard-box">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-7 col-md-9">
+                        <div class="postcard-content">
+                            <div class="row justify-content-center align-items-center">
+                                <div class="col-4 col-md-3 text-center">
+                                    <div class="postcard-image post">
+                                        <div class="flower-img"><img src="assets/images/flowar.png" alt="" /></div>
+                                        <img src="assets/images/mug.svg" alt="" />
+                                    </div>
+                                </div>
+                                <div class="col-8 col-md-9">
+                                    <div class="postcard-text">Mugs</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-5 col-md-3">
+                        <div class="priceing-section">
+                            <input type="text" class="form-control priceing-form-control" placeholder="£1.99" />
+                            <div class="d-flex align-items-center justify-content-center count-box">
+                                <button class="left-btn"><i class="fas fa-minus"></i></button>
+                                <input type="text" class="form-control count" placeholder="1" />
+                                <button class="right-btn"><i class="fas fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
 
        
         <ngx-stripe-card-group class="d-block mx-md-5 payment-form"
@@ -128,11 +182,43 @@
         </div>
     </div>
 </div>
+<div class="order-section">
+    <div class="container">
+        <div class="order-details">
+            <div class="heading text-center">Your order details</div>
+            <div class="details-box mx-md-5">
+                <div class="detail-content">
+                    <div class="head-content">
+                        <div class="dispatch-text">
+                            <p>Dispatch to &#58; <strong>Ali Shaan, 123 Main Road, Oldham, OL1 2BX</strong></p>
+                        </div>
+                        <div class="delivery-text">
+                            <p>Dispatch to &#58; <strong>Royal Mail Signed For® 1st Class</strong></p>
+                        </div>
+                    </div>
+                    <div class="body-content">
+                        <ul>
+                            <li><p>Gifts</p><span>£27.99</span></li>
+                            <li><p>Delivery</p><span>£4.99</span></li>
+                            <li><p>Donation</p><span>£10.00</span></li>
+                            <li><p>Gift Aid</p><span>£2.50</span></li>
+                        </ul>
+                    </div>
+                    <div class="footer-content">
+                        <ul>
+                            <li><p>Order Total </p><span>£59.99</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="footer text-center">
     <div class="container">
         <a class="btn btn-primary" routerLink="/thankyou">
-            <span class="d-inline-block align-top pr-3" (click)="pay()">Donate £10.50</span>
-            <p class="d-inline-block align-middle">+ 2.50 <br /> Gift Aid</p>
+            <span class="d-inline-block align-top pr-3" (click)="pay()">All Done</span>
         </a>
+        <p class="d-block align-middle mt-2">By placing your order you agree to Share My Sadaqah’s Terms of Use</p>
     </div>
 </div>

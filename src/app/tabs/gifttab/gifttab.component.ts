@@ -13,11 +13,13 @@ export class GifttabComponent implements OnInit {
   @Output() giftAmount: EventEmitter<any> = new EventEmitter();
   popupColor:any;
   @Output() passGift: EventEmitter<any> = new EventEmitter();
+  @Output() passSingleGiftToTab: EventEmitter<any> = new EventEmitter();
+
   constructor(private modalService:NgbModal) { }
   form!: FormGroup;
   closeResult = '';
   giftName:any;
-  @Input() gift:any;
+  @Input() singleGift:any;
   selectedItem=-1;
   selectedGiftContent:any;
   content = [
@@ -66,36 +68,44 @@ export class GifttabComponent implements OnInit {
   ]
   
  ngOnInit(): void {
-
-  this.form = new FormGroup({
    
+
+  this.form = new FormGroup({   
     amount: new FormControl(10, [
         Validators.required,
         Validators.pattern(/^([1-9][0-9][0-9]*)$/)
-      ]),
-  
+      ]),  
   });
-if(this.gift && this.gift.index){
-  this.selectedItem=this.gift.index;
-}
+// if(this.gift && this.gift.index){
+//   this.selectedItem=this.gift.index;
+// }
   }
   goToNextStep(){
-    if(this.selectedItem >= 0)
+    // if(this.selectedItem >= 0)
     this.onTabClick.emit("Share");
   }
   goToBackStep(){
     this.onTabClick.emit("Beloved");
   }
 
-  onGiftTab(gift:any,content:any){
-    this.selectedGiftContent=content;
-    this.selectedGiftContent.index=gift;
-    this.giftName=content.name;
-    this.popupColor=content.bgcolor;
-    console.log(this.popupColor);    
-    this.selectedItem=gift;
-    this.passGift.emit(this.selectedGiftContent);
+  getSingleGift(singleGift:any){    
+    this.passSingleGiftToTab.emit(singleGift);
+    if(singleGift){
+      this.selectedGiftContent ={
+        singleGift:singleGift
+      }      }
+  
   }
+
+  // onGiftTab(gift:any,content:any){
+  //   this.selectedGiftContent=content;
+  //   this.selectedGiftContent.index=gift;
+  //   this.giftName=content.name;
+  //   this.popupColor=content.bgcolor;
+  //   console.log(this.popupColor);    
+  //   this.selectedItem=gift;
+  //   this.passGift.emit(this.selectedGiftContent);
+  // }
 
   open(giftmodal:any) {
       this.modalService.open(giftmodal, {ariaLabelledBy: 'modal-basic-title',windowClass: 'gift-tab-content',centered: true}).result.then((result:any) => {  
