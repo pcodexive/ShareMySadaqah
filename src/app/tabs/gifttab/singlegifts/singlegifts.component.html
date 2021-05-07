@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <div class="modal-footer text-center">
-                            <button class="btn btn-primary btn-modal" type="submit" [ngStyle]="{'background-color': content.bgcolor}" (click)="modal.dismiss()">That's it</button>
+                            <button class="btn btn-primary btn-modal" [disabled]="!form.valid" type="submit" [ngStyle]="{'background-color': content.bgcolor}" (click)="modal.dismiss()">That's it</button>
                         </div>
                     </form>
                     </div>

@@ -29,17 +29,14 @@ export class BaraqahtabComponent implements OnInit {
       image: "./assets/images/personalised-e-card.png",
       price: "Free",
       bgcolor: "#ab6cad",
-      count: 1,
-      total:1
+      count: 1
     },
     {
       name: "Postcard",
       image: "./assets/images/postcard.png",
       price: "£1.99",
       bgcolor: "#e6557f",
-      count: 1,
-      total:1
-
+      count: 1
     },
    ];
   @ViewChild(StripeCardComponent) card!: StripeCardComponent;
@@ -125,7 +122,22 @@ export class BaraqahtabComponent implements OnInit {
     })
   } 
   onDelete(index:any){
-    this.cart.splice(index,1);    
+ 
+    this.cart.map((data:any ,i:any) =>{
+    if(i==index){
+       if(data.quantity > 1){
+         data.quantity=data.quantity-1;
+        //  if(data.price.indexOf('£') > -1){           
+          //  data.total= data.quantity * +(data.price.slice(1));
+        // }
+       }
+       else{
+        this.cart.splice(index,1);  
+       }
+       return;      
+     }      
+    })
+
   }
   onAdd(index:any){
     this.cart.map((data:any ,i:any) =>{
@@ -135,7 +147,7 @@ export class BaraqahtabComponent implements OnInit {
        if(data.quantity < 10){
          data.quantity=data.quantity+1;
         //  if(data.price.indexOf('£') > -1){           
-           data.total= data.quantity * +(data.price.slice(1));
+          //  data.total= data.quantity * +(data.price.slice(1));
         // }
        }
        return;      

@@ -788,3 +788,6 @@
     border-radius: 50px;
     text-align: center;
 }
+input.ng-invalid.ng-untouched.submit{
+  border: 1px solid red;
+}

@@ -64,7 +64,7 @@ export class SingleGiftsComponent implements OnInit {
 
 
   open(content: any,singleGift:any,index:any) {  
-    this.form.patchValue({quantity:1})
+    // this.form.patchValue({quantity:1})
     this.singleGift=singleGift;
     this.singleGift ={
       ...this.singleGift,
@@ -99,14 +99,17 @@ export class SingleGiftsComponent implements OnInit {
   }
   ngOnInit(): void {
     this.form = new FormGroup({   
-      quantity: new FormControl(10, [
+      quantity: new FormControl(1, [
           Validators.required,
+          Validators.pattern(/^([1-9]*)$/)
         ]),  
     });
+console.log("selectedsingleGift",this.selectedsingleGift);
 
     
     if(this.selectedsingleGift && this.selectedsingleGift.singleGift){
       this.selectedItem = this.selectedsingleGift.singleGift.index;
+      this.form.setValue({quantity:this.selectedsingleGift.singleGift.quantity})
       // this.selectedItem = this.content.findIndex(obj => obj.id==this.selectedsingleGift.id);
 
     }

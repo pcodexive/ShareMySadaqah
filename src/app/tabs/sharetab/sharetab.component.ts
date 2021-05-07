@@ -91,6 +91,8 @@ export class SharetabComponent implements OnInit{
   giftData:any;
   closeResult = '';
   shareTabData:any;
+  submitted=false;
+
   
   ngOnInit(): void {
     if(this.dataObj && this.dataObj.alive && this.dataObj.alive.name){
@@ -177,6 +179,12 @@ export class SharetabComponent implements OnInit{
     }   
   }
   onSubmit() {
+    console.log("submitted && ",this.submitted);
+    
+    this.submitted=true;
+    if (this.form.invalid) {
+      return;
+   }
     if(this.form){
       this.passShareformData.emit(this.form.value);
       this.toastService.show("Successfully added", { classname: 'bg-success text-light', delay: 5000 });    

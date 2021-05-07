@@ -59,7 +59,7 @@
                     </div>
                     <div class="col-5 col-md-3">
                         <div class="priceing-section">
-                            <input type="text" class="form-control priceing-form-control" placeholder="£1.99" value="{{cart.total == 1 ? cart.price * cart.quantity : '£ '+cart.total.toFixed(2)}}" />
+                            <input type="text" class="form-control priceing-form-control" placeholder="£1.99" value="{{'£ '+(cart.price * cart.quantity).toFixed(2)}}" />
                             <div class="d-flex align-items-center justify-content-center count-box">
                                 <button class="left-btn" (click)="onDelete(i)"><i class="fas fa-trash-alt"></i></button>
                                 <input type="text" class="form-control count" placeholder="1" value={{cart.quantity}} />

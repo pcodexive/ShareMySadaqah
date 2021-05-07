@@ -36,7 +36,7 @@
                   </label>
               </div>
                 <div class="form-group name-box">
-                    <input class="form-control" placeholder="Enter recipients email" type="text" name="recipients_email" required formControlName="recipients_email"/>
+                    <input class="form-control" [ngClass]="{submit :submitted && !this.dataObj.memory}" placeholder="Enter recipients email" type="text" name="recipients_email" required formControlName="recipients_email"/>
                     <div *ngIf="!this.dataObj.memory && (!form.get('recipients_email')?.valid && (form.get('recipients_email')?.touched || form.get('recipients_email')?.dirty)) "
                     class="help-block">
                         <div  class="text-danger text-center" *ngIf="form.get('recipients_email')!.errors!.required">
@@ -48,7 +48,7 @@
                   </div> 
                 </div>
                 <div class="form-group name-box">
-                    <input class="form-control" placeholder="Enter your full name" type="text" name="fname" required formControlName="fname"/>
+                    <input [ngClass]="{submit :submitted}" class="form-control" placeholder="Enter your full name" type="text" name="fname" required formControlName="fname"/>
                     <div *ngIf="!form.get('fname')?.valid && (form.get('fname')?.touched || form.get('fname')?.dirty) "
                     class="help-block">
                         <div  class="text-danger text-center" *ngIf="form.get('fname')!.errors!.required">
@@ -65,7 +65,7 @@
                     </label>
                 </div>
                 <div class="form-group name-box">
-                    <input class="form-control" placeholder="Enter your senders email" type="text" name="senders_email" required formControlName="senders_email"/>
+                    <input [ngClass]="{submit :submitted}" class="form-control" placeholder="Enter your senders email" type="text" name="senders_email" required formControlName="senders_email"/>
                     <div *ngIf="!form.get('senders_email')?.valid && (form.get('senders_email')?.touched || form.get('senders_email')?.dirty) "
                     class="help-block">
                         <div  class="text-danger text-center" *ngIf="form.get('senders_email')!.errors!.required">
@@ -78,7 +78,7 @@
                 </div>
                
                 <div class="form-group name-box">
-                    <input class="form-control" placeholder="Enter your senders full name" type="text" name="senders_fname" required formControlName="senders_fname"/>
+                    <input [ngClass]="{submit :submitted}" class="form-control" placeholder="Enter your senders full name" type="text" name="senders_fname" required formControlName="senders_fname"/>
                     <div *ngIf="!form.get('senders_fname')?.valid && (form.get('senders_fname')?.touched || form.get('senders_fname')?.dirty) "
                     class="help-block">
                         <div  class="text-danger text-center" *ngIf="form.get('senders_fname')!.errors!.required">
@@ -87,7 +87,7 @@
                   </div> 
                 </div>
                 <div class="form-group name-box">
-                    <input class="form-control" placeholder="Enter your confirm email" type="text" name="confirm_email" required formControlName="confirm_email"/>
+                    <input [ngClass]="{submit :submitted}" class="form-control" placeholder="Enter your confirm email" type="text" name="confirm_email" required formControlName="confirm_email"/>
                     <div *ngIf="!form.get('confirm_email')?.valid && (form.get('confirm_email')?.touched || form.get('confirm_email')?.dirty) "
                     class="help-block">
                         <div  class="text-danger text-center" *ngIf="form.get('confirm_email')!.errors!.required">
@@ -99,12 +99,12 @@
                   </div>   
                 </div>
                 <div class="form-group name-box">
-                    <input class="form-control" placeholder="Enter your password" type="text" name="password" required formControlName="password"/>
+                    <input [ngClass]="{submit :submitted}" class="form-control" placeholder="Enter your password" type="text" name="password" required formControlName="password"/>
                     <div class="text-danger text-center" *ngIf="form.controls.password.invalid && (form.controls.password.dirty || form.controls.password.touched)">Please enter your Password!</div>
 
                 </div>
                 <div class="form-group name-box">
-                    <input class="form-control" placeholder="Enter your confirm password" type="text" name="confirm_password" required formControlName="confirm_password"/>
+                    <input  [ngClass]="{submit :submitted}" class="form-control" placeholder="Enter your confirm password" type="text" name="confirm_password" required formControlName="confirm_password"/>
                     <div class="text-danger text-center"  *ngIf="!form.controls.confirm_password.hasError('notEquivalent') && form.controls.confirm_password.invalid && (form.controls.confirm_password.dirty || form.controls.confirm_password.touched)">Please enter your confirm password!</div>
                     <div class="text-danger text-center"  *ngIf="form.controls.confirm_password.hasError('notEquivalent')">Password & Confirm password does not match!</div>
                
@@ -202,7 +202,7 @@
                                 
                             </div>
                             <div class="col-3">
-                                <button class="add-love" type="submit" [disabled]="!occasion.valid" (click)="onAddOtherShare('other')">Add</button>
+                                <button class="btn add-love" type="submit" [disabled]="!occasion.valid" (click)="onAddOtherShare('other')">Add</button>
                             </div>
                         </div>                  
                     </div> 
