@@ -39,7 +39,7 @@ export class TabsComponent implements OnInit {
      (this.data && this.data.gift && this.data.gift.giftBox && this.data.gift.giftBox.index) >= 0 ){
       this.activeTab = tab;
     }
-    if(tab == 'Baraqah'){
+    if(tab == 'Baraqah' && (this.data && this.data.shareForm)){
       this.activeTab = tab;
     }
     
@@ -88,5 +88,19 @@ export class TabsComponent implements OnInit {
   // }
   setTabDataLocal(){
     this.authService.setLocalStorage('tabData', this.data);
+  }
+  getOccasion(occasion:any){
+    this.data={
+      ...this.data,
+      occasion
+    }       
+    this.setTabDataLocal();
+  }
+  getShareformData(shareForm:any){
+    this.data={
+      ...this.data,
+      shareForm
+    }       
+    this.setTabDataLocal();
   }
 }

@@ -24,7 +24,7 @@
 
     <div class="heading">Share it with {{shareLove ? shareLove :''}}</div>
     <div class="d-block pb-2">
-        <form [formGroup]="form">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
         <div class="container">
             <div class="d-block mx-md-auto w-md-50">
@@ -146,7 +146,7 @@
                     <div class="row">
                         <div class="col-6 pr-2">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="occasion" id="Birthday" formControlName="occasion"  value="option1">
+                                <input class="form-check-input" type="radio" name="occasion" id="Birthday" (click)="onAddOtherShare('option1')" formControlName="occasion"  value="option1">
                                 <label class="form-check-label" for="Birthday">
                                     Birthday
                                 </label>
@@ -154,7 +154,7 @@
                         </div>
                         <div class="col-6 pl-2">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="occasion" id="NewBorn" formControlName="occasion" value="option2">
+                                <input class="form-check-input" type="radio" name="occasion" id="NewBorn" (click)="onAddOtherShare('option2')" formControlName="occasion" value="option2">
                                 <label class="form-check-label" for="NewBorn"> 
                                     New Born
                                 </label>
@@ -162,7 +162,7 @@
                         </div>
                         <div class="col-6 pr-2">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="occasion" id="ANewJob" formControlName="occasion" value="option3">
+                                <input class="form-check-input" type="radio" name="occasion" id="ANewJob" (click)="onAddOtherShare('option3')" formControlName="occasion" value="option3">
                                 <label class="form-check-label" for="ANewJob">
                                     A New Job
                                 </label>
@@ -170,7 +170,7 @@
                         </div>
                         <div class="col-6 pl-2">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="occasion" id="GoodHealth" formControlName="occasion" value="option4">
+                                <input class="form-check-input" type="radio" name="occasion" id="GoodHealth" (click)="onAddOtherShare('option4')" formControlName="occasion" value="option4">
                                 <label class="form-check-label" for="GoodHealth">
                                     Good Health
                                 </label>
@@ -202,7 +202,7 @@
                                 
                             </div>
                             <div class="col-3">
-                                <div class="add-love" (click)="onAddOtherShare()">Add</div>
+                                <button class="add-love" type="submit" [disabled]="!occasion.valid" (click)="onAddOtherShare('other')">Add</button>
                             </div>
                         </div>                  
                     </div> 

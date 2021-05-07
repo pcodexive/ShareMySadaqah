@@ -1,21 +1,27 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/shared/auth.service';
 import * as _ from "lodash";
+import { ToastService } from 'src/app/shared/toasts-container/toast-service';
 
 @Component({
   selector: 'app-sharetab',
   templateUrl: './sharetab.component.html',
   styleUrls: ['./sharetab.component.scss']
 })
-export class SharetabComponent implements OnInit {
+export class SharetabComponent implements OnInit{
   @Output() onTabClick: EventEmitter<any> = new EventEmitter();
+  @Output() passOccasion: EventEmitter<any> = new EventEmitter();
+  @Output() passShareformData: EventEmitter<any> = new EventEmitter();
+
+
   @Input() gift:any;
   @Input() dataObj:any;
   otherButton=true;
   shareLove='';
-  constructor(private fb:FormBuilder,private modalService:NgbModal,private authService: AuthService) { }
+  constructor(private fb:FormBuilder,private modalService:NgbModal,private authService: AuthService,
+    private toastService:ToastService) { }
   selectedItem=-1;
   content = [
     {
@@ -84,6 +90,7 @@ export class SharetabComponent implements OnInit {
   occasion!:FormGroup;
   giftData:any;
   closeResult = '';
+  shareTabData:any;
   
   ngOnInit(): void {
     if(this.dataObj && this.dataObj.alive && this.dataObj.alive.name){
@@ -97,19 +104,36 @@ export class SharetabComponent implements OnInit {
         'name':this.dataObj.gift.name
       }
     }
+ 
+    
+
     this.form =this.fb.group({     
       recipients_email :  this.dataObj.memory ? new FormControl(null):new FormControl(null, [Validators.required,Validators.email]) ,
       fname : new FormControl(null, [Validators.required]),
       senders_email  : new FormControl(null, [Validators.required,Validators.email]),
       senders_fname : new FormControl(null, [Validators.required]),
       confirm_email  : new FormControl(null, [Validators.required,Validators.email]),
-      password  : new FormControl(null, [Validators.required, Validators.minLength(4)]),
+      password  : new FormControl(null, [Validators.required]),
       confirm_password  : new FormControl(null, [Validators.required]), 
       
     }, {validator: this.checkIfMatchingPasswords('password', 'confirm_password')})
     this.occasion =this.fb.group({
       occasion : new FormControl(null, [Validators.required])
     })
+    if(this.dataObj && this.dataObj.shareForm){
+      console.log(this.dataObj?.shareForm?.recipients_email);
+      let fromdata = this.dataObj.shareForm ;
+  
+    this.form.patchValue({
+      recipients_email: `${fromdata.recipients_email ? fromdata.recipients_email : ''}`,
+      fname: `${fromdata.recipients_email ? fromdata.fname : ''}`,
+      senders_email: `${fromdata.recipients_email ? fromdata.senders_email : ''}`,
+      senders_fname: `${fromdata.recipients_email ? fromdata.senders_fname : ''}`,
+      confirm_email: `${fromdata.recipients_email ? fromdata.confirm_email : ''}`,
+      password: `${fromdata.recipients_email ? fromdata.password : ''}`,
+      confirm_password: `${fromdata.recipients_email ? fromdata.confirm_password : ''}`,
+    })
+  }
   }
   checkIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string) {
     return (group: FormGroup) => {
@@ -132,15 +156,32 @@ export class SharetabComponent implements OnInit {
     this.otherButton=false;
   } 
   goToNextStep(){
-    this.onTabClick.emit("Baraqah");
+    if(this.form){
+      this.onTabClick.emit("Baraqah");
+    }
+    return;    
   }
   goToBackStep(){
     this.onTabClick.emit("Gift");
   }
-  onAddOtherShare(){
-    if(this.occasion.get('occasion')?.value){
-      let occasion =this.occasion.get('occasion')?.value;
-    }        
+  onAddOtherShare(occasion:any){  
+    if(occasion ==='other'){
+      if(this.occasion.get('occasion')?.value){
+        let data = this.occasion.get('occasion')?.value;
+        this.passOccasion.emit(data);
+      }
+    }else
+    {
+     this.passOccasion.emit(occasion);
+
+    }   
+  }
+  onSubmit() {
+    if(this.form){
+      this.passShareformData.emit(this.form.value);
+      this.toastService.show("Successfully added", { classname: 'bg-success text-light', delay: 5000 });    
+    }
+    // this.form.reset();
   }
 
   open(giftmodal:any) {
@@ -181,7 +222,6 @@ selectedGiftItem(index:any,content:any){
     this.authService.setLocalStorage('giftCartData',giftCartData1);
   }
   else{
-
     let giftCartData1= _.merge(giftCartData);
     this.authService.setLocalStorage('giftCartData',giftCartData1);  
   }
