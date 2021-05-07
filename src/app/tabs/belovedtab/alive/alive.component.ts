@@ -62,6 +62,8 @@ export class AliveComponent implements OnInit {
     }
   ]
   ngOnInit(): void {
+    console.log(this.passAliveTo);
+    
     if(this.passAliveTo && this.passAliveTo.alive && this.passAliveTo.alive.index){
       let item = this.passAliveTo.alive.index;
       this.alive=item;
@@ -70,6 +72,8 @@ export class AliveComponent implements OnInit {
       
   }
   onSelectedAlive(index:any,alive:any){
+    console.log(alive);
+    
     this.selectedItem=index;
     alive.index=index;
     this.passAlive.emit(alive);

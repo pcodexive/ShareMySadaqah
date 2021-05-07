@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -7,7 +7,8 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./gifthers.component.scss']
 })
 export class GiftHersComponent implements OnInit {
-
+  @Output() passGiftThers:EventEmitter<any> =new EventEmitter();
+  @Input() selectedGiftBoxThers:any;
   closeResult = '';
   constructor(private modalService: NgbModal) { }
   selectedItem=-1;
@@ -58,7 +59,13 @@ export class GiftHersComponent implements OnInit {
     }
   ]  
 
-  open(content: any) {
+  open(content: any,gift:any,index:any) {
+    gift={
+      ...gift,
+      index:index,
+      type:'Hers'
+    }
+    this.passGiftThers.emit(gift);
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -76,6 +83,11 @@ export class GiftHersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("selectedGiftBoxThers",this.selectedGiftBoxThers);
+    
+    if(this.selectedGiftBoxThers && this.selectedGiftBoxThers.giftBox && this.selectedGiftBoxThers.giftBox.index ){
+      this.selectedItem=this.selectedGiftBoxThers.giftBox.index;      
+    }
   }
 
 }

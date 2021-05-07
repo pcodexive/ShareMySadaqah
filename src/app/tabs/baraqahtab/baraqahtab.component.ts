@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewChild, ɵConsole } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ɵConsole } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import * as _ from "lodash";
+
 
 import { StripeService, StripeCardNumberComponent, StripeCardComponent, StripeCardGroupDirective } from 'ngx-stripe';
 import {
@@ -42,6 +44,8 @@ export class BaraqahtabComponent implements OnInit {
    ];
   @ViewChild(StripeCardComponent) card!: StripeCardComponent;
   @ViewChild(StripeCardNumberComponent) cardNumber!: StripeCardNumberComponent;
+  @Input() data:any;
+   cart:any=[];
 
   cardOptions: StripeCardElementOptions = {
     style: {
@@ -77,6 +81,39 @@ export class BaraqahtabComponent implements OnInit {
       email: ['', [Validators.required]],
       amount: [10.50, [Validators.required]],
     });
+    if(this.data && this.data.gift.singleGift){
+       
+    const sigle = {
+        name: this.data.gift.singleGift.name,
+        image: this.data.gift.singleGift.image,
+        price: this.data.gift.singleGift.givenow,
+        bgcolor: this.data.gift.singleGift.bgcolor,        
+        quantity:this.data?.gift?.singleGift?.quantity,
+        total:1
+      }
+      this.cart=_.concat(sigle);     
+
+    }
+    if(this.data && this.data.gift.giftBox){
+      const data = {
+        name: this.data.gift.giftBox.name,
+        image: this.data.gift.giftBox.image,
+        price: this.data.gift.giftBox.givenow,
+        bgcolor: this.data.gift.giftBox.bgcolor,        
+        quantity:1,
+        total:1
+      }
+      this.cart=_.concat(this.cart,data);     
+    
+      // this.cart.push(data);
+      // this.cart= this.cart.slice(1);
+      console.log(this.cart);
+      
+     
+    }
+    
+    
+    
   }
 
   createSetupIntent() {
@@ -88,16 +125,18 @@ export class BaraqahtabComponent implements OnInit {
     })
   } 
   onDelete(index:any){
-    this.content.splice(index,1);    
+    this.cart.splice(index,1);    
   }
   onAdd(index:any){
-    this.content.map((data ,i) =>{
+    this.cart.map((data:any ,i:any) =>{
+      console.log(data);
+      
      if(i==index){
-       if(data.count < 5){
-         data.count=data.count+1;
-         if(data.price.indexOf('£') > -1){           
-           data.total= data.count * +(data.price.slice(1));
-        }
+       if(data.quantity < 10){
+         data.quantity=data.quantity+1;
+        //  if(data.price.indexOf('£') > -1){           
+           data.total= data.quantity * +(data.price.slice(1));
+        // }
        }
        return;      
      }      

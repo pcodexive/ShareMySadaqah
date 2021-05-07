@@ -16,13 +16,13 @@
             <app-belovedtab [charity]="charity" [passAlive]="data" [passMemory]="data.memory" (passAliveOnTab)="getAliveOnTag($event)"  (passMemoryOnTab)="getMemoryOnTab($event)" (onTabClick)="setActiveTab($event)" (OnCharityPass)="setCharity(charity)"></app-belovedtab>
         </div>
         <div tabTitle="Gift" *ngIf="activeTab == 'Gift'">
-            <app-gifttab  (onTabClick)="setActiveTab($event)" [singleGift]="data.gift" (passSingleGiftToTab)="getSingleGiftTab($event)"></app-gifttab>
+            <app-gifttab  (onTabClick)="setActiveTab($event)" [Gift]="data.gift" (passGiftToTab)="getGiftTab($event)"></app-gifttab>
         </div>
         <div tabTitle="Share" *ngIf="activeTab == 'Share'">
             <app-sharetab [dataObj]="data" (onTabClick)="setActiveTab($event)" ></app-sharetab>
         </div>
         <div tabTitle="Baraqah" *ngIf="activeTab == 'Baraqah'">
-            <app-baraqahtab (onTabClick)="setActiveTab($event)"></app-baraqahtab>
+            <app-baraqahtab (onTabClick)="setActiveTab($event)" [data]="data" ></app-baraqahtab>
         </div>
     </div>
 </div>

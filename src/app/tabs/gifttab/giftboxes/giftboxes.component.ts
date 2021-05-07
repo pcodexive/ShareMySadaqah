@@ -1,14 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-giftboxes',
   templateUrl: './giftboxes.component.html'
 })
-export class GiftBoxesComponent implements OnInit {
-
+export class GiftBoxesComponent implements AfterViewInit {
+  @Output() passGiftBox: EventEmitter<any> = new EventEmitter();
+  @Input() selectedGiftBox:any;
   constructor() { }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+  console.log("giftbox",this.selectedGiftBox);
+  
   }
+  giftBoxs(gift:any){
+    this.passGiftBox.emit(gift);  
+  }
+
 
 }

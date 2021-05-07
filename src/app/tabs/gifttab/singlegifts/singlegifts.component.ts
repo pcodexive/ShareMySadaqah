@@ -63,12 +63,15 @@ export class SingleGiftsComponent implements OnInit {
   ]
 
 
-  open(content: any,singleGift:any) {  
+  open(content: any,singleGift:any,index:any) {  
     this.form.patchValue({quantity:1})
-    this.singleGift=singleGift;  
+    this.singleGift=singleGift;
+    this.singleGift ={
+      ...this.singleGift,
+      index:index
+    }
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {   
-      console.log("sghafghs");
-      
+ 
     this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.OnQuantityBlur();
@@ -100,10 +103,11 @@ export class SingleGiftsComponent implements OnInit {
           Validators.required,
         ]),  
     });
-    if(this.selectedsingleGift){
-       this.selectedItem = this.content.findIndex(obj => obj.id==this.selectedsingleGift.id);
-      console.log(this.selectedItem);
 
+    
+    if(this.selectedsingleGift && this.selectedsingleGift.singleGift){
+      this.selectedItem = this.selectedsingleGift.singleGift.index;
+      // this.selectedItem = this.content.findIndex(obj => obj.id==this.selectedsingleGift.id);
 
     }
   }

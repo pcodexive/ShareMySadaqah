@@ -39,95 +39,37 @@
             </div>
         </div> -->
 
-
-        <div class="postcard-section mx-md-5 mb-md-5">
+        <div *ngFor="let cart of cart; let i = index" class="postcard-section mx-md-5 mb-md-5">
             <div class="postcard-box border-bottom">
                 <div class="row justify-content-center align-items-center">
                     <div class="col-7 col-md-9">
                         <div class="postcard-content">
                             <div class="row justify-content-center align-items-center">
                                 <div class="col-4 col-md-3 text-center">
-                                    <div class="postcard-image post">
+                                    <div class="postcard-image post"  [ngStyle]="{'background-color': cart}">
                                         <div class="flower-img"><img src="assets/images/flowar.png" alt="" /></div>
-                                        <img src="assets/images/postcard.svg" alt="" />
+                                        <img src="{{cart.image}}" alt="" />
                                     </div>
                                 </div>
                                 <div class="col-8 col-md-9">
-                                    <div class="postcard-text">Postcard</div>
+                                    <div class="postcard-text">{{cart.name}}</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-5 col-md-3">
                         <div class="priceing-section">
-                            <input type="text" class="form-control priceing-form-control" placeholder="£1.99" />
+                            <input type="text" class="form-control priceing-form-control" placeholder="£1.99" value="{{cart.total == 1 ? cart.price : '£ '+cart.total.toFixed(2)}}" />
                             <div class="d-flex align-items-center justify-content-center count-box">
-                                <button class="left-btn"><i class="fas fa-trash-alt"></i></button>
-                                <input type="text" class="form-control count" placeholder="1" />
-                                <button class="right-btn"><i class="fas fa-plus"></i></button>
+                                <button class="left-btn" (click)="onDelete(i)"><i class="fas fa-trash-alt"></i></button>
+                                <input type="text" class="form-control count" placeholder="1" value={{cart.quantity}} />
+                                <button class="right-btn" (click)="onAdd(i)"><i class="fas fa-plus"></i></button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="postcard-box chocolates-box border-bottom">
-                <div class="row justify-content-center align-items-center">
-                    <div class="col-7 col-md-9">
-                        <div class="postcard-content">
-                            <div class="row justify-content-center align-items-center">
-                                <div class="col-4 col-md-3 text-center">
-                                    <div class="postcard-image post">
-                                        <div class="flower-img"><img src="assets/images/flowar.png" alt="" /></div>
-                                        <img src="assets/images/boxes-chocolates.svg" alt="" />
-                                    </div>
-                                </div>
-                                <div class="col-8 col-md-9">
-                                    <div class="postcard-text">Boxes of Chocolates</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-5 col-md-3">
-                        <div class="priceing-section">
-                            <input type="text" class="form-control priceing-form-control" placeholder="£1.99" />
-                            <div class="d-flex align-items-center justify-content-center count-box">
-                                <button class="left-btn"><i class="fas fa-trash-alt"></i></button>
-                                <input type="text" class="form-control count" placeholder="1" />
-                                <button class="right-btn"><i class="fas fa-plus"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="postcard-box">
-                <div class="row justify-content-center align-items-center">
-                    <div class="col-7 col-md-9">
-                        <div class="postcard-content">
-                            <div class="row justify-content-center align-items-center">
-                                <div class="col-4 col-md-3 text-center">
-                                    <div class="postcard-image post">
-                                        <div class="flower-img"><img src="assets/images/flowar.png" alt="" /></div>
-                                        <img src="assets/images/mug.svg" alt="" />
-                                    </div>
-                                </div>
-                                <div class="col-8 col-md-9">
-                                    <div class="postcard-text">Mugs</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-5 col-md-3">
-                        <div class="priceing-section">
-                            <input type="text" class="form-control priceing-form-control" placeholder="£1.99" />
-                            <div class="d-flex align-items-center justify-content-center count-box">
-                                <button class="left-btn"><i class="fas fa-minus"></i></button>
-                                <input type="text" class="form-control count" placeholder="1" />
-                                <button class="right-btn"><i class="fas fa-plus"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+           
         </div>
 
        

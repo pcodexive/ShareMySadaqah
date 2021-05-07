@@ -13,13 +13,13 @@ export class GifttabComponent implements OnInit {
   @Output() giftAmount: EventEmitter<any> = new EventEmitter();
   popupColor:any;
   @Output() passGift: EventEmitter<any> = new EventEmitter();
-  @Output() passSingleGiftToTab: EventEmitter<any> = new EventEmitter();
+  @Output() passGiftToTab: EventEmitter<any> = new EventEmitter();
 
   constructor(private modalService:NgbModal) { }
   form!: FormGroup;
   closeResult = '';
   giftName:any;
-  @Input() singleGift:any;
+  @Input() Gift:any;
   selectedItem=-1;
   selectedGiftContent:any;
   content = [
@@ -76,12 +76,9 @@ export class GifttabComponent implements OnInit {
         Validators.pattern(/^([1-9][0-9][0-9]*)$/)
       ]),  
   });
-// if(this.gift && this.gift.index){
-//   this.selectedItem=this.gift.index;
-// }
   }
-  goToNextStep(){
-    // if(this.selectedItem >= 0)
+  goToNextStep(){    
+    if(this.Gift && this.Gift.singleGift.index >= 0)
     this.onTabClick.emit("Share");
   }
   goToBackStep(){
@@ -89,12 +86,25 @@ export class GifttabComponent implements OnInit {
   }
 
   getSingleGift(singleGift:any){    
-    this.passSingleGiftToTab.emit(singleGift);
     if(singleGift){
       this.selectedGiftContent ={
+        ... this.selectedGiftContent,
         singleGift:singleGift
-      }      }
+      } 
+    }
+    this.passGiftToTab.emit(this.selectedGiftContent);
   
+  }
+  getGiftBox(giftBox:any){
+    console.log("getGiftBox",giftBox);
+    
+    if(giftBox){
+      this.selectedGiftContent ={
+        ...this.selectedGiftContent,
+        giftBox:giftBox
+      } 
+    }
+    this.passGiftToTab.emit(this.selectedGiftContent);
   }
 
   // onGiftTab(gift:any,content:any){

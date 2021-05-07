@@ -1,10 +1,10 @@
 <div class="mx-auto mt-3 mt-md-5 w-md-75">
     <tabs class="choose-tabs gifts-tabs">
         <tab tabTitle="His">
-            <app-gifthis></app-gifthis>
+            <app-gifthis (passGiftThis)="giftBoxs($event)" [selectedGiftBoxThis]="selectedGiftBox"></app-gifthis>
         </tab>
         <tab tabTitle="Hers">
-            <app-gifthers></app-gifthers>
+            <app-gifthers (passGiftThers)="giftBoxs($event)" [selectedGiftBoxThers]="selectedGiftBox"></app-gifthers>
         </tab>
     </tabs>
 </div>

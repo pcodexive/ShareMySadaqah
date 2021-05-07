@@ -6,10 +6,10 @@
       <div class="mx-auto w-md-75">
           <tabs class="choose-tabs">
               <tab tabTitle="Single Gifts">
-                  <app-singlegifts (passSingleGift)="getSingleGift($event)" [selectedsingleGift]="singleGift"></app-singlegifts>
+                  <app-singlegifts (passSingleGift)="getSingleGift($event)" [selectedsingleGift]="Gift"></app-singlegifts>
               </tab>
               <tab tabTitle="Gift Boxes">
-                  <app-giftboxes></app-giftboxes>
+                  <app-giftboxes (passGiftBox)="getGiftBox($event)" [selectedGiftBox]="Gift"></app-giftboxes>
               </tab>
           </tabs>
       </div>
@@ -19,8 +19,8 @@
   <div class="container">
       <div class="d-flex justify-content-center align-items-center footer-buttons">
           <button class="btn btn-primary btn-help"><span><i class="fa fa-question-circle"></i></span> Help</button>
-          <button class="btn btn-primary btn-back"><span><i class="fa fa-chevron-circle-left"></i></span> Back</button>
-          <button class="btn btn-primary btn-good">I'm Happy <span><i class="fa fa-chevron-circle-right"></i></span></button>
+          <button class="btn btn-primary btn-back" (click)="goToBackStep()"><span><i class="fa fa-chevron-circle-left"></i></span> Back</button>
+          <button class="btn btn-primary btn-good" (click)="goToNextStep()">I'm Happy <span><i class="fa fa-chevron-circle-right"></i></span></button>
       </div>
   </div>
 </div>

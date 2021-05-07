@@ -1,4 +1,5 @@
 import { Component, OnInit, Output } from '@angular/core';
+import { AuthService } from '../shared/auth.service';
 
 @Component({
   selector: 'app-tabs',
@@ -10,9 +11,14 @@ export class TabsComponent implements OnInit {
   @Output() data:any={};
   
   activeTab="Charity";
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {    
+    this.data=this.authService.getLocalStorage('tabData');
+    if(this.data && this.data.charity){
+      this.charity=this.data.charity      
+    }
+
   }
 
   setActiveTab(tab:any) {
@@ -28,7 +34,9 @@ export class TabsComponent implements OnInit {
       this.activeTab = tab;
     }
     // if(tab=='Share'&& (this.data && this.data.amount >= 10 )){
-    if(tab=='Share'){
+    if(tab=='Share' &&
+     ((this.data && this.data.gift && this.data.gift.singleGift && this.data.gift.singleGift.index) >= 0 ) || 
+     (this.data && this.data.gift && this.data.gift.giftBox && this.data.gift.giftBox.index) >= 0 ){
       this.activeTab = tab;
     }
     if(tab == 'Baraqah'){
@@ -39,8 +47,12 @@ export class TabsComponent implements OnInit {
     document.documentElement.scrollTop = 0;
   }
   getCharity(i:any){
-    this.data.charity=i;
+    this.data={
+      ...this.data,
+      charity:i
+    }
     this.charity=i;
+    this.setTabDataLocal();
     // console.log("getCharity",i);    
   }
   setCharity(charity:any){
@@ -48,18 +60,33 @@ export class TabsComponent implements OnInit {
     // console.log("getCharity",charity);    
   }
   getAliveOnTag(alive:any){
-    this.data.alive=alive;       
+    this.data={
+      ...this.data,
+      alive:alive
+    }       
+    this.setTabDataLocal();
   }
   getMemoryOnTab(memory:any){
-    this.data.memory=memory;   
+    this.data={
+      ...this.data,
+      memory:memory
+    }  
+    this.setTabDataLocal();
     // console.log("memory",this.data);
   }
-  getSingleGiftTab(gift:any){
+  getGiftTab(gift:any){
+    this.data={
+      ...this.data,
+      gift:gift
+    } 
     console.log("gift on tab",gift);
-    this.data.gift=gift;   
+    this.setTabDataLocal();
   }
   // getGiftAmount(amount:any){
   //   this.data.amount=amount;
   //   console.log("data",this.data);
   // }
+  setTabDataLocal(){
+    this.authService.setLocalStorage('tabData', this.data);
+  }
 }
