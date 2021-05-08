@@ -24,7 +24,7 @@ export class TabsComponent implements OnInit {
 
   setActiveTab(tab:any) {
     // console.log("tab", this.data,this.charity);
-    console.log("data",this.data);
+    // console.log("data",this.data);
     if(tab=='Beloved' && this.charity >=0){
       this.activeTab = tab;
     }   

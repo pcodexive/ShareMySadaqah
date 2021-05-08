@@ -149,7 +149,7 @@ export class BaraqahtabComponent implements OnInit {
   }
   onAdd(index:any){
     this.data.cart.map((data:any ,i:any) =>{
-      console.log(data);
+      // console.log(data);
       
      if(i==index){
        if(data.quantity < 10){

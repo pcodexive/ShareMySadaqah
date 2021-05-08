@@ -111,16 +111,13 @@ export class SharetabComponent implements OnInit{
         "image":this.dataObj.gift.giftBox.image,
         'name':this.dataObj.gift.giftBox.name
       }
-    }
-      else{
+    }}else{
         this.giftData={
-          "givenow":this.dataObj.gift.giftBox.givenow,
           "image":'assets/images/water-img.png',
           'name':'Water'
-      }
     }
- 
   }
+ 
 
     this.form =this.fb.group({     
       recipients_email :  this.dataObj.memory ? new FormControl(null):new FormControl(null, [Validators.required,Validators.email]) ,
@@ -136,7 +133,7 @@ export class SharetabComponent implements OnInit{
       occasion : new FormControl(null, [Validators.required])
     })
     if(this.dataObj && this.dataObj.shareForm){
-      console.log(this.dataObj?.shareForm?.recipients_email);
+      // console.log(this.dataObj?.shareForm?.recipients_email);
       let fromdata = this.dataObj.shareForm ;
   
     this.form.patchValue({
