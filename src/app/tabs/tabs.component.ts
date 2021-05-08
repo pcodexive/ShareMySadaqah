@@ -1,6 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { AuthService } from '../shared/auth.service';
 import * as _ from "lodash";
+import { ToastService } from '../shared/toasts-container/toast-service';
 
 @Component({
   selector: 'app-tabs',
@@ -12,7 +13,7 @@ export class TabsComponent implements OnInit {
   @Output() data:any={};
   
   activeTab="Charity";
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,private toastService:ToastService) { }
 
   ngOnInit(): void {    
     this.data=this.authService.getLocalStorage('tabData');
@@ -40,8 +41,12 @@ export class TabsComponent implements OnInit {
      (this.data && this.data.gift && this.data.gift.giftBox && this.data.gift.giftBox.index) >= 0 ){
       this.activeTab = tab;
     }
-    if(tab == 'Baraqah' && (this.data && this.data.shareForm)){
-      this.activeTab = tab;
+    if(tab == 'Baraqah'){
+      if(this.data && this.data.shareForm){
+        this.activeTab = tab;
+      }else{
+      this.toastService.show("Please fill the form first", { classname: 'bg-danger text-light', delay: 5000 });    
+      }
     }
     
     document.body.scrollTop = 0;

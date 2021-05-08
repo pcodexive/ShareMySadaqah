@@ -170,7 +170,11 @@ export class SharetabComponent implements OnInit{
   goToNextStep(){
     if(!this.form.invalid){
       this.onTabClick.emit("Baraqah");
+    }else{
+      this.toastService.show("Please fill the form first", { classname: 'bg-danger text-light', delay: 5000 });    
     }
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
     return;    
   }
   goToBackStep(){

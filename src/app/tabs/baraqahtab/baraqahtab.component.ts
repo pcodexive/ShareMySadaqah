@@ -141,10 +141,10 @@ export class BaraqahtabComponent implements OnInit {
        return;      
      }      
     })
-    this.data={
-      ...this.data,
-      gift:''
-    }
+    // this.data={
+    //   ...this.data,
+    //   gift:''
+    // }
     this.authService.setLocalStorage('tabData', this.data);
   }
   onAdd(index:any){
@@ -161,10 +161,10 @@ export class BaraqahtabComponent implements OnInit {
        return;      
      }      
     })  
-    this.data={
-      ...this.data,
-      gift:''
-    }
+    // this.data={
+    //   ...this.data,
+    //   gift:''
+    // }
     // this.data.cart = this.data;
     this.authService.setLocalStorage('tabData', this.data);
   }
