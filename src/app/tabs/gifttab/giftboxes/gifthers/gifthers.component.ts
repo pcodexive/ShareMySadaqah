@@ -83,7 +83,7 @@ export class GiftHersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("selectedGiftBoxThers",this.selectedGiftBoxThers);
+    // console.log("selectedGiftBoxThers",this.selectedGiftBoxThers);
     
     if(this.selectedGiftBoxThers && this.selectedGiftBoxThers.giftBox && this.selectedGiftBoxThers.giftBox.index ){
       this.selectedItem=this.selectedGiftBoxThers.giftBox.index;      

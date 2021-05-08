@@ -12,7 +12,7 @@ export class BelovedtabComponent implements OnInit {
 
   alive=-1;
   constructor() { 
-    console.log("alive=======",this.passAlive);
+    // console.log("alive=======",this.passAlive);
   }
   
   @Output() onTabClick: EventEmitter<any> = new EventEmitter();
@@ -21,7 +21,7 @@ export class BelovedtabComponent implements OnInit {
   @Output() passMemoryOnTab: EventEmitter<any> = new EventEmitter();
   @Input() charity=0;
   ngOnInit(): void {
-    console.log("alive2222=======",this.passAlive);
+    // console.log("alive2222=======",this.passAlive);
   }
   goToNextStep(){    
   if((this.passAlive && this.passAlive.alive && this.passAlive.alive.index >= 0) || this.passMemory >=0 )

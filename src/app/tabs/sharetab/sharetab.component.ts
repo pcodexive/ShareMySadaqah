@@ -14,8 +14,6 @@ export class SharetabComponent implements OnInit{
   @Output() onTabClick: EventEmitter<any> = new EventEmitter();
   @Output() passOccasion: EventEmitter<any> = new EventEmitter();
   @Output() passShareformData: EventEmitter<any> = new EventEmitter();
-
-
   @Input() gift:any;
   @Input() dataObj:any;
   otherButton=true;
@@ -99,15 +97,30 @@ export class SharetabComponent implements OnInit{
       this.shareLove=this.dataObj.alive.name;
     }
     if(this.dataObj && this.dataObj.gift){
+      if(this.dataObj.gift.singleGift) {  
       this.giftData={
-        "bgcolor":this.dataObj.gift.bgcolor,
-        "givenow":this.dataObj.gift.givenow,
-        "image":this.dataObj.gift.image,
-        'name':this.dataObj.gift.name
+        "bgcolor":this.dataObj.gift.singleGift.bgcolor,
+        "givenow":this.dataObj.gift.singleGift.givenow,
+        "image":this.dataObj.gift.singleGift.image,
+        'name':this.dataObj.gift.singleGift.name
+      }}
+      else if(this.dataObj.gift.giftBox)   {
+      this.giftData={
+        "bgcolor":this.dataObj.gift.giftBox.bgcolor,
+        "givenow":this.dataObj.gift.giftBox.givenow,
+        "image":this.dataObj.gift.giftBox.image,
+        'name':this.dataObj.gift.giftBox.name
+      }
+    }
+      else{
+        this.giftData={
+          "givenow":this.dataObj.gift.giftBox.givenow,
+          "image":'assets/images/water-img.png',
+          'name':'Water'
       }
     }
  
-    
+  }
 
     this.form =this.fb.group({     
       recipients_email :  this.dataObj.memory ? new FormControl(null):new FormControl(null, [Validators.required,Validators.email]) ,
@@ -158,7 +171,7 @@ export class SharetabComponent implements OnInit{
     this.otherButton=false;
   } 
   goToNextStep(){
-    if(this.form){
+    if(!this.form.invalid){
       this.onTabClick.emit("Baraqah");
     }
     return;    
@@ -175,12 +188,9 @@ export class SharetabComponent implements OnInit{
     }else
     {
      this.passOccasion.emit(occasion);
-
     }   
   }
   onSubmit() {
-    console.log("submitted && ",this.submitted);
-    
     this.submitted=true;
     if (this.form.invalid) {
       return;
@@ -211,7 +221,6 @@ private getDismissReason(reason: any): string {
 }
 
 selectedGiftItem(index:any,content:any){
-
   var giftCartData=[{
     "bgcolor":content.bgcolor,
     "image":content.image,
@@ -223,7 +232,7 @@ selectedGiftItem(index:any,content:any){
   if(this.authService.getLocalStorage('giftCartData')){
     var localStoreData = this.authService.getLocalStorage('giftCartData');
     item = _.find(localStoreData, function(o) {
-      console.log(o,"giftCartData",giftCartData[index]);      
+      // console.log(o,"giftCartData",giftCartData[index]);      
       return o ==  giftCartData[index]
     });
     let giftCartData1= _.concat(localStoreData,giftCartData);
@@ -233,7 +242,6 @@ selectedGiftItem(index:any,content:any){
     let giftCartData1= _.merge(giftCartData);
     this.authService.setLocalStorage('giftCartData',giftCartData1);  
   }
-
 }
 
 }

@@ -92,8 +92,7 @@ export class SingleGiftsComponent implements OnInit {
       ...this.singleGift,
       quantity:this.form.get('quantity')?.value
     }
-    console.log(this.singleGift);
-    
+    // console.log(this.singleGift); 
     
     this.passSingleGift.emit(this.singleGift); 
   }
@@ -104,7 +103,7 @@ export class SingleGiftsComponent implements OnInit {
           Validators.pattern(/^([1-9]*)$/)
         ]),  
     });
-console.log("selectedsingleGift",this.selectedsingleGift);
+// console.log("selectedsingleGift",this.selectedsingleGift);
 
     
     if(this.selectedsingleGift && this.selectedsingleGift.singleGift){

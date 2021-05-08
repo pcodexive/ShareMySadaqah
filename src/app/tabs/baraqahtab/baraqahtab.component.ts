@@ -1,9 +1,9 @@
-import { Component, Input, OnInit, ViewChild, ɵConsole } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import * as _ from "lodash";
+
 
 
 import { StripeService, StripeCardNumberComponent, StripeCardComponent, StripeCardGroupDirective } from 'ngx-stripe';
@@ -14,6 +14,7 @@ import {
 } from '@stripe/stripe-js';
 import { environment } from 'src/environments/environment';
 import { ApiService } from 'src/app/shared/api.service';
+import { AuthService } from 'src/app/shared/auth.service';
 
 // import { environment as env } from '../../environments/environment';
 @Component({
@@ -42,7 +43,7 @@ export class BaraqahtabComponent implements OnInit {
   @ViewChild(StripeCardComponent) card!: StripeCardComponent;
   @ViewChild(StripeCardNumberComponent) cardNumber!: StripeCardNumberComponent;
   @Input() data:any;
-   cart:any=[];
+  cart:any=[];
 
   cardOptions: StripeCardElementOptions = {
     style: {
@@ -69,7 +70,8 @@ export class BaraqahtabComponent implements OnInit {
     private http: HttpClient,
     private fb: FormBuilder,
     private stripeService: StripeService,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -78,36 +80,38 @@ export class BaraqahtabComponent implements OnInit {
       email: ['', [Validators.required]],
       amount: [10.50, [Validators.required]],
     });
-    if(this.data && this.data.gift.singleGift){
-       
-    const sigle = {
-        name: this.data.gift.singleGift.name,
-        image: this.data.gift.singleGift.image,
-        price: this.data.gift.singleGift.givenow,
-        bgcolor: this.data.gift.singleGift.bgcolor,        
-        quantity:this.data?.gift?.singleGift?.quantity,
-        total:1
-      }
-      this.cart=_.concat(sigle);     
+      this.cart= this.data.cart;
 
-    }
-    if(this.data && this.data.gift.giftBox){
-      const data = {
-        name: this.data.gift.giftBox.name,
-        image: this.data.gift.giftBox.image,
-        price: this.data.gift.giftBox.givenow,
-        bgcolor: this.data.gift.giftBox.bgcolor,        
-        quantity:1,
-        total:1
-      }
-      this.cart=_.concat(this.cart,data);     
+    // if(this.data && this.data.gift.singleGift){
+       
+    // const sigle = {
+    //     name: this.data.gift.singleGift.name,
+    //     image: this.data.gift.singleGift.image,
+    //     price: this.data.gift.singleGift.givenow,
+    //     bgcolor: this.data.gift.singleGift.bgcolor,        
+    //     quantity:this.data?.gift?.singleGift?.quantity,
+    //     total:1
+    //   }
+    //   this.cart=_.concat(sigle);     
+
+    // }
+    // if(this.data && this.data.gift.giftBox){
+    //   const data = {
+    //     name: this.data.gift.giftBox.name,
+    //     image: this.data.gift.giftBox.image,
+    //     price: this.data.gift.giftBox.givenow,
+    //     bgcolor: this.data.gift.giftBox.bgcolor,        
+    //     quantity:1,
+    //     total:1
+    //   }
+    //   this.cart=_.concat(this.cart,data);     
     
-      // this.cart.push(data);
-      // this.cart= this.cart.slice(1);
-      console.log(this.cart);
+    //   // this.cart.push(data);
+    //   // this.cart= this.cart.slice(1);
+    //   console.log(this.cart);
       
      
-    }
+    // }
     
     
     
@@ -123,7 +127,7 @@ export class BaraqahtabComponent implements OnInit {
   } 
   onDelete(index:any){
  
-    this.cart.map((data:any ,i:any) =>{
+    this.data.cart.map((data:any ,i:any) =>{
     if(i==index){
        if(data.quantity > 1){
          data.quantity=data.quantity-1;
@@ -132,15 +136,19 @@ export class BaraqahtabComponent implements OnInit {
         // }
        }
        else{
-        this.cart.splice(index,1);  
+        this.data.cart.splice(index,1);  
        }
        return;      
      }      
     })
-
+    this.data={
+      ...this.data,
+      gift:''
+    }
+    this.authService.setLocalStorage('tabData', this.data);
   }
   onAdd(index:any){
-    this.cart.map((data:any ,i:any) =>{
+    this.data.cart.map((data:any ,i:any) =>{
       console.log(data);
       
      if(i==index){
@@ -153,6 +161,12 @@ export class BaraqahtabComponent implements OnInit {
        return;      
      }      
     })  
+    this.data={
+      ...this.data,
+      gift:''
+    }
+    // this.data.cart = this.data;
+    this.authService.setLocalStorage('tabData', this.data);
   }
   createToken(): void {
     const name = this.stripeTest.get('name')!.value;
@@ -202,6 +216,5 @@ export class BaraqahtabComponent implements OnInit {
       // console.log(this.stripeTest);
     }
   }
-
 
 }

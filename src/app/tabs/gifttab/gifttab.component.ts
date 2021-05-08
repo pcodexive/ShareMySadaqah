@@ -67,16 +67,14 @@ export class GifttabComponent implements OnInit {
     }
   ]
   
- ngOnInit(): void {
-   
-
-  this.form = new FormGroup({   
-    amount: new FormControl(10, [
-        Validators.required,
-        Validators.pattern(/^([1-9][0-9][0-9]*)$/)
-      ]),  
-  });
-  }
+  ngOnInit(): void {
+    this.form = new FormGroup({   
+      amount: new FormControl(10, [
+          Validators.required,
+          Validators.pattern(/^([1-9][0-9][0-9]*)$/)
+        ]),  
+    });
+    }
   goToNextStep(){    
     if(this.Gift && this.Gift.singleGift.index >= 0)
     this.onTabClick.emit("Share");
@@ -96,7 +94,7 @@ export class GifttabComponent implements OnInit {
   
   }
   getGiftBox(giftBox:any){
-    console.log("getGiftBox",giftBox);
+    // console.log("getGiftBox",giftBox);
     
     if(giftBox){
       this.selectedGiftContent ={
