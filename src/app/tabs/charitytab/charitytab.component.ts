@@ -4,6 +4,8 @@ import { ApiService } from 'src/app/shared/api.service';
 import { CHARETYLIST } from 'src/app/shared/url';
 
 import * as _ from "lodash";
+import { ModalComponent } from 'src/app/shared/modal/modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-charitytab',
   templateUrl: './charitytab.component.html',
@@ -20,7 +22,7 @@ export class CharityTabComponent implements OnInit {
   @Input() selectedItem=-1;
   @Output() onTabClick: EventEmitter<any> = new EventEmitter();
   @Output() setCharity: EventEmitter<any> = new EventEmitter();
-  constructor(private api:ApiService) { }
+  constructor(private api:ApiService,private modalService: NgbModal) { }
   charitieFilter(e:any){
     // console.log(e.value);
     this.filtercontent = this._filterCharities(e.value)
@@ -74,6 +76,14 @@ export class CharityTabComponent implements OnInit {
   goToNextStep(){
     if(this.selectedItem >= 0){     
       this.onTabClick.emit("Beloved");
-    }
+    }else{
+      const openLocationRef =  this.modalService.open(ModalComponent)
+      let data = {
+        color :'#AB57A2',
+        title: 'Please select a charity to continue'
+      }
+    openLocationRef.componentInstance.data = data;
+
+      }
   }
 }

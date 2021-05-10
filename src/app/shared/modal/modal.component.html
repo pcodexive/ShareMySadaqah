@@ -1,0 +1,20 @@
+
+<div class="m-3">
+  <div>
+      <h5 class="text-center">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+         width="40px" height="40px" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" 
+         style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg); vertical-align: -0.125em;">
+         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" 
+         fill="data.color" [attr.fill]="data.color" ></path>
+        </svg>
+      </h5>
+      <h2 class="text-center">
+        {{data.title}}
+      </h2>
+      <p class="text-center">{{data.title}}</p>
+  </div>
+  <div class="text-center">
+    <button [style.background-color]="data.color"  class="btn custom-button btn-lg"  (click)="closePopup(true)"> Ok </button>
+  </div> 
+</div>

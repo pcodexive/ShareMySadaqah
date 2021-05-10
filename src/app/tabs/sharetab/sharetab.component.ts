@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/shared/auth.service';
 import * as _ from "lodash";
 import { ToastService } from 'src/app/shared/toasts-container/toast-service';
+import { ModalComponent } from 'src/app/shared/modal/modal.component';
 
 @Component({
   selector: 'app-sharetab',
@@ -171,7 +172,13 @@ export class SharetabComponent implements OnInit{
     if(!this.form.invalid){
       this.onTabClick.emit("Baraqah");
     }else{
-      this.toastService.show("Please fill the form first", { classname: 'bg-danger text-light', delay: 5000 });    
+      const openLocationRef =  this.modalService.open(ModalComponent)
+      let data = {
+        color :'#2D90CE',
+        title: 'Please fill the form first to continue'
+      }
+    openLocationRef.componentInstance.data = data;
+    // this.toastService.show("Please fill the form first", { classname: 'bg-danger text-light', delay: 5000 });    
     }
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;

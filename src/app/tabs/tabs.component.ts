@@ -1,7 +1,9 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, ViewChild } from '@angular/core';
 import { AuthService } from '../shared/auth.service';
 import * as _ from "lodash";
 import { ToastService } from '../shared/toasts-container/toast-service';
+import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from '../shared/modal/modal.component';
 
 @Component({
   selector: 'app-tabs',
@@ -9,11 +11,10 @@ import { ToastService } from '../shared/toasts-container/toast-service';
   styleUrls: ['./tabs.component.scss']
 })
 export class TabsComponent implements OnInit {
-  charity:any;
-  @Output() data:any={};
-  
+  charity=-1;
+  @Output() data:any={};  
   activeTab="Charity";
-  constructor(private authService: AuthService,private toastService:ToastService) { }
+  constructor(private authService: AuthService,private toastService:ToastService,private modalService: NgbModal) { }
 
   ngOnInit(): void {    
     this.data=this.authService.getLocalStorage('tabData');
@@ -25,33 +26,126 @@ export class TabsComponent implements OnInit {
 
   setActiveTab(tab:any) {
     // console.log("tab", this.data,this.charity);
-    // console.log("data",this.data);
-    if(tab=='Beloved' && this.charity >=0){
-      this.activeTab = tab;
-    }   
-    if(tab=='Charity' && this.charity >=0){
-      this.activeTab = tab;
+    console.log("data",this.data);
+
+    switch(tab) {
+      case 'Charity':
+        if(tab=='Charity' && this.charity >=0){
+          this.activeTab = tab;
+        }
+        break;
+      case 'Beloved':
+        if(this.charity >=0){
+          this.activeTab = tab;
+        }else{
+          this.openWarringPopup('#AB57A2', 'Please select a charity to continue');  
+        }
+        // code block
+        break;
+      case 'Gift':
+        if((this.data && this.data.alive && this.data.alive.index) >= 0  || (this.data && this.data.memory )>= 0 ){
+          this.activeTab = tab;
+        }
+        else if(this.charity < 0){
+          this.openWarringPopup('#AB57A2', 'Please select a charity to continue');  
+        }
+         else{
+          this.openWarringPopup('#E6557F', 'Please select a your loved to continue');  
+          this.activeTab = 'Beloved';
+        }
+        // code block
+        break;
+      case 'Share':
+        if(((this.data && this.data.gift && this.data.gift.singleGift && this.data.gift.singleGift.index) >= 0 ) || 
+        (this.data && this.data.gift && this.data.gift.giftBox && this.data.gift.giftBox.index) >= 0 ){
+          this.activeTab = tab;
+        }
+        else if(this.charity < 0){
+          this.openWarringPopup('#AB57A2', 'Please select a charity to continue');  
+        }
+        else if ((!this.data?.alive && !this.data.memory )){
+          this.openWarringPopup('#E6557F', 'Please select a your loved to continue');
+          this.activeTab = 'Beloved';
+        }      
+        else{
+          this.openWarringPopup('#0EA08F', 'Please select a cause to continue');
+          this.activeTab = 'Gift';
+        }
+        // code block
+        break;
+      case 'Baraqah':
+        if(this.data && this.data.shareForm){
+          this.activeTab = tab;
+        }
+        else if(this.charity < 0){
+          this.openWarringPopup('#AB57A2', 'Please select a charity to continue');  
+        }
+        else if ((!this.data?.alive && !this.data?.memory )){
+          this.openWarringPopup('#E6557F', 'Please select a your loved to continue');
+          this.activeTab = 'Beloved';
+        }
+        else if(!this.data.gift){
+          this.openWarringPopup('#0EA08F', 'Please select a cause to continue');
+          this.activeTab = 'Gift';
+        }else{
+          this.openWarringPopup('#2D90CE', 'Please fill the form first to continue');
+          this.activeTab = 'Share';
+         // this.toastService.show("Please fill the form first", { classname: 'bg-danger text-light', delay: 5000 });    
+        }
+        // code block
+        break;
+      default:
+        // code block
     }
-    if(tab=='Gift' && ((this.data && this.data.alive && this.data.alive.index) >= 0  || (this.data && this.data.memory )>= 0 )){
-      this.activeTab = tab;
-    }
+
+    // if(tab=='Beloved'){
+    //   if(this.charity >=0){
+    //     this.activeTab = tab;
+    //   }else{
+    //     this.openWarringPopup('#AB57A2', 'Please select a charity to continue');  
+    //   }
+    // }   
+    // if(tab=='Charity' && this.charity >=0){
+    //   this.activeTab = tab;
+    // }
+    // if(tab=='Gift'){
+    //   if((this.data && this.data.alive && this.data.alive.index) >= 0  || (this.data && this.data.memory )>= 0 ){
+    //     this.activeTab = tab;
+    //   }else{
+    //     this.openWarringPopup('#E6557F', 'Please select a your loved to continue');  
+    //   }
+    // }
     // if(tab=='Share'&& (this.data && this.data.amount >= 10 )){
-    if(tab=='Share' &&
-     ((this.data && this.data.gift && this.data.gift.singleGift && this.data.gift.singleGift.index) >= 0 ) || 
-     (this.data && this.data.gift && this.data.gift.giftBox && this.data.gift.giftBox.index) >= 0 ){
-      this.activeTab = tab;
-    }
-    if(tab == 'Baraqah'){
-      if(this.data && this.data.shareForm){
-        this.activeTab = tab;
-      }else{
-      this.toastService.show("Please fill the form first", { classname: 'bg-danger text-light', delay: 5000 });    
-      }
-    }
+    // if(tab=='Share'){
+    //   if(((this.data && this.data.gift && this.data.gift.singleGift && this.data.gift.singleGift.index) >= 0 ) || 
+    //   (this.data && this.data.gift && this.data.gift.giftBox && this.data.gift.giftBox.index) >= 0 ){
+    //     this.activeTab = tab;
+    //   }else{
+    //     this.openWarringPopup('#0EA08F', 'Please select a cause to continue');
+    //   }
+    // }
+    // if(tab == 'Baraqah'){
+    //   if(this.data && this.data.shareForm){
+    //     this.activeTab = tab;
+    //   }else{
+    //     this.openWarringPopup('#2D90CE', 'Please fill the form first to continue');
+    //    // this.toastService.show("Please fill the form first", { classname: 'bg-danger text-light', delay: 5000 });    
+    //   }
+    // }
     
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
   }
+
+  openWarringPopup(color:any,title:any){
+    const openLocationRef =  this.modalService.open(ModalComponent)
+    let data = {
+      color,
+      title
+    }
+  openLocationRef.componentInstance.data = data;
+  }
+
   getCharity(i:any){
     this.data={
       ...this.data,

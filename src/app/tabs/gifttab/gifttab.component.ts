@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from 'src/app/shared/modal/modal.component';
 
 @Component({
   selector: 'app-gifttab',
@@ -76,8 +77,16 @@ export class GifttabComponent implements OnInit {
     });
     }
   goToNextStep(){    
-    if(this.Gift && this.Gift.singleGift.index >= 0)
-    this.onTabClick.emit("Share");
+    if(this.Gift && this.Gift.singleGift.index >= 0){
+      this.onTabClick.emit("Share");
+    }else{
+      const openLocationRef =  this.modalService.open(ModalComponent)
+      let data = {
+        color :'#0EA08F',
+        title: 'Please select a cause to continue'
+      }
+    openLocationRef.componentInstance.data = data;
+    }
   }
   goToBackStep(){
     this.onTabClick.emit("Beloved");

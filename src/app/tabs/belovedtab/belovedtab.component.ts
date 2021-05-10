@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from 'src/app/shared/modal/modal.component';
 
 
 @Component({
@@ -11,7 +13,7 @@ export class BelovedtabComponent implements OnInit {
   @Input() passMemory=-1;
 
   alive=-1;
-  constructor() { 
+  constructor(private modalService: NgbModal) { 
     // console.log("alive=======",this.passAlive);
   }
   
@@ -24,8 +26,17 @@ export class BelovedtabComponent implements OnInit {
     // console.log("alive2222=======",this.passAlive);
   }
   goToNextStep(){    
-  if((this.passAlive && this.passAlive.alive && this.passAlive.alive.index >= 0) || this.passMemory >=0 )
+  if((this.passAlive && this.passAlive.alive && this.passAlive.alive.index >= 0) || this.passMemory >=0 ){
     this.onTabClick.emit("Gift");
+  }else{
+      const openLocationRef =  this.modalService.open(ModalComponent)
+      let data = {
+        color :'#E6557F',
+        title: 'Please select a your loved to continue'
+      }
+    openLocationRef.componentInstance.data = data;
+
+      }
   }
   goToBackStep(){
     this.OnCharityPass.emit(this.charity);
