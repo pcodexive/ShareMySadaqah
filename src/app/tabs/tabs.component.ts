@@ -11,14 +11,17 @@ import { ModalComponent } from '../shared/modal/modal.component';
   styleUrls: ['./tabs.component.scss']
 })
 export class TabsComponent implements OnInit {
-  charity=-1;
+  charity:any;
   @Output() data:any={};  
   activeTab="Charity";
   constructor(private authService: AuthService,private toastService:ToastService,private modalService: NgbModal) { }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {   
+
     this.data=this.authService.getLocalStorage('tabData');
-    if(this.data && this.data.charity){
+    console.log("data",this.data);
+    
+    if(this.data && this.data.charity >= 0){
       this.charity=this.data.charity      
     }
 
@@ -35,6 +38,8 @@ export class TabsComponent implements OnInit {
         }
         break;
       case 'Beloved':
+        console.log(this.charity);
+        
         if(this.charity >=0){
           this.activeTab = tab;
         }else{
