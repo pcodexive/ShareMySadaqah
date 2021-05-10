@@ -11,7 +11,7 @@ import { ModalComponent } from '../shared/modal/modal.component';
   styleUrls: ['./tabs.component.scss']
 })
 export class TabsComponent implements OnInit {
-  charity:any;
+  charity=-1;
   @Output() data:any={};  
   activeTab="Charity";
   constructor(private authService: AuthService,private toastService:ToastService,private modalService: NgbModal) { }
@@ -33,7 +33,7 @@ export class TabsComponent implements OnInit {
 
     switch(tab) {
       case 'Charity':
-        if(tab=='Charity' && this.charity >=0){
+        if(tab=='Charity' && this.charity >=0 ){
           this.activeTab = tab;
         }
         break;
@@ -48,11 +48,12 @@ export class TabsComponent implements OnInit {
         // code block
         break;
       case 'Gift':
-        if((this.data && this.data.alive && this.data.alive.index) >= 0  || (this.data && this.data.memory )>= 0 ){
+        if((this.data && this.data.alive && this.data.alive.index) >= 0 || (this.data && this.data.memory )>= 0){
           this.activeTab = tab;
         }
         else if(this.charity < 0){
           this.openWarringPopup('#AB57A2', 'Please select a charity to continue');  
+          this.activeTab = 'Charity';
         }
          else{
           this.openWarringPopup('#E6557F', 'Please select a your loved to continue');  
@@ -67,8 +68,10 @@ export class TabsComponent implements OnInit {
         }
         else if(this.charity < 0){
           this.openWarringPopup('#AB57A2', 'Please select a charity to continue');  
+          this.activeTab = 'Charity';
+          
         }
-        else if ((!this.data?.alive && !this.data.memory )){
+        else if ((!this.data?.alive && !this.data?.memory )){
           this.openWarringPopup('#E6557F', 'Please select a your loved to continue');
           this.activeTab = 'Beloved';
         }      
