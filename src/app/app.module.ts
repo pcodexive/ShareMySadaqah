@@ -44,6 +44,8 @@ import { SingleGiftsComponent } from './tabs/gifttab/singlegifts/singlegifts.com
 import { GiftBoxesComponent } from './tabs/gifttab/giftboxes/giftboxes.component';
 import { GiftHersComponent } from './tabs/gifttab/giftboxes/gifthers/gifthers.component';
 import { GiftHisComponent } from './tabs/gifttab/giftboxes/gifthis/gifthis.component';
+import { TermsComponent } from './terms/terms.component';
+import { PrivacyComponent } from './privacy/privacy.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -51,7 +53,10 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'signin', component: SigninComponent },
   { path: 'thankyou', component: ThankyouComponent },
-  { path: 'cart', component: CartComponent }
+  { path: 'cart', component: CartComponent },
+  { path: 'terms', component: TermsComponent },
+  {path: 'privacy',component:PrivacyComponent}
+
 ];
 
 @NgModule({
@@ -78,7 +83,9 @@ const routes: Routes = [
     SingleGiftsComponent,
     GiftBoxesComponent,
     GiftHersComponent,
-    GiftHisComponent
+    GiftHisComponent,
+    TermsComponent,
+    PrivacyComponent
   ],
   imports: [
     BrowserModule,

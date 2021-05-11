@@ -47,9 +47,11 @@ export class CharityTabComponent implements OnInit {
     this.selectedItem=i;
   }
   charityList(){
-    this.spinner=true;
+    this.spinner=true;    
     // https://nestdev.herokuapp.com/v1/charity?limit=100&page=1&filter_by=&sort=asc&column=&is_featured=0&app=2
     if(this.pageSize  == this.totalPage + 1){
+    this.spinner=false;
+      
       return;  
      }
     this.api.get(CHARETYLIST+`?limit=${this.limit}&page=${this.pageSize}&filter_by=`).subscribe(res=>{
@@ -60,13 +62,13 @@ export class CharityTabComponent implements OnInit {
        this.totalPage = res.pages;
        this.contentarr = res.docs.map((item:any)=>{
         return {
-          "name":item.name,
-          "image":item.logo.white,
-          "text":item.text,
-          "bgcolor":item.theme.primary
+          "name":item.name ? item.name :'',
+          "image":item.logo && item.logo.white ? item.logo.white : '',
+          "text":item.text ? item.text : '',
+          "bgcolor":item.theme && item.theme.primary ? item.theme.primary : ''
         }            
       })
-      this.content=_.concat(this.contentarr, this.content)     
+      this.content=_.concat(this.content,this.contentarr)     
       this.filtercontent=this.content;
       this.spinner=false;
     },err =>{
