@@ -26,31 +26,72 @@
                         <p>For your charity to claim Gift Aid they will require</p>
                     </div>
                     <div class="address-section">
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
                         <div class="form-group">
-                            <select class="custom-select form-control mr-sm-2" id="inlineFormCustomSelect">
+                            <select [ngClass]="{submit :submitted}" name="type" formControlName="type" class="custom-select form-control mr-sm-2" id="inlineFormCustomSelect">
                             <option selected>Mr</option>
                             <option value="Mr">Mr</option>
                             <option value="Mrs">Mrs</option>
                         </select>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="First Name" />
+                            <input type="text" [ngClass]="{submit :submitted}" class="form-control" formControlName="fname" placeholder="First Name" />
+                            <div *ngIf="!form.get('fname')?.valid && (form.get('fname')?.touched || form.get('fname')?.dirty) "
+                            class="help-block">
+                                <div  class="text-danger text-center" *ngIf="form.get('fname')!.errors!.required">
+                                Please enter your first name!
+                            </div>   
+                          </div> 
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Last Name" />
+                            <input type="text"  [ngClass]="{submit :submitted}" class="form-control" formControlName="lname" placeholder="Last Name" />
+                            <div *ngIf="!form.get('lname')?.valid && (form.get('lname')?.touched || form.get('lname')?.dirty) "
+                            class="help-block">
+                                <div  class="text-danger text-center" *ngIf="form.get('lname')!.errors!.required">
+                                Please enter your last name!
+                            </div>  
+                        </div>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Address" />
+                            <input type="text" [ngClass]="{submit :submitted}" class="form-control" formControlName="address" placeholder="Address" />
+                            <div *ngIf="!form.get('address')?.valid && (form.get('address')?.touched || form.get('address')?.dirty) "
+                            class="help-block">
+                            <div  class="text-danger text-center" *ngIf="form.get('address')!.errors!.required">
+                                Please enter your address name!
+                            </div>  
+                          </div>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="City" />
+                            <input type="text" [ngClass]="{submit :submitted}" class="form-control" formControlName="city" placeholder="City" />
+                            <div *ngIf="!form.get('city')?.valid && (form.get('city')?.touched || form.get('city')?.dirty) "
+                            class="help-block">
+                                <div  class="text-danger text-center" *ngIf="form.get('city')!.errors!.required">
+                                Please enter your city name!
+                            </div>  
+                        </div>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="County" />
+                            <input type="text" [ngClass]="{submit :submitted}" class="form-control"  formControlName="county" placeholder="County" />
+                            <div *ngIf="!form.get('county')?.valid && (form.get('county')?.touched || form.get('county')?.dirty) "
+                            class="help-block">
+                                <div  class="text-danger text-center" *ngIf="form.get('county')!.errors!.required">
+                                Please enter your county name!
+                            </div>  
+                        </div>
                         </div>
                         <div class="form-group mb-md-0">
-                            <input type="text" class="form-control" placeholder="Postcode" />
+                            <input type="text" [ngClass]="{submit :submitted}" class="form-control" formControlName="postcode" placeholder="Postcode" />
+                            <div *ngIf="!form.get('postcode')?.valid && (form.get('postcode')?.touched || form.get('postcode')?.dirty) "
+                            class="help-block">
+                                <div  class="text-danger text-center" *ngIf="form.get('postcode')!.errors!.required">
+                                Please enter your postcode name!
+                            </div>  
                         </div>
+                        </div>
+                        <div class="text-center name-box">
+                            <button class="btn btn-block btn-save">Save</button>
+                        </div>
+                        </form>
                     </div>
                 </div>
             </ng-template>

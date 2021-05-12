@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/shared/auth.service';
+import { ToastService } from 'src/app/shared/toasts-container/toast-service';
 
 @Component({
   selector: 'app-baraqahaccordion',
@@ -7,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BaraqahaccordionComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fb:FormBuilder,private toastService:ToastService,private authService:AuthService) { }
   selectedItem=-1;
   priceContent = [
     {
@@ -24,7 +27,8 @@ export class BaraqahaccordionComponent implements OnInit {
     }
   ]
 
-
+  form!:FormGroup;
+  submitted=false;
   toggle1: boolean = false;
   clicktoggle1(){
     this.toggle1 = !this.toggle1;       
@@ -47,6 +51,26 @@ export class BaraqahaccordionComponent implements OnInit {
   }
     
   ngOnInit(): void {
+    this.form =this.fb.group({     
+      type : new FormControl(null, [Validators.required]) ,
+      fname : new FormControl(null, [Validators.required]),
+      lname  : new FormControl(null, [Validators.required]),
+      address : new FormControl(null, [Validators.required]),
+      city  : new FormControl(null, [Validators.required]),
+      county  : new FormControl(null, [Validators.required]),
+      postcode  : new FormControl(null, [Validators.required]),       
+    })
   }
-
+  onSubmit(){
+    this.submitted=true;
+    if (this.form.invalid) {
+      return;
+   }
+    if(this.form){
+    let data =this.authService.getLocalStorage('tabData');
+    data.addressData=this.form.value;
+    this.authService.setLocalStorage('tabData',data);
+    this.toastService.show("Successfully added", { classname: 'bg-success text-light', delay: 5000 });    
+    }
+  }
 }

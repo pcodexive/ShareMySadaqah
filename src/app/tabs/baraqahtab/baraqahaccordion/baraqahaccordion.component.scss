@@ -91,6 +91,17 @@
             }
         }
     }
+    .btn-save{
+        background-color: #F79D11;
+        border: none;
+        text-align: center;
+        -webkit-border-radius: 30px;
+        -moz-border-radius: 30px;
+        height: 60px;
+        color: #fff;
+        font-size: 20px;
+        margin: 20px 0px;
+    }
 }
 
 @media (min-width: 992px) {
@@ -144,3 +155,11 @@
         }
     }
 }
+input.ng-invalid.ng-untouched.submit{
+    border: 1px solid red !important;
+  }
+  
+select.ng-invalid.ng-untouched.submit{
+    border: 1px solid red !important;
+  }
+  
