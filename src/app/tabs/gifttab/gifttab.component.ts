@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
+import * as _ from "lodash";
 
 @Component({
   selector: 'app-gifttab',
@@ -22,7 +23,9 @@ export class GifttabComponent implements OnInit {
   giftName:any;
   @Input() Gift:any;
   selectedItem=-1;
+  selectedsingleGiftContent=[{}];
   selectedGiftContent:any;
+
   content = [
     {
       id: "most-needy",
@@ -68,7 +71,8 @@ export class GifttabComponent implements OnInit {
     }
   ]
   
-  ngOnInit(): void {
+  ngOnInit(): void {    
+    
     this.form = new FormGroup({   
       amount: new FormControl(10, [
           Validators.required,
@@ -77,7 +81,7 @@ export class GifttabComponent implements OnInit {
     });
     }
   goToNextStep(){    
-    if(this.Gift && this.Gift.singleGift.index >= 0){
+    if(this.Gift && this.Gift.singleGift.length > 0){
       this.onTabClick.emit("Share");
     }else{
       const openLocationRef =  this.modalService.open(ModalComponent)
@@ -92,13 +96,27 @@ export class GifttabComponent implements OnInit {
     this.onTabClick.emit("Beloved");
   }
 
-  getSingleGift(singleGift:any){    
-    if(singleGift){
-      this.selectedGiftContent ={
-        ... this.selectedGiftContent,
-        singleGift:singleGift
-      } 
+  getSingleGift(singleGift:any){  
+    console.log(singleGift);
+
+    if(this.Gift && this.Gift.singleGift){
+      const index = this.Gift.singleGift.findIndex((data:any) => data.index === singleGift.index);
+      console.log(index);
+      if (index === -1) {
+        this.selectedsingleGiftContent =_.concat(this.Gift.singleGift,singleGift);               
+      } else {
+        this.Gift.singleGift[index].quantity = singleGift.quantity;;
+      }
     }
+    else{
+      this.selectedsingleGiftContent=_.concat(singleGift);
+    }  
+    // console.log(this.selectedsingleGiftContent);
+   
+    this.selectedGiftContent ={
+        ... this.selectedGiftContent,
+        singleGift: this.selectedsingleGiftContent
+      } 
     this.passGiftToTab.emit(this.selectedGiftContent);
   
   }

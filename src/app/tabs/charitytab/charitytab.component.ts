@@ -6,6 +6,7 @@ import { CHARETYLIST } from 'src/app/shared/url';
 import * as _ from "lodash";
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from 'src/app/shared/auth.service';
 @Component({
   selector: 'app-charitytab',
   templateUrl: './charitytab.component.html',
@@ -22,7 +23,7 @@ export class CharityTabComponent implements OnInit {
   @Input() selectedItem=-1;
   @Output() onTabClick: EventEmitter<any> = new EventEmitter();
   @Output() setCharity: EventEmitter<any> = new EventEmitter();
-  constructor(private api:ApiService,private modalService: NgbModal) { }
+  constructor(private api:ApiService,private modalService: NgbModal,private authService: AuthService) { }
   charitieFilter(e:any){
     // console.log(e.value);
     this.filtercontent = this._filterCharities(e.value)
@@ -40,18 +41,27 @@ export class CharityTabComponent implements OnInit {
   }
 
   ngOnInit(): void {  
-    this.charityList();
+    this.filtercontent=this.authService.getLocalStorage('charity');
+    if(!this.filtercontent){
+      this.authService.setToken('pageSize', this.pageSize);
+      this.authService.setToken('totalPage', this.totalPage);
+      this.charityList();
+    }
+
   }
   onCharitieSelecte(i:any){
     this.setCharity.emit(i);
     this.selectedItem=i;
   }
   charityList(){
-    this.spinner=true;    
+    this.spinner=true;
+    this.pageSize=this.authService.getLocalStorage('pageSize');
+    this.totalPage=this.authService.getLocalStorage('totalPage');
+    console.log(this.totalPage);
+    
     // https://nestdev.herokuapp.com/v1/charity?limit=100&page=1&filter_by=&sort=asc&column=&is_featured=0&app=2
     if(this.pageSize  == this.totalPage + 1){
-    this.spinner=false;
-      
+    this.spinner=false;     
       return;  
      }
     this.api.get(CHARETYLIST+`?limit=${this.limit}&page=${this.pageSize}&filter_by=`).subscribe(res=>{
@@ -60,6 +70,8 @@ export class CharityTabComponent implements OnInit {
       }
        this.pageSize=this.pageSize +1;  
        this.totalPage = res.pages;
+       this.authService.setToken('pageSize',  this.pageSize);
+       this.authService.setToken('totalPage', this.totalPage);
        this.contentarr = res.docs.map((item:any)=>{
         return {
           "name":item.name ? item.name :'',
@@ -68,8 +80,14 @@ export class CharityTabComponent implements OnInit {
           "bgcolor":item.theme && item.theme.primary ? item.theme.primary : ''
         }            
       })
-      this.content=_.concat(this.content,this.contentarr)     
+      if(this.filtercontent){
+        this.content=_.concat(this.filtercontent,this.contentarr)       
+      }else{
+        this.content = this.contentarr;
+      }
       this.filtercontent=this.content;
+      this.authService.setLocalStorage('charity', this.filtercontent);
+
       this.spinner=false;
     },err =>{
       // console.log("err");

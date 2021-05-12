@@ -19,7 +19,7 @@ export class TabsComponent implements OnInit {
   ngOnInit(): void {   
 
     this.data=this.authService.getLocalStorage('tabData');
-    console.log("data",this.data);
+    // console.log("data",this.data);
     
     if(this.data && this.data.charity >= 0){
       this.charity=this.data.charity      
@@ -62,7 +62,7 @@ export class TabsComponent implements OnInit {
         // code block
         break;
       case 'Share':
-        if(((this.data && this.data.gift && this.data.gift.singleGift && this.data.gift.singleGift.index) >= 0 ) || 
+        if(((this.data && this.data.gift && this.data.gift.singleGift && this.data.gift.singleGift.length > 0) ) || 
         (this.data && this.data.gift && this.data.gift.giftBox && this.data.gift.giftBox.index) >= 0 ){
           this.activeTab = tab;
         }
@@ -187,22 +187,44 @@ export class TabsComponent implements OnInit {
       ...this.data,
       gift:gift
     } 
-    // console.log("gift on tab",gift);
+    console.log("gift on tab",gift);  
     this.setTabDataLocal();
 
-    if(this.data && this.data.gift.singleGift){
-       
-      const sigle = {
-          name: this.data.gift.singleGift.name,
-          image: this.data.gift.singleGift.image,
-          price: this.data.gift.singleGift.givenow,
-          bgcolor: this.data.gift.singleGift.bgcolor,        
-          quantity:this.data?.gift?.singleGift?.quantity,
+    if(this.data && this.data.gift && this.data.gift.singleGift){
+      this.data.gift.singleGift.map((data:any)=>{
+        const sigle = {
+          name: data.name,
+          image: data.image,
+          price: data.givenow,
+          bgcolor: data.bgcolor,        
+          quantity: data.quantity,
+          index:data.index,
           total:1
         }
+        if(this.data.cart){
+        const index = this.data.cart.findIndex((e:any) => e.index === data.index);
+          if (index === -1) {
+            this.data.cart=_.concat(this.data.cart,sigle);               
+          } else {
+            this.data.cart[index].quantity = data.quantity;
+          }
+        }else{
         this.data.cart=_.concat(sigle);   
+        }
+       this.setTabDataLocal();
+
+      })
+      // const sigle = {
+      //     name: this.data.gift.singleGift.name,
+      //     image: this.data.gift.singleGift.image,
+      //     price: this.data.gift.singleGift.givenow,
+      //     bgcolor: this.data.gift.singleGift.bgcolor,        
+      //     quantity:this.data?.gift?.singleGift?.quantity,
+      //     total:1
+      //   }
+      //   this.data.cart=_.concat(sigle);   
     }
-    if(this.data && this.data.gift.giftBox){
+    if(this.data && this.data.gift && this.data.gift.giftBox){
         const data = {
           name: this.data.gift.giftBox.name,
           image: this.data.gift.giftBox.image,
@@ -212,7 +234,7 @@ export class TabsComponent implements OnInit {
           quantity:1,
           total:1
         }
-        this.data.cart=_.concat(this.data.cart,data);     
+       this.data.cart=_.concat(this.data.cart,data);     
        this.setTabDataLocal();
     
         // this.cart.push(data);

@@ -13,7 +13,7 @@ export class SingleGiftsComponent implements OnInit {
   singleGift={};
   closeResult = '';
   constructor(private modalService: NgbModal) { }
-  selectedItem=-1;
+  selectedItem=[-1];
   form!: FormGroup;
   
   // donationItem=-1;
@@ -61,11 +61,22 @@ export class SingleGiftsComponent implements OnInit {
       bgcolor: "#E6557F"
     }
   ]
+  singleGiftSelect(i:any){
+    this.selectedItem.push(i);
+  }
+
 
 
   open(content: any,singleGift:any,index:any) {  
-    // this.form.patchValue({quantity:1})
-    this.singleGift=singleGift;
+    if(this.selectedsingleGift && this.selectedsingleGift.singleGift){
+      let gift = this.selectedsingleGift.singleGift.findIndex((obj:any) => obj.index == index);
+      if(gift === -1){
+        this.form.patchValue({quantity:1})
+      }else{
+        this.form.setValue({quantity:this.selectedsingleGift.singleGift[gift].quantity})
+      }
+  }
+  this.singleGift=singleGift;
     this.singleGift ={
       ...this.singleGift,
       index:index
@@ -100,18 +111,28 @@ export class SingleGiftsComponent implements OnInit {
     this.form = new FormGroup({   
       quantity: new FormControl(1, [
           Validators.required,
-          Validators.pattern(/^([1-9]*)$/)
+          Validators.pattern(/^([1-9][0-9]*)$/)
         ]),  
     });
-// console.log("selectedsingleGift",this.selectedsingleGift);
 
-    
     if(this.selectedsingleGift && this.selectedsingleGift.singleGift){
-      this.selectedItem = this.selectedsingleGift.singleGift.index;
-      this.form.setValue({quantity:this.selectedsingleGift.singleGift.quantity})
-      // this.selectedItem = this.content.findIndex(obj => obj.id==this.selectedsingleGift.id);
-
+      if(this.selectedsingleGift.singleGift){
+      console.log(this.selectedsingleGift.singleGift.length, typeof this.selectedsingleGift.singleGift);
+      this.selectedsingleGift.singleGift.map((data:any)=>{
+        this.selectedItem.push(data.index);    
+      })
     }
   }
+   
+    
+   
+  //   if(this.selectedsingleGift && this.selectedsingleGift.singleGift){
+  //     this.selectedItem = this.selectedsingleGift.singleGift.index;
+  //     // this.form.setValue({quantity:this.selectedsingleGift.singleGift.quantity})
+  //     // this.selectedItem = this.content.findIndex(obj => obj.id==this.selectedsingleGift.id);
 
+  //   }
+  // }
+
+}
 }
