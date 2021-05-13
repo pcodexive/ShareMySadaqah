@@ -136,14 +136,27 @@ export class BaraqahtabComponent implements OnInit {
         // }
        }
        else{
-        this.data.cart.splice(index,1);  
+        if(data.type  === 'His' || data.type === 'Hers'){
+          this.data.gift.giftBox = "";
+          this.data.cart.splice(index,1);  
+        }else{          
+          let onegift= this.data.cart[index];
+          this.data.cart.splice(index,1);      
+          this.data.gift.singleGift.map((obj:any)=>{
+            if(obj.index == onegift.index){
+              this.data.gift.singleGift.splice(index,1);      
+            }
+          })
+        }
        }
        return;      
      }      
     })
-    // this.data={
-    //   ...this.data,
-    //   gift:''
+    // if(this.data.cart.length == 0){
+    //     this.data={
+    //     ...this.data,
+    //      gift:''
+    // }
     // }
     this.authService.setLocalStorage('tabData', this.data);
   }

@@ -98,12 +98,12 @@ export class SharetabComponent implements OnInit{
       this.shareLove=this.dataObj.alive.name;
     }
     if(this.dataObj && this.dataObj.gift){
-      if(this.dataObj.gift.singleGift) {  
+       if(this.dataObj.gift.singleGift && this.dataObj.gift.singleGift[0]) {  
       this.giftData={
-        "bgcolor":this.dataObj.gift.singleGift.bgcolor,
-        "givenow":this.dataObj.gift.singleGift.givenow,
-        "image":this.dataObj.gift.singleGift.image,
-        'name':this.dataObj.gift.singleGift.name
+        "bgcolor":this.dataObj.gift.singleGift[0].bgcolor,
+        "givenow":this.dataObj.gift.singleGift[0].givenow,
+        "image":this.dataObj.gift.singleGift[0].image,
+        'name':this.dataObj.gift.singleGift[0].name
       }}
       else if(this.dataObj.gift.giftBox)   {
       this.giftData={

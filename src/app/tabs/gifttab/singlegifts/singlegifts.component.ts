@@ -114,13 +114,17 @@ export class SingleGiftsComponent implements OnInit {
           Validators.pattern(/^([1-9][0-9]*)$/)
         ]),  
     });
-
-    if(this.selectedsingleGift && this.selectedsingleGift.singleGift){
+    if(this.selectedsingleGift && this.selectedsingleGift.singleGift && this.selectedsingleGift.singleGift.length > 0){  
       if(this.selectedsingleGift.singleGift){
-      console.log(this.selectedsingleGift.singleGift.length, typeof this.selectedsingleGift.singleGift);
-      this.selectedsingleGift.singleGift.map((data:any)=>{
+        this.selectedsingleGift.singleGift.map((data:any)=>{
         this.selectedItem.push(data.index);    
       })
+    }
+  }else{
+    // console.log(this.selectedsingleGift);
+    if(this.selectedsingleGift  && this.selectedsingleGift.index){
+      // console.log(this.selectedsingleGift.index);      
+      this.selectedItem.push(this.selectedsingleGift.index);    
     }
   }
    

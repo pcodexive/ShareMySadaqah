@@ -86,7 +86,10 @@ export class GiftHersComponent implements OnInit {
     // console.log("selectedGiftBoxThers",this.selectedGiftBoxThers);
     
     if(this.selectedGiftBoxThers && this.selectedGiftBoxThers.giftBox && this.selectedGiftBoxThers.giftBox.index ){
-      this.selectedItem=this.selectedGiftBoxThers.giftBox.index;      
+      {
+        if(this.selectedGiftBoxThers.giftBox.type === 'Hers')
+        this.selectedItem=this.selectedGiftBoxThers.giftBox.index; 
+      }
     }
   }
 

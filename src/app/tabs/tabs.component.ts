@@ -17,6 +17,7 @@ export class TabsComponent implements OnInit {
   constructor(private authService: AuthService,private toastService:ToastService,private modalService: NgbModal) { }
 
   ngOnInit(): void {   
+    // console.log("tab");
 
     this.data=this.authService.getLocalStorage('tabData');
     // console.log("data",this.data);
@@ -29,7 +30,7 @@ export class TabsComponent implements OnInit {
 
   setActiveTab(tab:any) {
     // console.log("tab", this.data,this.charity);
-    console.log("data",this.data);
+    // console.log("data",this.data);
 
     switch(tab) {
       case 'Charity':
@@ -38,7 +39,7 @@ export class TabsComponent implements OnInit {
         }
         break;
       case 'Beloved':
-        console.log(this.charity);
+        // console.log(this.charity);
         
         if(this.charity >=0){
           this.activeTab = tab;
@@ -62,8 +63,11 @@ export class TabsComponent implements OnInit {
         // code block
         break;
       case 'Share':
+        console.log(((this.data && this.data.gift && this.data.gift.singleGift && this.data.gift.singleGift.length > 0) ) || 
+        (this.data && this.data.gift && this.data.gift.giftBox && this.data.gift.giftBox.index) >= 0 );
+        
         if(((this.data && this.data.gift && this.data.gift.singleGift && this.data.gift.singleGift.length > 0) ) || 
-        (this.data && this.data.gift && this.data.gift.giftBox && this.data.gift.giftBox.index) >= 0 ){
+        (this.data && this.data.gift && this.data.gift.giftBox && this.data.gift.giftBox.index >= 0 ) ){
           this.activeTab = tab;
         }
         else if(this.charity < 0){
@@ -183,11 +187,12 @@ export class TabsComponent implements OnInit {
     // console.log("memory",this.data);
   }
   getGiftTab(gift:any){
+    // console.log("gift on tab",gift);  
+
     this.data={
       ...this.data,
       gift:gift
     } 
-    console.log("gift on tab",gift);  
     this.setTabDataLocal();
 
     if(this.data && this.data.gift && this.data.gift.singleGift){
@@ -234,7 +239,20 @@ export class TabsComponent implements OnInit {
           quantity:1,
           total:1
         }
-       this.data.cart=_.concat(this.data.cart,data);     
+        if(this.data && this.data.cart){
+          this.data.cart = this.data.cart.filter((e:any) =>{
+            if(e?.type === 'His' || e?.type === 'Hers'){
+              return;
+            }else{
+              return e;
+            }
+          })
+         this.data.cart=_.concat(this.data.cart,data);    
+        }else{
+         this.data.cart=_.concat(data);   
+          
+        }
+       
        this.setTabDataLocal();
     
         // this.cart.push(data);

@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
 import * as _ from "lodash";
+  import { AuthService } from 'src/app/shared/auth.service';
 
 @Component({
   selector: 'app-gifttab',
@@ -17,7 +18,7 @@ export class GifttabComponent implements OnInit {
   @Output() passGift: EventEmitter<any> = new EventEmitter();
   @Output() passGiftToTab: EventEmitter<any> = new EventEmitter();
 
-  constructor(private modalService:NgbModal) { }
+  constructor(private modalService:NgbModal,private authService:AuthService) { }
   form!: FormGroup;
   closeResult = '';
   giftName:any;
@@ -72,6 +73,8 @@ export class GifttabComponent implements OnInit {
   ]
   
   ngOnInit(): void {    
+    this.Gift= this.authService.getLocalStorage('tabData')?.gift;
+
     
     this.form = new FormGroup({   
       amount: new FormControl(10, [
@@ -81,7 +84,8 @@ export class GifttabComponent implements OnInit {
     });
     }
   goToNextStep(){    
-    if(this.Gift && this.Gift.singleGift.length > 0){
+    if((this.Gift && this.Gift.singleGift && this.Gift.singleGift.length > 0) ||
+      (this.Gift && this.Gift.giftBox && this.Gift.giftBox.index >= 0)){
       this.onTabClick.emit("Share");
     }else{
       const openLocationRef =  this.modalService.open(ModalComponent)
@@ -97,11 +101,12 @@ export class GifttabComponent implements OnInit {
   }
 
   getSingleGift(singleGift:any){  
-    console.log(singleGift);
+    const giftData= this.authService.getLocalStorage('tabData')?.gift?.giftBox;
+
 
     if(this.Gift && this.Gift.singleGift){
       const index = this.Gift.singleGift.findIndex((data:any) => data.index === singleGift.index);
-      console.log(index);
+      // console.log(index);
       if (index === -1) {
         this.selectedsingleGiftContent =_.concat(this.Gift.singleGift,singleGift);               
       } else {
@@ -111,19 +116,36 @@ export class GifttabComponent implements OnInit {
     else{
       this.selectedsingleGiftContent=_.concat(singleGift);
     }  
-    // console.log(this.selectedsingleGiftContent);
-   
-    this.selectedGiftContent ={
-        ... this.selectedGiftContent,
+    if(giftData){
+      this.selectedGiftContent ={
+        giftBox:giftData ? giftData : '',
         singleGift: this.selectedsingleGiftContent
       } 
+    }
+    else{
+      this.selectedGiftContent ={
+        ...this.selectedGiftContent,
+        singleGift: this.selectedsingleGiftContent
+
+      } 
+    }
+ 
+    console.log(this.selectedGiftContent);
+
     this.passGiftToTab.emit(this.selectedGiftContent);
   
   }
   getGiftBox(giftBox:any){
-    // console.log("getGiftBox",giftBox);
+    const giftData= this.authService.getLocalStorage('tabData')?.gift?.singleGift;
+
+    console.log("getGiftBox",giftBox);
     
-    if(giftBox){
+    if(giftData){
+      this.selectedGiftContent ={
+        singleGift:giftData,
+        giftBox:giftBox
+      } 
+    }else{
       this.selectedGiftContent ={
         ...this.selectedGiftContent,
         giftBox:giftBox

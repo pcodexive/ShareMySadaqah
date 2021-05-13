@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
    getCart(){
     if(this.authService.getLocalStorage('giftCartData')){
       let count=this.authService.getLocalStorage('giftCartData');
-      console.log(count);
+      // console.log(count);
       
       this.cartDataCount=_.size(count)
     }

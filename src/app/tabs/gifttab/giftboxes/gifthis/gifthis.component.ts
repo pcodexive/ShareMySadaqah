@@ -87,7 +87,9 @@ export class GiftHisComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.selectedGiftBoxThis && this.selectedGiftBoxThis.giftBox && this.selectedGiftBoxThis.giftBox.index ){
-      this.selectedItem=this.selectedGiftBoxThis.giftBox.index;      
+      if(this.selectedGiftBoxThis.giftBox.type === 'His'){
+        this.selectedItem=this.selectedGiftBoxThis.giftBox.index;    
+      }
     }
   }
 
