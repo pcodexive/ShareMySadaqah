@@ -1,10 +1,90 @@
 <div class="mx-auto mt-3 mt-md-5 w-md-75">
     <tabs class="choose-tabs gifts-tabs">
-        <tab tabTitle="His">
-            <app-gifthis (passGiftThis)="giftBoxs($event)" [selectedGiftBoxThis]="selectedGiftBox"></app-gifthis>
-        </tab>
-        <tab tabTitle="Hers">
-            <app-gifthers (passGiftThers)="giftBoxs($event)" [selectedGiftBoxThers]="selectedGiftBox"></app-gifthers>
+        <tab tabTitle="His"  (click)="setGiftBox('His')">
+            <div class="d-block gifthis-boxs">
+                <div class="d-flex flex-wrap">
+                    <div *ngFor="let content of content; let i = index" class="col-6 px-1 px-md-2" [class.active]="selectedItemHis == i" (click)="selectedItemHis=i">
+                        <div (click)="open(giveNowModal,content,i,'His')" class="card flex-column align-items-center justify-content-center text-center p-1 p-md-2" [ngStyle]="{'background-color': content.bgcolor}">
+                            <div class="flowar"><img src="assets/images/flowar.png" alt="" /></div>
+                            <div class="d-block w-100 image">
+                                <img src="{{content.image}}" alt={{content.name}} title={{content.name}} />
+                            </div>
+                            <div class="d-block w-100 name">{{content.name}}</div>
+                            <div class="d-inline-block givenow" >Give Now £{{content.givenow}}</div>
+                            <ng-template #giveNowModal let-modal>
+                                <div class="gifts-modal">
+                                    <div class="modal-header" [ngStyle]="{'background-color': content.bgcolor}">
+                                        <button class="close" (click)="modal.dismiss()">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <div class="d-block text-center">
+                                            <div class="d-inline-block image">
+                                                <img src="{{content.image}}" alt={{content.name}} title={{content.name}} />
+                                            </div>
+                                            <div class="d-inline-block name">{{content.name}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-body text-center">
+                                        <div class="d-block donation-amount">What’s inside this gift box?</div>
+                                        <ul>
+                                            <li *ngFor="let giftboxcontent of content.giftboxcontent">
+                                                {{giftboxcontent.text}}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="modal-footer text-center">
+                                        <button class="btn btn-primary btn-modal" [ngStyle]="{'background-color': content.bgcolor}" (click)="modal.dismiss()">Cool</button>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </div>
+                        <div class="d-block text-center box-bottom-text">{{content.boxbottomtext}}</div>
+                    </div>
+                </div>
+            </div>     
+         </tab>
+        <tab tabTitle="Hers"  (click)="setGiftBox('Hers')">
+        <div class="d-block gifthis-boxs">
+        <div class="d-flex flex-wrap">
+            <div *ngFor="let content of content; let i = index" class="col-6 px-1 px-md-2" [class.active]="selectedItemHers == i" (click)="selectedItemHers=i">
+                <div (click)="open(giveNowModal,content,i,'Hers')" class="card flex-column align-items-center justify-content-center text-center p-1 p-md-2" [ngStyle]="{'background-color': content.bgcolor}">
+                    <div class="flowar"><img src="assets/images/flowar.png" alt="" /></div>
+                    <div class="d-block w-100 image">
+                        <img src="{{content.image}}" alt={{content.name}} title={{content.name}} />
+                    </div>
+                    <div class="d-block w-100 name">{{content.name}}</div>
+                    <div class="d-inline-block givenow" >Give Now £{{content.givenow}}</div>
+                    <ng-template #giveNowModal let-modal>
+                        <div class="gifts-modal">
+                            <div class="modal-header" [ngStyle]="{'background-color': content.bgcolor}">
+                                <button class="close" (click)="modal.dismiss()">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <div class="d-block text-center">
+                                    <div class="d-inline-block image">
+                                        <img src="{{content.image}}" alt={{content.name}} title={{content.name}} />
+                                    </div>
+                                    <div class="d-inline-block name">{{content.name}}</div>
+                                </div>
+                            </div>
+                            <div class="modal-body text-center">
+                                <div class="d-block donation-amount">What’s inside this gift box?</div>
+                                <ul>
+                                    <li *ngFor="let giftboxcontent of content.giftboxcontent">
+                                        {{giftboxcontent.text}}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="modal-footer text-center">
+                                <button class="btn btn-primary btn-modal" [ngStyle]="{'background-color': content.bgcolor}" (click)="modal.dismiss()">Cool</button>
+                            </div>
+                        </div>
+                    </ng-template>
+                </div>
+                <div class="d-block text-center box-bottom-text">{{content.boxbottomtext}}</div>
+            </div>
+        </div>
+        </div>  
         </tab>
     </tabs>
 </div>

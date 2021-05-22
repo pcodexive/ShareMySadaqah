@@ -4,7 +4,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-gifthers',
   templateUrl: './gifthers.component.html',
-  styleUrls: ['./gifthers.component.scss']
+  // styleUrls: ['./gifthers.component.scss']
 })
 export class GiftHersComponent implements OnInit {
   @Output() passGiftThers:EventEmitter<any> =new EventEmitter();

@@ -26,13 +26,13 @@ export class SignupComponent implements OnInit {
     private toastService:ToastService,
     private authServices: SocialAuthService) { }
 
-    signInWithGoogle(): void {
+    signUpWithGoogle(): void {
       this.authServices.signIn(GoogleLoginProvider.PROVIDER_ID).then(data=>{      
         this.socialRegisterApi(data)
       })
     }
   
-    signInWithFB(): void {
+    signUpWithFB(): void {
       this.authServices.signIn(FacebookLoginProvider.PROVIDER_ID).then(data=>{
         console.log("data",data);        
       })

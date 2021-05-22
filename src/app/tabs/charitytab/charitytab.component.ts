@@ -42,6 +42,7 @@ export class CharityTabComponent implements OnInit {
 
   ngOnInit(): void {  
     this.filtercontent=this.authService.getLocalStorage('charity');
+    this.content =this.filtercontent;
     if(!this.filtercontent){
       this.authService.setToken('pageSize', this.pageSize);
       this.authService.setToken('totalPage', this.totalPage);

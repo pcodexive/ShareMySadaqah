@@ -1,13 +1,13 @@
-<div class="d-md-none d-block">
+<!-- <div class="d-md-none d-block">
     <div class="slider">
         <owl-carousel-o [options]="customOptions">
             <ng-container *ngFor="let content of content">
                 <ng-template carouselSlide>
-                    <div class="slide-inner" id={{content.id}}>
+                    <div class="slide-inner" id={{content.id}}> -->
                         <!-- <div class="slide-image">
                             <img src={{content.image}} alt={{content.title}} title={{content.title}} />
                         </div> -->
-                        <div class="slide-content">
+                        <!-- <div class="slide-content">
                             <h4><span><img src={{content.icon}} alt={{content.title}} /></span> {{content.title}}</h4>
                             <strong>{{content.subtitle}}</strong>
                             <p>{{content.text}}</p>
@@ -17,26 +17,77 @@
             </ng-container>
         </owl-carousel-o>
     </div>
+</div> -->
+<div class="image-content">
+    <div class="row" >
+        <div *ngFor="let content of imageContent" class="px-2" style="text-align: center;" >
+            <div>
+                <img src={{content.image}} alt="" />
+            </div>
+            <div>
+                <span>{{ content.title}}</span>
+            </div>
+        </div>    
+    </div>
 </div>
-<div class="d-none d-md-block">
-    <div class="home-banners">
+
+<div class="d-md-block">
+    <div class="jc-new">
         <div class="container-fluid">
-            <div class="banner" *ngFor="let content of content" id={{content.id}}>
-                <div class="row">
-                    <div class="col-12 px-0">
-                        <div class="d-flex align-items-center justify-content-center flex-column w-100 h-100 p-5 content">
-                            <h4 class="d-block w-100 px-5">
-                                <span class="d-inline-block mr-2"><img src={{content.icon}} alt={{content.title}} /></span> {{content.title}}
-                            </h4>
-                            <strong class="d-block w-100 px-5">{{content.subtitle}}</strong>
-                            <p class="d-block w-100 px-5">{{content.text}}</p>
-                        </div>
+            <div class="d-block heading">
+                Sadaqah Gifts
+            </div>
+            <div class="slider row">
+            <div *ngFor="let content of content" class="col-md-6 col-sm-12 col-12 col-6 px-2" >
+            
+                <div class="slide-inner" id={{content.id}}>
+                    <div class="slide-image">
+                        <img src={{content.image}} alt={{content.title}} title={{content.title}} />
                     </div>
-                    <!-- <div class="col-6 px-0">
-                        <div class="image">
-                            <img src={{content.image}} alt={{content.title}} title={{content.title}} />
-                        </div>
-                    </div> -->
+                    <span class="mid-icon">
+                        <img src={{content.icon}} alt={{content.title}} />
+                    </span>
+                    <div class="slide-content">
+                        <h4>{{content.title}}</h4>                           
+                    <a class="btn-color btn btn-primary" routerLink="/tabs">Give Now</a>
+                
+                        <!-- <strong>{{content.subtitle}}</strong>
+                        <p>{{content.text}}</p> -->
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="image-content">
+    <div class="row" >
+        <div *ngFor="let content of imageContent" class="px-2" >
+            <img src={{content.image}} alt="" />            
+        </div>    
+    </div>
+</div>
+
+<div class="d-md-block">
+    <div class="jc-new">
+        <div class="container-fluid">
+          <div class="slider row">
+            <div *ngFor="let content of giftFor" class="col-md-6 col-sm-12 col-12 col-6 px-2" >
+                <div class="slide-inner">
+                    <div class="slide-image">
+                        <img src={{content.image}} alt={{content.title}} title={{content.title}} />
+                    </div>
+                    <div class="slide-content1">
+                        <h4 [ngStyle]="{'color': content.color}"  >{{content.title}}</h4>                           
+                        <h6>{{content.l1}}</h6>
+                        <strong>{{content.l2}}</strong>
+                        <h6>{{content.l3}}</h6>  
+                       <h6>{{content.l4}}</h6>
+                       <div style="margin: 10px 0px;">
+                        <a class="btn-color btn btn-primary" [ngStyle]="{'background-color': content.color}" routerLink="/tabs">{{content.btntext}}</a>                        
+                       </div>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
