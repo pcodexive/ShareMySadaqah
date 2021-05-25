@@ -47,7 +47,8 @@
     <div class="container">
         <div>
             <div style="display: flex; width: 200px;  height: 200px;margin: 0 auto;">
-                <img src="{{ filtercontent[selectedItem].image }}" alt="" />
+                <img  [ngStyle]="{'background-color': filtercontent[selectedItem]?.bgcolor}" style="border-radius: 50%;object-fit: contain;
+                padding: 15px;" src="{{ filtercontent[selectedItem]?.image }}" alt="" />
             </div>
         </div>
      
