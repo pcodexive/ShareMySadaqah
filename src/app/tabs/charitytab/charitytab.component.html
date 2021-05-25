@@ -2,7 +2,7 @@
     <ng-spinner size="5" type="border" color="warning"></ng-spinner>
 </div>
 
-<div class="charity-tab-content">
+<div class="charity-tab-content"  *ngIf="selectedItem == -1">
     <div class="container">
         <div class="d-block heading">
             Select a charity
@@ -41,6 +41,29 @@
                  </div>
             </div>    
         </div>
+    </div>
+</div>
+<div class="charity-tab-content" *ngIf="selectedItem >=0 ">
+    <div class="container">
+        <div>
+            <div style="display: flex; width: 200px;  height: 200px;margin: 0 auto;">
+                <img src="{{ filtercontent[selectedItem].image }}" alt="" />
+            </div>
+        </div>
+     
+        <div class="d-block mx-md-5 px-md-5">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit. Aliquam sit amet sagittis libero.
+                Nunc a vulputate lorem. Nulla commodo tortor
+                dolor, vitae aliquet ex pretium id.
+              </p>
+        
+        </div>
+        <div class="d-block heading">
+            Select a cause
+        </div>
+       
     </div>
 </div>
 <div class="footer" role="Footer">

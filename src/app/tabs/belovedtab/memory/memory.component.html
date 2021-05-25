@@ -47,7 +47,7 @@
                  </div>
                  <div class="col-3">
                     <div class="d-flex flex-wrap align-items-end justify-content-end">                     
-                    <div class="add-love" (click)="onAddOther()">Add</div>
+                    <button class="btn add-love" type="submit" [disabled]="!form.valid" (click)="onAddOther()">Add</button>
                      </div>
                  </div>
              </div>
