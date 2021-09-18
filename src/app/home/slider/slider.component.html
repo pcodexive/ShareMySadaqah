@@ -1,13 +1,13 @@
-<!-- <div class="d-md-none d-block">
+<div class="d-md-none d-block">
     <div class="slider">
         <owl-carousel-o [options]="customOptions">
             <ng-container *ngFor="let content of content">
                 <ng-template carouselSlide>
-                    <div class="slide-inner" id={{content.id}}> -->
-                        <!-- <div class="slide-image">
+                    <div class="slide-inner" id={{content.id}}>
+                        <div class="slide-image">
                             <img src={{content.image}} alt={{content.title}} title={{content.title}} />
-                        </div> -->
-                        <!-- <div class="slide-content">
+                        </div>
+                        <div class="slide-content">
                             <h4><span><img src={{content.icon}} alt={{content.title}} /></span> {{content.title}}</h4>
                             <strong>{{content.subtitle}}</strong>
                             <p>{{content.text}}</p>
@@ -17,7 +17,7 @@
             </ng-container>
         </owl-carousel-o>
     </div>
-</div> -->
+</div>
 <div class="image-content">
     <div class="row" >
         <div *ngFor="let content of imageContent" class="px-2" style="text-align: center;" >
@@ -38,7 +38,7 @@
                 Sadaqah Gifts
             </div>
             <div class="slider row">
-            <div *ngFor="let content of content" class="col-md-6 col-sm-12 col-12 col-6 px-2" >
+            <div *ngFor="let content of content" class="col-md-3 col-sm-12 col-12 col-6 px-2" >
             
                 <div class="slide-inner" id={{content.id}}>
                     <div class="slide-image">
@@ -72,7 +72,7 @@
     <div class="jc-new">
         <div class="container-fluid">
           <div class="slider row">
-            <div *ngFor="let content of giftFor" class="col-md-6 col-sm-12 col-12 col-6 px-2" >
+            <div *ngFor="let content of giftFor" class="col-md-3 col-sm-12 col-12 col-6 px-2" >
                 <div class="slide-inner">
                     <div class="slide-image">
                         <img src={{content.image}} alt={{content.title}} title={{content.title}} />
