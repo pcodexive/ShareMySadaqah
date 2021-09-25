@@ -65,12 +65,12 @@ export class CharityTabComponent implements OnInit {
     this.spinner=false;     
       return;  
      }
-    this.api.get(CHARETYLIST+`?limit=${this.limit}&page=${this.pageSize}&filter_by=`).subscribe(res=>{
+    this.api.get(CHARETYLIST+`/list`).subscribe(res=>{
       if(!this.contentarr){
         this.contentarr=[];
       }
        this.pageSize=this.pageSize +1;  
-       this.totalPage = res.pages;
+       this.totalPage = res.pages;  
        this.authService.setToken('pageSize',  this.pageSize);
        this.authService.setToken('totalPage', this.totalPage);
        this.contentarr = res.docs.map((item:any)=>{
